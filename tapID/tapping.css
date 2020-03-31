@@ -1,0 +1,91 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,800,700,300);
+@import url(https://fonts.googleapis.com/css?family=Squada+One);
+.modal-header, h4, .close {
+    background-color: #FF6868;
+    color:white !important;
+    text-align: center;
+    font-size: 30px;
+  }
+.modal-footer {
+background-color: #f9f9f9;
+}
+  
+#logo {
+    margin: 50px;
+    padding: 30%;
+    text-align: center;
+    font-family: 'Open Sans', sans-serif;
+    color: #555;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 90px;
+    font-weight: 800;
+    letter-spacing: -3px;
+    line-height: 1;
+    text-shadow: #EDEDED 3px 2px 0;
+    position: absolute center;
+}
+.logo{
+    background-color: lightblue;
+    margin-left: 30px auto 20px;
+   /* -webkit-clip-path: polygon(8% 0, 100% 0%, 92% 100%, 0% 100%);
+    clip-path: polygon(8% 0, 100% 0%, 92% 100%, 0% 100%); */
+-webkit-clip-path: polygon(100% 0%, 95% 100%, 88% 100%, 93% 0, 5% 0, 0 100%, 5% 100%, 10% 0, 12% 0, 7% 100%, 90% 100%, 95% 0);
+clip-path: polygon(100% 0%, 95% 100%, 88% 100%, 93% 0, 5% 0, 0 100%, 5% 100%, 10% 0, 12% 0, 7% 100%, 90% 100%, 95% 0);
+}
+.slant-left img {
+    margin: 20px auto 20px;
+    display: block;
+    height: 360px;
+    width: 360px;
+}
+.slant-right img {
+    margin: 65% auto 10%;
+    margin-left: 45%;
+    display: block;
+
+}
+.imgcontainer{
+    margin: 10px;
+    padding: 60px; 
+    background-size: 500px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image: url('log.png');
+}
+.flex-container {
+  display: flex;
+  background-color: #354664;
+  width: 100%;
+}
+
+.slantrow {
+    position: relative;
+    background-color: #354664;
+    height: 100%;
+}
+.slant-inner {
+    width: 100%;
+    height: 100%;
+}
+.slant-left {
+    width: 75%;
+    height: 100%;
+    padding: 3.4px;
+}
+.slant-right {
+    background-image: url('mcl.png');
+    background-position: 90% 90%;
+    background-repeat: no-repeat;
+    width: 41%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: calc(60% - 15px);
+    background-color: white;
+   -webkit-clip-path: polygon(100% 0, 0% 100%, 100% 100%);
+    clip-path: polygon(100% 0, 0% 100%, 100% 100%);
+   
+}
