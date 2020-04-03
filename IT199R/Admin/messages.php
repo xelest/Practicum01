@@ -134,6 +134,9 @@
     } );
 
 </script>
+<script type="text/javascript"> 
+  window.addEventListener("load", window.print());
+</script>
 </body>
 </html>
 <?php include('phpcore/create_msg.php');?>

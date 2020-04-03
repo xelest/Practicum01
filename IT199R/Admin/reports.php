@@ -20,8 +20,136 @@
 <?php include('nav_side.php'); ?>
 
 <div class="main-content">
-<h1>Report </h1>
-<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem sint assumenda quae aliquid voluptatibus quia, ea, ad natus magni repellat earum, culpa iure tempore. Enim dolor eaque minima voluptas ducimus?</p>
+<h1>REPORTS GENERATION</h1>
+<p></p>
+  <!-- TAB MENU BAR --> 
+  <ul class="nav nav-tabs">
+    <li class="active"><a data-toggle="tab" href="#1">1</a></li>
+    <li><a data-toggle="tab" href="#2">SHS</a></li>
+    <li><a data-toggle="tab" href="#3">COLLEGE</a></li>
+    <li><a data-toggle="tab" href="#3">FACULTY</a></li>
+  </ul>
+
+<!-- Tab CONTENTS -->
+  <div class="tab-content">
+       <!--  --> 
+      <div id="1" class="tab-pane fade in active">
+        <div  class="parent-container-horizontal">
+          <div class="mycard">
+           <p> TEST </p>
+           <p> TEST </p>
+           <p> TEST </p>
+           <p> TEST </p>
+           <p> TEST </p>
+           <p> TEST </p>
+           <p> TEST </p>
+          </div>
+           <div class="mycard">
+            <p> TEST </p>
+            <p> TEST </p>
+            <p> TEST </p>
+            <p> TEST </p>
+            <p> TEST </p>
+            <p> TEST </p>
+            <p> TEST </p>
+          </div>
+        </div>
+
+        <div  class="parent-container-horizontal">
+          <div class="mycard">
+           <p> TEST </p>
+           <p> TEST </p>
+           <p> TEST </p>
+           <p> TEST </p>
+           <p> TEST </p>
+           <p> TEST </p>
+           <p> TEST </p>
+          </div>
+           <div class="mycard">
+            <p> TEST </p>
+            <p> TEST </p>
+            <p> TEST </p>
+            <p> TEST </p>
+            <p> TEST </p>
+            <p> TEST </p>
+            <p> TEST </p>
+          </div>
+           <div class="mycard">
+            <p> TEST </p>
+            <p> TEST </p>
+            <p> TEST </p>
+            <p> TEST </p>
+            <p> TEST </p>
+            <p> TEST </p>
+            <p> TEST </p>
+          </div>
+           <div class="mycard">
+            <p> TEST </p>
+            <p> TEST </p>
+            <p> TEST </p>
+            <p> TEST </p>
+            <p> TEST </p>
+            <p> TEST </p>
+            <p> TEST </p>
+          </div>
+        </div>
+
+        <div  class="parent-container-horizontal">
+          <div class="mycard" style="flex-grow: 3;">
+           <p> TEST </p>
+           <p> TEST </p>
+           <p> TEST </p>
+           <p> TEST </p>
+           <p> TEST </p>
+           <p> TEST </p>
+           <p> TEST </p>
+          </div>
+           <div class="mycard">
+            <p> TEST </p>
+            <p> TEST </p>
+            <p> TEST </p>
+            <p> TEST </p>
+            <p> TEST </p>
+            <p> TEST </p>
+            <p> TEST </p>
+          </div>
+        </div>
+
+
+      </div>
+ 
+      <!--  --> 
+      <div id="2" class="tab-pane fade">
+
+           <div  class="parent-container-horizontal">
+          <div class="mycard">
+           <p> TEST </p>
+           <p> TEST </p>
+           <p> TEST </p>
+           <p> TEST </p>
+           <p> TEST </p>
+           <p> TEST </p>
+           <p> TEST </p>
+          </div>
+           <div class="mycard">
+            <p> TEST </p>
+            <p> TEST </p>
+            <p> TEST </p>
+            <p> TEST </p>
+            <p> TEST </p>
+            <p> TEST </p>
+            <p> TEST </p>
+          </div>
+        </div>
+
+      </div>
+
+      <!--  --> 
+      <div id="3" class="tab-pane fade">
+        
+      </div>
+</div>
+<!-- END TABS --> 
 </div>
 
 <!--=============MODAL========== -->

@@ -194,18 +194,18 @@ border-color: #6C6A69;
 <div class="myBar label-center" style="position: absolute; float: right; right: 10px; top: 10px; color: white;" data-value="0"></div>
         <div id="titlemcl" class="item-container" style="font-family: 'Noto Sans', sans-serif; color: white; border-style: none; margin-top: 5%;">
         <h1 style="text-align: center;margin: 0; padding: 0; font-size: 2.5rem;letter-spacing: 1px;"> MALAYAN COLLEGES LAGUNA</h1>
-        <h4 style="text-align: center;margin: 0; padding: 0; letter-spacing: 1px;"> Malayan Colleges Laguna</h4>
+        <h4 id="mcl_timer" style="text-align: center;margin: 0; padding: 0; letter-spacing: 1px;"> </h4>
         </div>
 
         <div class="parent-container-horizontal" style="position: absolute; top: 35%;">
               <div class="item-container" style="font-family: 'Noto Sans', sans-serif; color: white; border-style: 1px solid white; padding-left: 5%;">
                     <div id="card1" class="parent-container-vertical">
-                      <div id="card1" class="item-container" style="background: rgba(0, 0, 0, 0.4); color: white; height: 320px; width: 900px; overflow: hidden;">
+                      <div id="card1" class="item-container" style="background: rgba(0, 0, 0, 0.4); color: white; height: 320px; width: 1000px; overflow: hidden ; ">
                         <div id="card1" class="parent-container-vertical">
 
 
 
-                            <div class="xfooter" style="margin-bottom: 10px;">
+                            <div class="xfooter" style="margin-bottom: 10px;" >
                             <div class="parent-container-horizontal">
                             
 
@@ -213,19 +213,16 @@ border-color: #6C6A69;
                           </div>
 
 
-                             <div class="xfooter" style="margin-bottom: 10px;">
+                             <div class="xfooter" style="margin-bottom: 1px;">
                             <div class="parent-container-horizontal">
                             <div class="item-container" style="color: green; border-style: solid; border-width: 1px; border-color: green; padding-left: 15px;">
                             <p><h3>IN: </h3></p></div>
-
-                            <div class="item-container" style="color: red; border-style: solid; border-width: 1px; border-color: red; padding-left: 15px;">
-                            <p><h3>OUT: </h3></p></div>
 
                           </div>
                           </div>
                  
 
-                            <div class="xfooter" style="margin-bottom: 10px;">
+                            <div class="xfooter" style="margin-bottom: 1px; height: 50%; margin-top:0px;">
                             <div class="parent-container-horizontal">
                             <div class="item-container" style="color: green; border-style: solid; border-width: 1px; border-color: green; padding-left: 15px;">
                             <p><h3>IN: </h3></p></div>
@@ -237,7 +234,7 @@ border-color: #6C6A69;
                           </div>
 
 
-                            <div class="xfooter" style="margin-bottom: 10px;">
+                            <div class="xfooter" style="margin-bottom: 1px;">
                             <div class="parent-container-horizontal">
                             <div class="item-container" style="color: green; border-style: solid; border-width: 1px; border-color: green; padding-left: 15px;">
                             <p><h3>IN: </h3></p></div>
@@ -261,12 +258,8 @@ border-color: #6C6A69;
 
 <!-- -->
 </div>
-
-
 <script>
   function onLoad(){
-
-
   var bar = new ldBar(".myBar", {
    "stroke": 'green',
    "stroke-width": 3,
@@ -274,10 +267,18 @@ border-color: #6C6A69;
   });
 
 bar.set(
-  100,     /* target value. */
-  true   /* enable animation. default is true */
+  100, 
+  true  
 );
 }
+
+  $(document).ready(function(e) {
+    $.ajaxSetup({cache:false});
+    setInterval(function() {
+      $('#mcl_timer').load('testing.php');
+    },1000);
+  });
+
 </script>
 
 </body>
