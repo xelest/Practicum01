@@ -12,6 +12,17 @@
     <link href="css/mycss.css" rel="stylesheet">
     
   <script src="js/script_date_time.js"></script>
+  <style> 
+    th, td, tr {
+        padding: 3px !important;
+        margin: 3px !important;
+        font-size: medium;
+    }
+
+    table{
+        margin-top: -10px;
+    }
+  </style>
 </head>
 
 <body>
@@ -21,15 +32,15 @@
                 <div class="container-fluid">
                     <div class="page-title">
                         <div class="row">
-                            <div class="col-7"><h3>Dashboard </h3></div>
+                            <div class="col-4"><h3>Dashboard </h3></div>
 
-                            <div class="col-5"><div class="card-body" style="text-align: right;" ><span id="date_time">asd</span></div></div>
+                            <div class="col-8"><div class="card-body" style="text-align: right;" ><span id="date_time"></span></div></div>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-2">
+                        <div class="col-lg-2 col-md-2 col-sm-12">
                         <div class="card">
-                                <div class="card-header">Live Population / RUNNING POP</div>
+                                <div class="card-header">Live Population</div>
                                 <div class="card-body">
                                     <form class="needs-validation" novalidate="" accept-charset="utf-8">
                                         <div class="form-row">
@@ -39,9 +50,9 @@
                                 </div>
                             </div></div>
 
-                        <div class="col-2">
+                        <div class="col-lg-2 col-md-2 col-sm-12">
                         <div class="card">
-                                <div class="card-header">Employees / UNIQUE - REPORTED </div>
+                                <div class="card-header">Employees </div>
                                 <div class="card-body">
                                     <form class="needs-validation" novalidate="" accept-charset="utf-8">
                                         <div class="form-row">
@@ -51,9 +62,9 @@
                                 </div>
                             </div></div>
 
-                        <div class="col-2">
+                        <div class="col-lg-2 col-md-2 col-sm-12">
                         <div class="card">
-                                <div class="card-header">Students / UNIQUE - REPORTED</div>
+                                <div class="card-header">Students</div>
                                 <div class="card-body">
                                     <form class="needs-validation" novalidate="" accept-charset="utf-8">
                                         <div class="form-row">
@@ -63,7 +74,7 @@
                                 </div>
                             </div></div>
 
-                        <div class="col-2">
+                        <div class="col-lg-2 col-md-2 col-sm-12">
                         <div class="card">
                                 <div class="card-header">Visitors</div>
                                 <div class="card-body">
@@ -75,7 +86,7 @@
                                 </div>
                             </div></div>
 
-                            <div class="col-2">
+                         <div class="col-lg-2 col-md-2 col-sm-12">
                         <div class="card">
                                 <div class="card-header">Logins / TOTAL TAPS</div>
                                 <div class="card-body">
@@ -88,7 +99,7 @@
                             </div></div>
 
 
-                        <div class="col-2">
+                        <div class="col-lg-2 col-md-2 col-sm-12">
                         <div class="card">
                                 <div class="card-header">Logouts / TOTAL TAPS</div>
                                 <div class="card-body">
@@ -115,6 +126,42 @@
                                     <div class="ui hidden divider"></div>
                                 </div>
                             </div>
+
+                            <div class="card">
+                                <div class="card-header">Logins / TOTAL TAPS</div>
+                                <div class="card-body">
+                                    <form class="needs-validation" novalidate="" accept-charset="utf-8">
+                                        <div class="form-row">
+                                            <table class="table table-striped">
+                                              <thead>
+                                                <tr>
+                                                  <th scope="col">Time In</th>
+                                                  <th scope="col">ID No</th>
+                                                  <th scope="col">Name</th>
+                                                </tr>
+                                              </thead>
+                                              <tbody>
+                                                <tr>
+                                                  <td>Mark</td>
+                                                  <td>Otto</td>
+                                                  <td>@mdo</td>
+                                                </tr>
+                                                <tr>
+                                                  <td>Jacob</td>
+                                                  <td>Thornton</td>
+                                                  <td>@fat</td>
+                                                </tr>
+                                                <tr>
+                                                  <td>Larry</td>
+                                                  <td>the Bird</td>
+                                                  <td>@twitter</td>
+                                                </tr>
+                                              </tbody>
+                                            </table>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
                         </div>
                         <div class="col-md-5">
                             <div class="card">
@@ -127,6 +174,41 @@
                                         <canvas class="chart chartjs-render-monitor" id="sales" style="display: block; width: 882px; height: 441px;" width="882" height="441"></canvas>
                                     </div>
                                     <div class="ui hidden divider"></div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-header">Logins / TOTAL TAPS</div>
+                                <div class="card-body">
+                                    <form class="needs-validation" novalidate="" accept-charset="utf-8">
+                                        <div class="form-row">
+                                            <table class="table table-striped">
+                                              <thead>
+                                                <tr>
+                                                  <th scope="col">Time In</th>
+                                                  <th scope="col">ID No</th>
+                                                  <th scope="col">Name</th>
+                                                </tr>
+                                              </thead>
+                                              <tbody>
+                                                <tr>
+                                                  <td>Mark</td>
+                                                  <td>Otto</td>
+                                                  <td>@mdo</td>
+                                                </tr>
+                                                <tr>
+                                                  <td>Jacob</td>
+                                                  <td>Thornton</td>
+                                                  <td>@fat</td>
+                                                </tr>
+                                                <tr>
+                                                  <td>Larry</td>
+                                                  <td>the Bird</td>
+                                                  <td>@twitter</td>
+                                                </tr>
+                                              </tbody>
+                                            </table>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -159,11 +241,17 @@
                                             <button type="button" class="btn btn-primary btn-sm btn-block">IN-PROGRESS</button>
                                 </div>
                             </div>
-                            
-                            
-                        </div>
 
+                            <div class="card">
+                                <div class="card-header  p-2">Emergency Hi-jack</div>
+                                <div class="card-body p-2">
+                                            <button type="button" class="btn btn-primary btn-sm btn-block">IN-PROGRESS</button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
+                
+
                 
             </div>
 
