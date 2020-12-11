@@ -120,22 +120,23 @@ body {
   </nav>
 
 
-    <section class="login-form-wrap">
-  <h1> L O G I N</h1>
-  <form class="login-form" action="" method="POST" >
-     <div class="form-group">
-    <input class="form-control" type="text" placeholder="Username" name="login-uname" autocomplete="off" required></div>
+  <div class="col-4">
+      <h1> L O G I N</h1>
+      <form class="login-form" action="" method="POST" >
+        <div class="form-group">
+        <input class="form-control" type="text" placeholder="Username" name="login-uname" autocomplete="off" required></div>
 
-     <div class="form-group">
-    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="login-pword" autocomplete="off" required>
-  </div>
+        <div class="form-group">
+        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="login-pword" autocomplete="off" required>
+        </div>
 
-    <div class="form-group">
-    <button type="submit" class="btn btn-light btn-md btn-block" name="submitauth">Login</button></div>
-    
-  </form>
-  <h5><a href="#"></a></h5>
-</section>
+        <div class="form-group">
+        <button type="submit" class="btn btn-light btn-md btn-block" name="submitauth">Login</button>
+        </div>
+        
+      </form>
+      <h5><a href="#"></a></h5>
+  <div>
 <!--=============Bottom nav========== -->
 <nav class="navbar fixed-bottom navbar-dark bg-dark"><span class="footer-para"> <p style="color: #D2D4D9;">
 </nav>

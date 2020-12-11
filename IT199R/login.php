@@ -5,7 +5,8 @@ session_start();
 <html lang="en">
 <head>
   <link rel="stylesheet" type="text/css" href="style.css">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="customBS4.css">
 
   <style type="text/css">
         
@@ -29,9 +30,6 @@ body {
   border:1px solid #2d416d;
   box-shadow: 0 1px #5670A4 inset, 0 0 10px 5px rgba(0, 0, 0, 0.1);
   border-radius: 5px;
-  width: 25%;
-  height: 380px;
-  margin: 200px auto;
   padding: 50px 30px 0 30px;
   text-align: center; }
   
@@ -120,7 +118,12 @@ body {
   </nav>
 
 
-    <section class="login-form-wrap" style="float: right; margin-right: 5%;">
+<div class="col-12" style="margin-top: 200px;">
+  <div class="row">
+  <div class="col-9 bg-blue">
+  asd
+</div>
+<div class="col-2 login-form-wrap bg-blue">
   <h1> L O G I N</h1>
   <form class="login-form" action="" method="POST" >
      <div class="form-group">
@@ -135,7 +138,10 @@ body {
     
   </form>
   <h5><a href="#"></a></h5>
-</section>
+</div> 
+<div class="col-1"></div>
+</div>
+</div>
 <!--=============Bottom nav========== -->
 <nav class="navbar fixed-bottom navbar-dark bg-dark"><span class="footer-para"> <p style="color: #D2D4D9;">  </p> </span>
 </nav>

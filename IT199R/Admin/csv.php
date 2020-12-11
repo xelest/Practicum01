@@ -108,7 +108,7 @@
 <?php
 
 require_once('connection.php');
-include('phpcore/csv_uploader_core_test.php');
+include('phpcore/csv_uploader_core_test_covid.php');
 include('phpcore/core_functions.php');
 ?>
 

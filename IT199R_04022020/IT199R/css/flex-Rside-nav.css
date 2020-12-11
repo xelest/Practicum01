@@ -1,0 +1,65 @@
+#mySidenav a {
+    position: absolute;
+    right: -80px;
+    transition: 0.3s;
+    padding: 15px;
+    width: 100px;
+    text-decoration: none;
+    font-size: 20px;
+    color: white;
+    border-radius: 5px 0px 0px 5px;
+}
+
+#mySidenav a:hover {
+    right: 0;
+}
+
+#dboard01 {
+    top: 20px;
+    background-color: #4CAF50;
+}
+
+#dboard02{
+    top: 80px;
+    background-color: #2196F3;
+}
+
+#dboard03 {
+    top: 140px;
+    background-color: #f44336;
+}
+
+#dboard04 {
+    top: 200px;
+    background-color: #555;
+}
+
+#dboard05 {
+    top: 260px;
+    background-color: #555;
+}
+
+#dboard06 {
+    top: 320px;
+    background-color: #555;
+}
+
+#dboard07 {
+    top: 380px;
+    background-color: #555;
+}
+
+#dboard08 {
+    top: 440px;
+    background-color: #555;
+}
+
+#dboard09 {
+    top: 500px;
+    background-color: #555;
+}
+
+#dboard10 {
+    top: 560px;
+    background-color: #555;
+}

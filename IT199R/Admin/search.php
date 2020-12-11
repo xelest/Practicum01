@@ -147,7 +147,7 @@ a {
       <!--- TAP OUT -->
       <div id="change" class="tab-pane fade"  style="width: 100%;">
         <div class="table-responsive">  
-        <?php include('phpcore/table_tapout.php');?><div>
+        <?php include('phpcore/table_tapout.php');?></div>
       </div>
 </div>
 <!--=============MODAL========== -->

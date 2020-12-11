@@ -1,0 +1,21 @@
+input[type=text], select, input[type=password]{
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #3A4149;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-family: 'Segoe UI',Arial,sans-serif;
+  letter-spacing: 1px;
+  background-color: #2D2E2E;
+  color: #fff;
+}
+
+select {
+  width: 35%;
+}
+
+input:focus {
+    border-color: #2D89EF;
+}

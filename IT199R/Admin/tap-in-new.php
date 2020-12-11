@@ -194,7 +194,7 @@ border-color: #6C6A69;
 <div class="myBar label-center" style="position: absolute; float: right; right: 10px; top: 10px; color: white;" data-value="0"></div>
         <div id="titlemcl" class="item-container" style="font-family: 'Noto Sans', sans-serif; color: white; border-style: none; margin-top: 5%;">
         <h1 style="text-align: center;margin: 0; padding: 0; font-size: 2.5rem;letter-spacing: 1px;"> MALAYAN COLLEGES LAGUNA</h1>
-        <h4 id="mcl_timer" style="text-align: center;margin: 0; padding: 0; letter-spacing: 1px;"> </h4>
+        <h4 id="mcl_timer" style="text-align: center;margin: 0; padding: 0; letter-spacing: 1px; color: black;"> </h4>
         </div>
 
         <div class="parent-container-horizontal" style="position: absolute; top: 35%;">
