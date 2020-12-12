@@ -6,55 +6,56 @@
   $username = "";
   $pwd1 = "";
   $role = "";
+  $status = "";
   
   if (isset($_POST['authlogin'])) {
   	$username = $_POST['username'];
     $pwd1 = $_POST['pwd1'];
     $pwdN = passAjinomoto($pwd1);
 
-      $sql_u = "SELECT * FROM user_account WHERE `username`='$username' AND `password`='$pwdN' LIMIT 1";
+      $sql_u = "SELECT * FROM systemusers WHERE `uname`='$username' AND `pword`='$pwdN' LIMIT 1";
       $res_u = mysqli_query($con, $sql_u);
     
       //check if user exist, and password is correct
       //returns 0 or morethan 0
-      if (mysqli_num_rows($res_u) > 0) 
+      if (!empty($res_u)) 
       {
             //once found, extract the details
               while($extract = mysqli_fetch_array($res_u))
               {
-                 $username = $extract['username'];
-                 $role = $extract['role'];
-                 $uid = $extract['account_id'];
+                 $username = $extract['uname'];
+                 $role = $extract['urole'];
+                 $uid = $extract['uid'];
                  $status = $extract['status'];
-                  echo "<script type='text/javascript'>alert('extracted!');</script>";      
+                  //echo "<script type='text/javascript'>alert('extracted!');</script>";      
               }
           
                 //check if existing account is active or not
-                if($status === 'active')
+                if($status === 'A')
                 {
                     //check if active account is account admin
                     //redirect to account management page
-                    if ($role === 'account_admin')
+                    if ($role === 'SystemAdmin')
                     {
                       session_cache_expire(10);
                       session_start();
-                      $_SESSION["role"] = $role;
-                      $_SESSION["username"] = $username;
+                      $_SESSION["urole"] = $role;
+                      $_SESSION["uname"] = $username;
                       $_SESSION["status"] = $status;
-                      header("Location: accounts.php");
+                      header("Location: gatekeeper.php");
                        echo "<script type='text/javascript'>alert('account_admin!');</script>";      
                     }
                     //check if active account is analyst
                     //redirect to main landing page, for soil analyst 
-                    else if ($role === 'analyst')
+                    else if ($role === 'SystemAdmin')
                     {
                       session_cache_expire(10);
                       session_start();
-                      $_SESSION["role"] = $role;
-                      $_SESSION["username"] = $username;
+                      $_SESSION["urole"] = $role;
+                      $_SESSION["uname"] = $username;
                       $_SESSION["status"] = $status;
-                      header("Location: ANALYST/index.php");
-                       echo "<script type='text/javascript'>alert('analyst account!');</script>";      
+                      header("Location: gatekeeper.php");
+                       echo "<script type='text/javascript'>alert('analyst account!');</script>";     
                     }
                     else
                     {
@@ -63,10 +64,14 @@
                     }
                       exit();
                }
-               else
+               else 
                {
                     //warning account is not active, contact administrator
-                    echo "<script type='text/javascript'>alert('Contact Administrator');</script>";
+                    
+                    echo "<script>
+                        alert('Invalid Login Details!');
+                        window.location.href='login.html';
+                        </script>";
                     exit();
               }
                 

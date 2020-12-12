@@ -200,14 +200,14 @@
               <div class="modal-body mcl-gray">
                 
                   <!-- TAP IN -->
-                <form action="tap-out.php" method="POST">
+                <form action="tap-out-new.php" method="POST">
                                              <div class="form-group">
                                                 <label class="small mb-1" for="inputPassword">ID Number</label>
                                                 <input class="form-control py-4" id="tapout" name="tapout" type="text" placeholder="id no.." required="required" />
                                             </div>
               </div>
               <div class="modal-footer mcl-gray">
-                <input class="btn btn-secondary" type="submit" name="submit_tapin" class="fadeIn fourth" value="TAP OUT" >
+                <input class="btn btn-secondary" type="submit" name="submit_tapout" class="fadeIn fourth" value="TAP OUT" >
             </form>
               </div>
             </div>
@@ -224,5 +224,7 @@
         <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
         <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
         <script src="assets/demo/datatables-demo.js"></script>
+
+        
     </body>
 </html>
