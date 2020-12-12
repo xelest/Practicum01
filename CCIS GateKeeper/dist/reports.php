@@ -7,9 +7,16 @@
     <title>CCIS | </title>
 
     <link href="assets/vendor/bootstrap4/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/vendor/DataTables/datatables.min.css" rel="stylesheet">
     <link href="assets/css/master.css" rel="stylesheet">
     <link href="css/mycss.css" rel="stylesheet">
-    <script src="js/script_date_time.js"></script>
+
+    <link href="assets/vendor/airdatepicker/dist/css/datepicker.min.css" rel="stylesheet">
+
+
+    
+  <script src="js/script_date_time.js"></script>
+
 </head>
 
 <body>
@@ -19,17 +26,28 @@
                 <div class="container-fluid">
                     <div class="page-title">
                         <div class="row">
-                            <div class="col-9"><h3>Reports </h3></div>
+                            <div class="col-7"><h3>Dashboard </h3></div>
 
-                            <div class="col-3"><div class="card-body" style="text-align: right;" ><span id="date_time">asd</span></div></div>
+                            <div class="col-5"><div class="card-body" style="text-align: right;" ><span id="date_time">asd</span></div></div>
                         </div>
                     </div>
                     <div class="row">
-                      <div class="col-6"><input type="" name=""></div>
-                      <div class="col-3"><input type="" name=""></div>
-                      <div class="col-3"><input type="" name=""></div>
-                    </div>
+                         <div class="col-5 col-md-4"></div>
+                         <div class="col-4 col-md-4"></div>
 
+                        <div class="col-3 col-md-4">
+                                <div class="row">
+                                    <div class="col-6" style="">
+                                        <input type="text" class="form-control datepicker-here" data-range="false" data-multiple-dates-separator="-" id="myTextbox" data-language="en" data-position="bottom left" aria-describedby="daterange" placeholder="From">
+                                    </div>
+                                    <div class="col-6">
+                                        <input type="text" class="form-control datepicker-here" data-range="false" data-multiple-dates-separator="-" id="myTextbox2" data-language="en" data-position="bottom left" aria-describedby="daterange" placeholder="To">
+                                    </div>
+                                
+                            </div>
+                        
+                        
+                    </div>
                 </div>
             </div>
 
@@ -37,12 +55,36 @@
 
     </div>
 
+    <script src="assets/vendor/chartsjs/Chart.min.js"></script>
+    <script src="assets/js/dashboard-charts.js"></script>
     <script src="assets/vendor/jquery3/jquery.min.js"></script>
     <script src="assets/vendor/bootstrap4/js/bootstrap.bundle.min.js"></script>
     <script src="assets/vendor/fontawesome5/js/solid.min.js"></script>
     <script src="assets/vendor/fontawesome5/js/fontawesome.min.js"></script>
     <script src="assets/js/script.js"></script>
-  <script type="text/javascript">window.onload = date_time('date_time');</script>
+    <script src="assets/js/initiate-datatables.js"></script>
+    <script src="assets/vendor/DataTables/datatables.min.js"></script>
+    <script type="text/javascript">window.onload = date_time('date_time');</script>
+
+
+    <script src="assets/js/fullcalendar-script.js"></script>
+        <script src="assets/vendor/airdatepicker/dist/js/datepicker.min.js"></script>
+    <script src="assets/vendor/airdatepicker/dist/js/i18n/datepicker.en.js"></script>
+
+    <script>
+        
+        $('#myTextbox').on('input', function() {
+            var x = document.getElementById("myTextbox").value; 
+            alert(x);
+        });
+
+        $('#myTextbox2').on('input', function() {
+            var y = document.getElementById("myTextbox2").value; 
+            alert(y);
+        });
+
+    </script>
+
 </body>
 
 </html>

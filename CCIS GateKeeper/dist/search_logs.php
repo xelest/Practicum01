@@ -53,7 +53,6 @@
                                                   <th>Log No</th>  
                                                   <th>ID No</th>
                                                   <th>Tap In Date</th>
-                                                  <th>Tap In Time</th>
                                               </tr>
                                           </thead>
                                           <tbody>
