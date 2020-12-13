@@ -40,7 +40,7 @@ if(isset($_POST['submit_tapin']))
                       $card1hide = "";
                     }
 
-                      $myqry = "INSERT INTO `tapin-logs`(`id_no`) VALUES ('$imgname')";
+                      $myqry = "INSERT INTO `tapin_logs`(`id_no`) VALUES ('$imgname')";
                       mysqli_query($con, $myqry);  
                       echo "<script> window.open( 
                             '', '_blank');                

@@ -1,11 +1,11 @@
 <?php 
 include_once 'connection.php';
 
-if(isset($_POST['submit_tapin']))
+if(isset($_POST['submit_tapout']))
 {
-  if(isset($_POST['tap_in']))
+  if(isset($_POST['tapout']))
   {
-    $user = $_POST['tap_in'];
+    $user = $_POST['tapout'];
     $res = mysqli_query($con, "SELECT * FROM user_information WHERE id_no='$user' LIMIT 1");
     $row = mysqli_fetch_array($res);
 
@@ -40,7 +40,7 @@ if(isset($_POST['submit_tapin']))
                       $card1hide = "";
                     }
 
-                      $myqry = "INSERT INTO `tapin-logs`(`id_no`) VALUES ('$imgname')";
+                      $myqry = "INSERT INTO `tapout_logs`(`id_no`) VALUES ('$imgname')";
                       mysqli_query($con, $myqry);  
                       echo "<script> window.open( 
                             '', '_blank');                
@@ -215,22 +215,24 @@ border-color: #6C6A69;
   <div class="card-body">
     <div class="row">
       <div class="col-1"></div>
-        <div class="col-5" style="align-items: center;">
+      <div class="col-1"></div> 
+      <div class="col-4" style="align-items: center;">
+          <div class="row"><div class="card-body"></div></div>
+          <div class="row"><div class="card-body"></div></div>
+          <img class="slide-right" id="img1" src="img/<?php echo $imgname;?>.jpg"  alt="Avatar" style="width: 375px; height: 375px; border: solid 8px <?php echo $bordercolor; ?>">
+        </div>   
+
+                <div class="col-5" style="align-items: center;">
           <div class="card" style="background: rgba(0, 0, 0, 0.4);">
             <div class="card-header" style="border-color: white; color: cyan;">asdasd</div>
             <div class="card-body">
-              <div class="slide-right" id="card1" style="height: 50vh; color: white;"></div>
+              
+              <div class="slide-slow" id="card1" style="height: 50vh; color: white;"></div>
             </div>
           </div>
         </div>
-        <div class="col-1"></div>
-        <div class="col-1"></div>
-        <div class="col-4" style="align-items: center;">
-          <div class="row"><div class="card-body"></div></div>
-          <div class="row"><div class="card-body"></div></div>
-          <img class="slide-slow" id="img1" src="img/<?php echo $imgname;?>.jpg"  alt="Avatar" style="width: 375px; height: 375px; border: solid 8px <?php echo $bordercolor; ?>">
-        </div>
 
+        <div class="col-1"></div>
     </div>
   </div>
 </div>
