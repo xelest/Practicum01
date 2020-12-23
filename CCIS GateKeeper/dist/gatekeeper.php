@@ -9,8 +9,7 @@
         <title>CCIS | Internal Systems </title>
         <link rel="icon" href="img/MCL LOGO.png">
         <link href="css/styles.css" rel="stylesheet" />
-        <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js" crossorigin="anonymous"></script>
+       
 
          <style>
           body{
@@ -83,11 +82,10 @@
                             <li>
                                    <a class="nav-link" href=".php" target="abc_frame"><div class="sb-nav-link-icon"><i class="fas fa-search"></i></div> Search</a>
                                    <a class="nav-link" href="search_logs.php" target="abc_frame"><div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div> Tap Logs</a>
-                                   <a class="nav-link" href="reports.php" target="abc_frame"><div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div> Reports</a>
+                                   <a class="nav-link" href="Messaging.php" target="abc_frame"><div class="sb-nav-link-icon"><i class="fas fa-Message"></i></div> Messages</a>
                                    <a class="nav-link" href="csv_upload.php" target="abc_frame"><div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div> CSV Uploader</a>
                                 </li>   
 
-                            <div class="sb-sidenav-menu-heading">Report Generation</div>
                             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                                 <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                                 Reports
@@ -95,21 +93,20 @@
                             </a>
                             <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                   <a class="nav-link" href="Plane_Geometry_Notes.php" target="abc_frame"> SHS</a>
-                                   <a class="nav-link" href="Solid_Geometry_Notes.php" target="abc_frame"> College</a>
-                                   <a class="nav-link" href="Analytic_Geometry_Notes.php" target="abc_frame"> Admins</a>
+                                   <a class="nav-link" href="reports_shs.php" target="abc_frame"> SHS</a>
+                                   <a class="nav-link" href="reports_college.php" target="abc_frame"> College</a>
+                                   <a class="nav-link" href="reports_faculty.php" target="abc_frame"> Faculty</a>
+                                   <a class="nav-link" href="reports_admins.php" target="abc_frame"> Admins</a>
                          </li>
                                 </nav>
                             </div>
 
 
-                            <div class="sb-sidenav-menu-heading">Page Simulation</div>
+                            <div class="sb-sidenav-menu-heading">Page Simulation Demo Only</div>
                             <li>
                                    <a class="nav-link" href=".php" id="btn-confirm" data-toggle="modal" data-target="#tapin"><div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div> Tap In</a>
                                    <a class="nav-link" href=".php" id="btn-confirm" data-toggle="modal" data-target="#tapout"><div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div> Tap Out</a>
                                    <a class="nav-link" href=".php" ><div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div> Quick Password Reset</a>
-                                   <a class="nav-link" href="attendance.php" ><div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div> Professors</a>
-                                   <a class="nav-link" href=".php" ><div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div> Students</a>
                             </li>                         
 
                         </div>
@@ -214,17 +211,6 @@
           </div>
         </div>
         <!-- MODAL FORM -->
-
-        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-        <script src="js/scripts.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-        <script src="assets/demo/chart-area-demo.js"></script>
-        <script src="assets/demo/chart-bar-demo.js"></script>
-        <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
-        <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
-        <script src="assets/demo/datatables-demo.js"></script>
-
-        
+        <script src="js/scripts.js"></script>        
     </body>
 </html>

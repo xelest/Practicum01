@@ -1,0 +1,4 @@
+SELECT  COUNT(outDate) as population
+FROM tapout_logs WHERE DATE(`outDate`) = DATE('2020-12-16') 
+AND HOUR(`outDate`) >= HOUR('07:00:00')
+AND HOUR(`outDate`) <= HOUR('12:00:00')

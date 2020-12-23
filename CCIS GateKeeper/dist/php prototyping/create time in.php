@@ -89,7 +89,7 @@ echo $sec = $interval->format('%s seconds');
     die( "Unable to select database");
   }
 
-	$myqryS = "SELECT `id_no`,`inDate` from `tapin_logs` WHERE id_no = 2016180067 ORDER BY `inDate` ASC LIMIT 1";
+	$myqryS = "SELECT `id_no`,`inDate` from `tapin_logs` WHERE id_no = '".$id_no[1]."' ORDER BY `inDate` ASC LIMIT 1";
 	mysqli_query($con, $myqryS);  
 
 	if ($result = mysqli_query($con, $myqryS)) {
@@ -102,7 +102,7 @@ echo $sec = $interval->format('%s seconds');
 	}
 
 
-	 $myqryE = "SELECT `id_no`,`outDate` from `tapout_logs` WHERE id_no = 2016180067 ORDER BY `outDate` DESC LIMIT 1";
+	 $myqryE = "SELECT `id_no`,`outDate` from `tapout_logs` WHERE id_no = '".$id_no[1]."' ORDER BY `outDate` DESC LIMIT 1";
 	mysqli_query($con, $myqryE);  
 
 	if ($result2 = mysqli_query($con, $myqryE)) {
@@ -151,8 +151,8 @@ $msql= "
 SELECT DATE_FORMAT(
     FROM_UNIXTIME(
          RAND() * 
-            (UNIX_TIMESTAMP('2020-12-16 07:00:00') - UNIX_TIMESTAMP('2020-12-16 20:00:00')) + 
-             UNIX_TIMESTAMP('2020-12-16 20:00:00')
+            (UNIX_TIMESTAMP('2020-12-21 07:00:00') - UNIX_TIMESTAMP('2020-12-21 20:00:00')) + 
+             UNIX_TIMESTAMP('2020-12-21 20:00:00')
                   ), '%Y-%m-%d %H:%i:%s')";
 
 if ($result = mysqli_query($con, $msql)) {

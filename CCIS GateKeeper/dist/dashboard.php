@@ -264,10 +264,8 @@
     <script src="assets/vendor/bootstrap4/js/bootstrap.bundle.min.js"></script>
     <script src="assets/vendor/fontawesome5/js/solid.min.js"></script>
     <script src="assets/vendor/fontawesome5/js/fontawesome.min.js"></script>
-    <script src="assets/js/script.js"></script>
-    <script src="assets/js/initiate-datatables.js"></script>
-    <script src="assets/vendor/DataTables/datatables.min.js"></script>
     <script type="text/javascript">window.onload = date_time('date_time');</script>
 </body>
 
 </html>
+
