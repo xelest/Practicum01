@@ -119,4 +119,15 @@ else
  return $lname;
 }
 
+
+function get_date($when){
+  $DB_HOST = 'localhost';
+  $DB_USER = 'root';
+  $DB_PASS = '';
+  $DB_NAME = 'mclccisn_gatekeeper';
+
+  //default start and end 9am - 5pm
+
+}
+
 ?>

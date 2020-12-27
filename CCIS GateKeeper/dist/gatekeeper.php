@@ -7,9 +7,10 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title>CCIS | Internal Systems </title>
-        <link rel="icon" href="img/MCL LOGO.png">
+        <link rel="icon" href="img/LOGO.png">
         <link href="css/styles.css" rel="stylesheet" />
-       
+        <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js" crossorigin="anonymous"></script>
 
          <style>
           body{
@@ -82,32 +83,15 @@
                             <li>
                                    <a class="nav-link" href=".php" target="abc_frame"><div class="sb-nav-link-icon"><i class="fas fa-search"></i></div> Search</a>
                                    <a class="nav-link" href="search_logs.php" target="abc_frame"><div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div> Tap Logs</a>
-                                   <a class="nav-link" href="Messaging.php" target="abc_frame"><div class="sb-nav-link-icon"><i class="fas fa-Message"></i></div> Messages</a>
-                                   <a class="nav-link" href="csv_upload.php" target="abc_frame"><div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div> CSV Uploader</a>
+                                   <a class="nav-link" href="reports.php" target="abc_frame"><div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div> Reports</a>
                                 </li>   
 
-                            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
-                                <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-                                Reports
-                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                            </a>
-                            <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
-                                <nav class="sb-sidenav-menu-nested nav">
-                                   <a class="nav-link" href="reports_shs.php" target="abc_frame"> SHS</a>
-                                   <a class="nav-link" href="reports_college.php" target="abc_frame"> College</a>
-                                   <a class="nav-link" href="reports_faculty.php" target="abc_frame"> Faculty</a>
-                                   <a class="nav-link" href="reports_admins.php" target="abc_frame"> Admins</a>
-                         </li>
-                                </nav>
-                            </div>
-
-
-                            <div class="sb-sidenav-menu-heading">Page Simulation Demo Only</div>
+                            <div class="sb-sidenav-menu-heading">Page Simulation</div>
                             <li>
                                    <a class="nav-link" href=".php" id="btn-confirm" data-toggle="modal" data-target="#tapin"><div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div> Tap In</a>
                                    <a class="nav-link" href=".php" id="btn-confirm" data-toggle="modal" data-target="#tapout"><div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div> Tap Out</a>
-                                   <a class="nav-link" href=".php" ><div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div> Quick Password Reset</a>
-                            </li>                         
+                                   <a class="nav-link" href=".php" id="btn-confirm" data-toggle="modal" data-target="#rstpwd" ><div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div> Quick Password Reset</a>
+                                   <a class="nav-link" href=".php" id="btn-confirm" data-toggle="modal" data-target="#regnew" ><div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div> Register New User</a>
 
                         </div>
                     </div>
@@ -122,7 +106,7 @@
                 <footer class="py-4 bg-light mt-auto ">
                     <div class="container-fluid">
                         <div class="d-flex align-items-center justify-content-between small">
-                            <div class="text-muted">Copyright &copy; CCIS College of Computer and Information Science 2020</div>
+                            <div class="text-muted">Copyright &copy; isGatekeeper | Internal Systems 2020</div>
                             <div>
                                 <a href="#">Privacy Policy</a>
                                 &middot;
@@ -211,6 +195,116 @@
           </div>
         </div>
         <!-- MODAL FORM -->
-        <script src="js/scripts.js"></script>        
+
+                <!-- RST MODAL FORM -->
+        <div class="modal fade" id="rstpwd" tabindex="-1" role="dialog" aria-labelledby="rstpwd" aria-hidden="false">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content" style="width: 90%;">
+                            <div class="col-md-12 col-lg-12" style="height: 100% !important; width: 100% !important; padding: 0px; margin: 0px;;">
+                                <div class="card shadow-lg border-0 rounded-lg">
+                                    <div class="card-header mcl-blue"><h3 class="text-center font-weight-light my-3">Quick Password Reset</h3></div>
+                                    <div class="card-body mcl-blue">
+                                        <form>
+                                            <div class="form-group">
+                                                <label class="small mb-1" for="inputEmailAddress">Identification Number</label>
+                                                <input class="form-control name="uid" py-4" id="inputEmailAddress" type="text" aria-describedby="emailHelp" placeholder="Enter valid ID No." />
+                                            </div>
+                                            <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
+                                                <a class="small" href=""></a>
+                                                <button type="submit"class="btn mcl-yellow" name='pwdreset' class="btn btn-primary btn-block">Reset Password</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="card-footer text-center mcl-blue">
+                                        <div class="small">Internal Systems | Gatekeeper</div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+            </div>
+          </div>
+        </div>
+        <!-- MODAL FORM -->
+
+        <!-- REGISTER MODAL FORM -->
+        <div class="modal fade" id="regnew" tabindex="-1" role="dialog" aria-labelledby="regnew" aria-hidden="false">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                        
+
+            <div class="col-md-12 col-lg-12" style="height: 100% !important; width: 100% !important; padding: 0px; margin: 0px;">
+                                <div class="card shadow-lg border-0 rounded-lg">
+                                    <div class="card-header mcl-blue"><h3 class="text-center font-weight-light my-3" style="color: white; letter-spacing: 5px;">NEW USER</h3></div>
+                                    <div class="card-body mcl-blue">
+                                        <form>
+                                            <div class="form-row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="small mb-1" for="inputFirstName" autocomplete="off">First Name</label>
+                                                        <input class="form-control py-4" id="inputFirstName" type="text" placeholder="Enter first name" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="small mb-1" for="inputLastName" autocomplete="off">Last Name</label>
+                                                        <input class="form-control py-4" id="inputLastName" type="text" placeholder="Enter last name" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label class="small mb-1" for="" autocomplete="off">Identification Number</label>
+                                                        <input class="form-control py-4" id="" type="text" placeholder="Enter ID Number" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label class="small mb-1" for="">Account Role</label>
+                                                        <select name="state" class="form-control" required="" id="myOption">
+                                                            <option value="" selected="">Choose...</option>
+                                                            <option value="Admin">Admin</option>
+                                                            <option value="User">User</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="small mb-1" for="inputPassword" autocomplete="off">Password</label>
+                                                        <input class="form-control py-4" id="inputPassword" type="password" placeholder="Enter password" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="small mb-1" for="inputConfirmPassword" autocomplete="off">Confirm Password</label>
+                                                        <input class="form-control py-4" id="inputConfirmPassword" type="password" placeholder="Confirm password" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group mt-4 mb-0"><a class="btn btn-success btn-block" href="">Register</a></div>
+                                        </form>
+                                    </div>
+                                    <div class="card-footer text-center mcl-blue">
+                                        <div class="small">Internal Systems | Gatekeeper</div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+            </div>
+          </div>
+        </div>
+        <!-- MODAL FORM -->
+
+
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+        <script src="js/scripts.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+        <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
+        <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>        
     </body>
 </html>
