@@ -84,6 +84,7 @@
                                    <a class="nav-link" href=".php" target="abc_frame"><div class="sb-nav-link-icon"><i class="fas fa-search"></i></div> Search</a>
                                    <a class="nav-link" href="search_logs.php" target="abc_frame"><div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div> Tap Logs</a>
                                    <a class="nav-link" href="reports.php" target="abc_frame"><div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div> Reports</a>
+                                   <a class="nav-link" href="messaging.php" target="abc_frame"><div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div> Messaging</a>
                                 </li>   
 
                             <div class="sb-sidenav-menu-heading">Page Simulation</div>

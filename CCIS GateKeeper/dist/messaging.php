@@ -33,7 +33,25 @@
                             <div class="col-5"><div class="card-body" style="text-align: right;" ><span id="date_time">asd</span></div></div>
                         </div>
                     </div>
-                    contents here...
+                    <div class="row">
+                        <div class="col-4">
+                         <!--  -->
+                    <div class="input-group mb-3">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text" id="inputGroup-sizing-default">Default</span>
+                      </div>
+                      <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                    </div>
+
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                      </div>
+                      <textarea class="form-control" aria-label="With textarea"></textarea>
+                    </div>
+                        <!--  -->
+                        </div>
+                        <div class="col-6"></div>
+                    </div>
                 </div>
             </div>
 
