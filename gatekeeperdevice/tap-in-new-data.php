@@ -1,0 +1,197 @@
+<?php
+    require 'ConnDatabase.php';
+    $id = null;
+    if ( !empty($_GET['id'])) {
+        $id = $_REQUEST['id'];
+    }
+     
+    $pdo = Database::connect();
+  $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+  $sql = "SELECT `rf_id`, `id_no` FROM rfaccounts where rf_id = ?";
+  $q = $pdo->prepare($sql);
+  $q->execute(array($id));
+  $data = $q->fetch(PDO::FETCH_ASSOC);
+  Database::disconnect();
+  
+  $msg = null;
+  if (!isset($data['id_no'])) {
+    $msg = "Unregistered Card !!!";
+    $data['rf_id']=$id;
+    $data['id_no']="--------";
+  } else {
+    $msg = null;
+
+    require 'connection.php';
+
+if(isset($_POST['submit_tapin']))
+{
+  if(isset($_POST['tap_in']))
+  {
+    $user = $_POST['tap_in'];
+    $res = mysqli_query($con, "SELECT * FROM user_information WHERE id_no='$user' LIMIT 1");
+    $row = mysqli_fetch_array($res);
+
+                if (mysqli_num_rows($res) > 0) // user exist
+                { 
+                    if($row['user_status'] == 'A'){
+                      $imgname = 'img/'.$row['id_no'].'.jpg';
+                      $bordercolor = "#83B336";
+                      $res2 = mysqli_query($con, "SELECT * FROM `attnmessage` WHERE `id_no`='$imgname' and `imsg_Status` = 'A' LIMIT 1");
+                      if ($res2->num_rows > 0) {
+                          // output data of each row
+                          while($row2 = $res2->fetch_assoc()) {
+                             $notif_msg_header = "WELCOME";
+                             $notif_msg_details = $row2['imsg_details'];
+                             $notif_msg_sender = $row2['imsg_sender'];
+
+                                }
+                            } else {
+                              $notif_msg_header = "WELCOME";
+                              $notif_msg_details = "";
+                              $notif_msg_sender = "";
+                              $card1hide = "$('#card1').hide();";
+                            }
+                    }
+                    else
+                    {
+                       $imgname = 'img/'.$row['id_no'].'.jpg';
+                       $bordercolor = "##FFFF00";
+                       $notif_msg_header = "Welcome Back";
+                      $notif_msg_details = "You are not currently enrolled.";
+                      $notif_msg_sender = "";
+                      $card1hide = "";
+                    }
+
+                      $myqry = "INSERT INTO `tapin_logs`(`id_no`) VALUES ('$imgname')";
+                      mysqli_query($con, $myqry);  
+                      echo "<script> window.open( 
+                            '', '_blank');                
+                  </script> ";
+
+                    }
+                else if(mysqli_num_rows($res) == null) //invalid user
+                { 
+                    // this are new entry and does not exist in database
+                  $bordercolor = "#555555";
+                  $imgname = "img/placeholder.jpg";
+                  $notif_msg_header = "INVALID";
+                  $notif_msg_details = "Please report to the Security Office";
+                  $notif_msg_sender = "Welcome Guest";
+                  $card1hide = "";
+                }          
+    }
+  }
+  else
+  {
+                  $bordercolor = "#555555";
+                  $imgname = "placeholder";
+                  $notif_msg_header = "INVALID";
+                  $notif_msg_details = "Please report to the Security Office";
+                  $notif_msg_sender = "Welcome Guest";
+                  $card1hide = "";
+  }
+
+
+
+
+  }
+
+
+
+?>
+ 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+    <link   href="css/bootstrap.min.css" rel="stylesheet">
+    <script src="js/bootstrap.min.js"></script>
+</head>
+ 
+  <body>  
+    !-- -->
+      <div class="bg"></div>
+      <div class="bg-overlay" hidden> </div>
+      <div class="parent-container-vertical" style="position: absolute; top: 0; margin: 0; height: 100%; width: 100%; overflow: hidden;">
+      <div class="myBar label-center" style="position: absolute; float: right; right: 10px; top: 10px; color: white;" data-value="0"></div>
+              <div id="titlemcl" class="item-container" style="font-family: 'Noto Sans', sans-serif; color: transparent; border-style: none; margin-top: 5%;">
+              <h1 style="text-align: center;margin: 0; padding: 0; font-size: 2.5rem;letter-spacing: 1px;" >L</h1>
+              <h4 style="text-align: center;margin: 0; padding: 0; letter-spacing: 1px;" >l </h4>
+              </div>
+
+      <p id="getUID" hidden></p>
+      <div class="row"><div class="card-body"></div></div>
+      <div class="row"><div class="card-body"></div></div>
+
+
+      <div class="row" id="show_user_data">
+  <div class="card-body">
+    <div class="row">
+      <div class="col-1"></div>
+        <div class="col-5" style="align-items: center;">
+          <div class="card" style="background: rgba(0, 0, 0, 0.4);">
+            <div class="card-header" style="border-color: white; color: cyan;">asdasd</div>
+            <div class="card-body">
+
+
+    <div style="color: white;">
+      <form>
+              <table class="table table-borderless" style="width: 100% !important; color: white;">
+                  <thead>
+                  </thead>
+                <tr>
+                  <td align="left" class="lf">ID</td>
+                  <td style="font-weight:bold" >:</td>
+                  <td align="left"><?php echo $data['rf_id'];?></td>
+                </tr>
+                <tr >
+                  <td align="left" class="lf">Name</td>
+                  <td style="font-weight:bold">:</td>
+                  <td align="left"><?php echo $data['id_no'];?></td>
+                </tr>
+                <tr>
+                  <td align="left" class="lf">Type</td>
+                  <td style="font-weight:bold">:</td>
+                   <td align="left"><?php echo $data['id_no'];?></td>
+                </tr>
+                <tr>
+                  <td align="left" class="lf">STATUS</td>
+                  <td style="font-weight:bold">:</td>
+                  <td align="left"><?php echo $data['id_no'];?></td>
+                </tr>
+                <tr >
+                  <td align="left" class="lf">Message</td>
+                  <td style="font-weight:bold">:</td>
+                   <td align="left"><?php echo $data['id_no'];?></td>
+                </tr>
+              </table>        
+      </form>
+    </div>
+
+    <p style="color:red;"><?php echo $msg;?></p>
+
+    <div class="row" style="height: 5vh; color: white;">
+              <div class="col-6"></div>
+              <div class="col-6"><h1 style="letter-spacing: 3px;">00:10:23</h1></div>
+            </div>
+
+              <div class="slide-right" id="card1" style="height: 5vh; color: white;"></div>
+            </div>
+          </div>
+        </div>
+        <div class="col-1"></div>
+        <div class="col-1"></div>
+        <div class="col-4" style="align-items: center;">
+          <div class="row"><div class="card-body"></div></div>
+          <div class="row"><div class="card-body"></div></div>
+          <img class="slide-slow" id="img1" src=<?php echo $imgname?>  alt="Avatar" style="width: 375px; height: 375px; border: solid 8px <?php echo $bordercolor; ?>">
+        </div>
+
+
+    </div>
+  </div>
+</div>
+
+
+  </body>
+</html>

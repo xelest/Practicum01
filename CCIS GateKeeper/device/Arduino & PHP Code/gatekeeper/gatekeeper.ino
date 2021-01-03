@@ -100,7 +100,7 @@ void loop() {
     //Post Data
     postData = "UIDresult=" + UIDresultSend;
   
-    http.begin("http://192.168.0.5/IT199R_02/CCIS GateKeeper/device/Arduino & PHP Code/getUID.php");  //Specify request destination
+    http.begin("http://192.168.0.5/IT199R_02/gatekeeperdevice/getUID.php");  //Specify request destination
     http.addHeader("Content-Type", "application/x-www-form-urlencoded"); //Specify content-type header
    
     int httpCode = http.POST(postData);   //Send the request
