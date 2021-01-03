@@ -5,7 +5,7 @@
         $id = $_REQUEST['id'];
     }
      
-    $pdo = Database::connect();
+  $pdo = Database::connect();
   $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
   $sql = "SELECT `rf_id`, `id_no` FROM rfaccounts where rf_id = ?";
   $q = $pdo->prepare($sql);
@@ -23,27 +23,31 @@
 
     require 'connection.php';
 
-if(isset($_POST['submit_tapin']))
+      $lname = "NO DATA";
+       $fname = "NO DATA";
+       $id = "NO DATA";
+       $acctype = "NO DATA";
+
+if(isset($data['id_no']))
 {
-  if(isset($_POST['tap_in']))
+  if(isset($data['id_no']))
   {
-    $user = $_POST['tap_in'];
-    $res = mysqli_query($con, "SELECT * FROM user_information WHERE id_no='$user' LIMIT 1");
+    $user = $data['id_no'];
+    $res = mysqli_query($con, "SELECT * FROM user_account WHERE `id_no`='".$user."' LIMIT 1");
     $row = mysqli_fetch_array($res);
 
                 if (mysqli_num_rows($res) > 0) // user exist
                 { 
-                    if($row['user_status'] == 'A'){
+                    if($row['acc_status'] == 'Active'){
                       $imgname = 'img/'.$row['id_no'].'.jpg';
                       $bordercolor = "#83B336";
-                      $res2 = mysqli_query($con, "SELECT * FROM `attnmessage` WHERE `id_no`='$imgname' and `imsg_Status` = 'A' LIMIT 1");
+                      $res2 = mysqli_query($con, "SELECT * FROM `attnmessage` WHERE `id_no`='".$user."' and `imsg_Status` = 'A' LIMIT 1");
                       if ($res2->num_rows > 0) {
                           // output data of each row
                           while($row2 = $res2->fetch_assoc()) {
                              $notif_msg_header = "WELCOME";
                              $notif_msg_details = $row2['imsg_details'];
                              $notif_msg_sender = $row2['imsg_sender'];
-
                                 }
                             } else {
                               $notif_msg_header = "WELCOME";
@@ -51,6 +55,7 @@ if(isset($_POST['submit_tapin']))
                               $notif_msg_sender = "";
                               $card1hide = "$('#card1').hide();";
                             }
+
                     }
                     else
                     {
@@ -62,11 +67,26 @@ if(isset($_POST['submit_tapin']))
                       $card1hide = "";
                     }
 
-                      $myqry = "INSERT INTO `tapin_logs`(`id_no`) VALUES ('$imgname')";
+                      $myqry = "INSERT INTO `tapin_logs`(`id_no`) VALUES ('".$user."')";
                       mysqli_query($con, $myqry);  
-                      echo "<script> window.open( 
-                            '', '_blank');                
-                  </script> ";
+
+                      $res3 = mysqli_query($con, "SELECT * FROM `user_account` WHERE `id_no`='".$user."' LIMIT 1");
+
+                      if ($res3->num_rows > 0) {
+                        while($row3 = $res3->fetch_assoc()) {
+                          $lname = $row3['lastname'];
+                          $fname = $row3['firstname'];
+                          $id = $row3['id_no'];
+                          $acctype = $row3['acc_type'];
+                         }  
+                      }
+                      else
+                      {
+                          $lname = "NO DATA";
+                          $fname = "NO DATA";
+                          $id = "NO DATA";
+                          $acctype = "NO DATA";
+                      }
 
                     }
                 else if(mysqli_num_rows($res) == null) //invalid user
@@ -130,7 +150,7 @@ if(isset($_POST['submit_tapin']))
       <div class="col-1"></div>
         <div class="col-5" style="align-items: center;">
           <div class="card" style="background: rgba(0, 0, 0, 0.4);">
-            <div class="card-header" style="border-color: white; color: cyan;">asdasd</div>
+            <div class="card-header" style="border-color: white; color: cyan;">Welcome</div>
             <div class="card-body">
 
 
@@ -140,29 +160,29 @@ if(isset($_POST['submit_tapin']))
                   <thead>
                   </thead>
                 <tr>
-                  <td align="left" class="lf">ID</td>
+                  <td align="left" class="lf">RFID</td>
                   <td style="font-weight:bold" >:</td>
                   <td align="left"><?php echo $data['rf_id'];?></td>
                 </tr>
                 <tr >
-                  <td align="left" class="lf">Name</td>
+                  <td align="left" class="lf">MCL ID</td>
                   <td style="font-weight:bold">:</td>
                   <td align="left"><?php echo $data['id_no'];?></td>
                 </tr>
                 <tr>
-                  <td align="left" class="lf">Type</td>
+                  <td align="left" class="lf">Firstname</td>
                   <td style="font-weight:bold">:</td>
-                   <td align="left"><?php echo $data['id_no'];?></td>
+                   <td align="left"><?php echo $fname;?></td>
                 </tr>
                 <tr>
-                  <td align="left" class="lf">STATUS</td>
+                  <td align="left" class="lf">Last Name</td>
                   <td style="font-weight:bold">:</td>
-                  <td align="left"><?php echo $data['id_no'];?></td>
+                  <td align="left"><?php echo $lname;?></td>
                 </tr>
                 <tr >
-                  <td align="left" class="lf">Message</td>
+                  <td align="left" class="lf">Department</td>
                   <td style="font-weight:bold">:</td>
-                   <td align="left"><?php echo $data['id_no'];?></td>
+                   <td align="left"><?php echo $acctype; ?></td>
                 </tr>
               </table>        
       </form>
@@ -172,7 +192,7 @@ if(isset($_POST['submit_tapin']))
 
     <div class="row" style="height: 5vh; color: white;">
               <div class="col-6"></div>
-              <div class="col-6"><h1 style="letter-spacing: 3px;">00:10:23</h1></div>
+              <div class="col-6"><h1 style="letter-spacing: 3px;"></h1></div>
             </div>
 
               <div class="slide-right" id="card1" style="height: 5vh; color: white;"></div>

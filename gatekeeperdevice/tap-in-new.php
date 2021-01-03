@@ -238,30 +238,30 @@ border-color: #6C6A69;
               <table class="table table-borderless" style="width: 100% !important; color: white;">
                   <thead>
                   </thead>
-                <tr>
-                  <td align="left" class="lf">ID</td>
+               <tr>
+                  <td align="left" class="lf">RFID</td>
                   <td style="font-weight:bold" >:</td>
-                  <td align="left"><?php echo 1;?></td>
+                  <td align="left"><?php echo 'NO DATA';?></td>
                 </tr>
                 <tr >
-                  <td align="left" class="lf">Name</td>
+                  <td align="left" class="lf">MCL ID</td>
                   <td style="font-weight:bold">:</td>
-                 <td align="left"><?php echo 1;?></td>
+                  <td align="left"><?php echo 'NO DATA';?></td>
                 </tr>
                 <tr>
-                  <td align="left" class="lf">Type</td>
+                  <td align="left" class="lf">Firstname</td>
                   <td style="font-weight:bold">:</td>
-                  <td align="left"><?php echo 1;?></td>
+                   <td align="left"><?php echo 'NO DATA';?></td>
                 </tr>
                 <tr>
-                  <td align="left" class="lf">STATUS</td>
+                  <td align="left" class="lf">Last Name</td>
                   <td style="font-weight:bold">:</td>
-                 <td align="left"><?php echo 1;?></td>
+                  <td align="left"><?php echo 'NO DATA';?></td>
                 </tr>
                 <tr >
-                  <td align="left" class="lf">Message</td>
+                  <td align="left" class="lf">Department</td>
                   <td style="font-weight:bold">:</td>
-                   <td align="left"><?php echo 1;?></td>
+                   <td align="left"><?php echo 'NO DATA';?></td>
                 </tr>
               </table>        
       </form>
@@ -269,7 +269,7 @@ border-color: #6C6A69;
 
     <div class="row" style="height: 5vh; color: white;">
               <div class="col-6"></div>
-              <div class="col-6"><h1 style="letter-spacing: 3px;">00:10:23</h1></div>
+              <div class="col-6"><h1 style="letter-spacing: 3px;"></h1></div>
             </div>
 
               <div class="slide-right" id="card1" style="height: 5vh; color: white;"></div>
