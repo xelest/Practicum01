@@ -1,9 +1,8 @@
 <?php 
 include_once 'connection.php';
 
-
 $Write="<?php $" . "UIDresult=''; " . "echo $" . "UIDresult;" . " ?>";
-file_put_contents('UIDContainer.php',$Write);
+file_put_contents('UIDContainer_out.php',$Write);
 
 
                   $bordercolor = "#555555";
@@ -35,9 +34,9 @@ file_put_contents('UIDContainer.php',$Write);
       
       <script>
         $(document).ready(function(){
-           $("#getUID").load("UIDContainer.php");
+           $("#getUID").load("UIDContainer_out.php");
           setInterval(function() {
-            $("#getUID").load("UIDContainer.php");  
+            $("#getUID").load("UIDContainer_out.php");  
           }, 500);
         });
       </script>
@@ -278,7 +277,7 @@ border-color: #6C6A69;
               document.getElementById("show_user_data").innerHTML = this.responseText;
             }
           };
-          xmlhttp.open("GET","tap-in-new-data.php?id="+str,true);
+          xmlhttp.open("GET","tap-out-new-data.php?id="+str,true);
           xmlhttp.send();
         }
       }

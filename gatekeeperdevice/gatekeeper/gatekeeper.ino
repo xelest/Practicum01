@@ -21,7 +21,7 @@ int readsuccess;
 byte readcard[4];
 char str[32] = "";
 String StrUID;
-
+String scan;
 
 void setup() {
   Serial.begin(115200); //--> Initialize serial communications with the PC
@@ -58,11 +58,13 @@ void setup() {
   Serial.println("");
 }
 
+
 void loop() {
   // put your main code here, to run repeatedly
   readsuccess = getid();
  
-  if(readsuccess) {  
+  if(readsuccess) { 
+   
   digitalWrite(ON_Board_LED, LOW);
     HTTPClient http;    //Declare object of class HTTPClient
  
@@ -71,20 +73,28 @@ void loop() {
    
     //Post Data
     postData = "UIDresult=" + UIDresultSend;
-  
-    http.begin("http://192.168.0.5/IT199R_02/gatekeeperdevice/getUID.php");  //Specify request destination
-    http.addHeader("Content-Type", "application/x-www-form-urlencoded"); //Specify content-type header
-   
-    int httpCode = http.POST(postData);   //Send the request
+     Serial.println(UIDresultSend);
+     //Serial.println("[in] Time in");
+     //Serial.println("[ou] Time out");
+
+    http.begin("http://192.168.0.5/IT199R_02/gatekeeperdevice/getUID.php");  //Specify request destination 
+    http.addHeader("Content-Type", "application/x-www-form-urlencoded"); //Specify content-type header   
+    int httpCode = http.POST(postData);   //Send the request    
     String payload = http.getString();    //Get the response payload
-  
-    Serial.println(UIDresultSend);
-    Serial.println(httpCode);   //Print HTTP return code
-    Serial.println(payload);    //Print request response payload
+    Serial.println(payload);
+
+     http.begin("http://192.168.0.5/IT199R_02/gatekeeperdevice/getUID_out.php");  //Specify request destination   
+     http.addHeader("Content-Type", "application/x-www-form-urlencoded"); //Specify content-type header   
+     int httpCode2 = http.POST(postData);   //Send the request
+     String payload2 = http.getString();    //Get the response payload
+     Serial.println(payload2);
+    
+    //Serial.println(httpCode);   //Print HTTP return code
+    //Serial.println(payload);    //Print request response payload
     
     http.end();  //Close connection
     delay(1000);
-  digitalWrite(ON_Board_LED, HIGH);
+    digitalWrite(ON_Board_LED, HIGH);
   }
 }
 

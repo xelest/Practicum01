@@ -126,6 +126,7 @@ if(isset($data['id_no']))
   <meta charset="utf-8">
     <link   href="css/bootstrap.min.css" rel="stylesheet">
     <script src="js/bootstrap.min.js"></script>
+    <script src="js/script_date_time.js"></script>
 </head>
  
   <body>  
@@ -150,11 +151,11 @@ if(isset($data['id_no']))
       <div class="col-1"></div>
         <div class="col-5" style="align-items: center;">
           <div class="card" style="background: rgba(0, 0, 0, 0.4);">
-            <div class="card-header" style="border-color: white; color: cyan;">Welcome</div>
+            <div class="card-header" style="border-color: white; color: cyan;"><h3 style="font-family: 'Noto Sans', sans-serif;" align="right" id="date_time"></h3></div>
             <div class="card-body">
 
 
-    <div style="color: white;">
+    <div style="border-color: white; color: cyan;"><h3 style="font-family: 'Noto Sans', sans-serif; color: white;">
       <form>
               <table class="table table-borderless" style="width: 100% !important; color: white;">
                   <thead>
@@ -190,13 +191,23 @@ if(isset($data['id_no']))
 
     <p style="color:red;"><?php echo $msg;?></p>
 
-    <div class="row" style="height: 5vh; color: white;">
-              <div class="col-6"></div>
-              <div class="col-6"><h1 style="letter-spacing: 3px;"></h1></div>
+
+            <div class="row" style="height: 5vh; color: white;">
+              <div class="col-6">asd</div>
+              <div class="col-6"><h1 style="letter-spacing: 3px;">asd</h1></div>
             </div>
 
-              <div class="slide-right" id="card1" style="height: 5vh; color: white;"></div>
+            <div class="row" style="height: 5vh; color: white;">
+              <div class="col-6">asd</div>
+              <div class="col-6"><h1 style="letter-spacing: 3px;">asd</h1></div>
             </div>
+
+            </div>
+
+               <div class="card-footer text-muted" style="font-family: 'Noto Sans', sans-serif; color: white; border-color: white;">
+              2 days ago
+            </div>
+
           </div>
         </div>
         <div class="col-1"></div>
@@ -212,6 +223,6 @@ if(isset($data['id_no']))
   </div>
 </div>
 
-
+                                      
   </body>
 </html>
