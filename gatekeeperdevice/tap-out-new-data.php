@@ -15,15 +15,19 @@ if(isset($_POST['submit_tapout']))
                       $imgname = $row['id_no'];
                       $bordercolor = "#83B336";
                       $res2 = mysqli_query($con, "SELECT * FROM `attnmessage` WHERE `id_no`='$imgname' and `imsg_Status` = 'A' LIMIT 1");
-                      if ($res2->num_rows > 0) {
+                      
+                           if ($res2->num_rows > 0) 
+                           {
                           // output data of each row
                           while($row2 = $res2->fetch_assoc()) {
                              $notif_msg_header = "WELCOME";
                              $notif_msg_details = $row2['imsg_details'];
                              $notif_msg_sender = $row2['imsg_sender'];
-
                                 }
-                            } else {
+
+                            }
+                            else 
+                            {
                               $notif_msg_header = "WELCOME";
                               $notif_msg_details = "";
                               $notif_msg_sender = "";
@@ -49,7 +53,7 @@ if(isset($_POST['submit_tapout']))
                     }
                 else if(mysqli_num_rows($res) == null) //invalid user
                 { 
-                    // this are new entry and does not exist in database
+                  // this are new entry and does not exist in database
                   $bordercolor = "#555555";
                   $imgname = "placeholder";
                   $notif_msg_header = "INVALID";

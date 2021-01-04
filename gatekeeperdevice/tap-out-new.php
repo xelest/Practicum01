@@ -10,9 +10,7 @@ file_put_contents('UIDContainer_out.php',$Write);
                   $notif_msg_header = "INVALID";
                   $notif_msg_details = "Please report to the Security Office";
                   $notif_msg_sender = "Welcome Guest";
-                  $card1hide = "";
-
-  
+                  $card1hide = ""; 
 ?>
 
 <!DOCTYPE html>
