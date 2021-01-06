@@ -1,12 +1,25 @@
-#include <ESP8266WebServer.h>
-#include <ESP8266HTTPClient.h>
+#include <HTTPClient.h>
+#include <WiFi.h>
 
 #include <SPI.h>
 #include <MFRC522.h>
 
 
-#define SS_PIN D2  //--> SDA / SS is connected to pinout D2
-#define RST_PIN D1  //--> RST is connected to pinout D1
+// For Arduino Microcontroller
+//#define RST_PIN         9
+//#define SS_PIN          10
+
+// For ESP8266 Microcontroller
+//#define RST_PIN         D0
+//#define SS_PIN          D8
+
+// For ESP32 Microcontroller
+#define RST_PIN         27
+#define SS_PIN          15
+
+//#define SS_PIN D2  //--> SDA / SS is connected to pinout D2
+//#define RST_PIN D1  //--> RST is connected to pinout D1
+
 MFRC522 mfrc522(SS_PIN, RST_PIN);  //--> Create MFRC522 instance.
 
 #define ON_Board_LED 2  //--> Defining an On Board LED, used for indicators when the process of connecting to a wifi router
@@ -15,7 +28,7 @@ const char* ssid = "JHERNANDEZ156-2.4G";
 const char* password = "2016180067";
 
 
-ESP8266WebServer server(80);  //--> Server on port 80
+WebServer server(80);  //--> Server on port 80
 
 int readsuccess;
 byte readcard[4];
@@ -85,9 +98,9 @@ void loop() {
 
      http.begin("http://192.168.0.243/IT199R_02/gatekeeperdevice/getUID_out.php");  //Specify request destination   
      http.addHeader("Content-Type", "application/x-www-form-urlencoded"); //Specify content-type header   
-    int httpCode2 = http.POST(postData);   //Send the request
+     int httpCode2 = http.POST(postData);   //Send the request
      String payload2 = http.getString();    //Get the response payload
-    Serial.println(payload2);
+     Serial.println(payload2);
     
     //Serial.println(httpCode);   //Print HTTP return code
     //Serial.println(payload);    //Print request response payload

@@ -154,10 +154,10 @@
               <div class="modal-body mcl-gray">
                 
                   <!-- TAP IN -->
-                <form action="tap-in-new.php" method="POST">
+                <form action="http://localhost/it199R_02/gatekeeperdevice/getUID.php" method="POST" target="_blank">
                                              <div class="form-group">
-                                                <label class="small mb-1" for="inputPassword">ID Number</label>
-                                                <input class="form-control py-4" id="tap_in" name="tap_in" type="text" placeholder="id no.." required="required" />
+                                                <label class="small mb-1" for="inputPassword">RFID</label>
+                                                <input class="form-control py-4" id="tap_in" name="UIDresult" type="text" placeholder="RFID NUMBER" required="required" />
                                             </div>
               </div>
               <div class="modal-footer mcl-gray">
@@ -182,10 +182,10 @@
               <div class="modal-body mcl-gray">
                 
                   <!-- TAP IN -->
-                <form action="tap-out-new.php" method="POST">
+                <form action="http://localhost/it199R_02/gatekeeperdevice/getUID_out.php" method="POST" target="_blank">
                                              <div class="form-group">
-                                                <label class="small mb-1" for="inputPassword">ID Number</label>
-                                                <input class="form-control py-4" id="tapout" name="tapout" type="text" placeholder="id no.." required="required" />
+                                                <label class="small mb-1" for="inputPassword">RFID</label>
+                                                <input class="form-control py-4" id="tapout" name="UIDresult" type="text" placeholder="RFID NUMBER" required="required" />
                                             </div>
               </div>
               <div class="modal-footer mcl-gray">

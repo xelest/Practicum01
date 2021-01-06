@@ -149,7 +149,7 @@ border-color: #6C6A69;
 <div class="myBar label-center" style="position: absolute; float: right; right: 10px; top: 10px; color: white;" data-value="0"></div>
         <div id="titlemcl" class="item-container" style="font-family: 'Noto Sans', sans-serif; color: white; border-style: none; margin-top: 5%;">
         <h1 style="text-align: center;margin: 0; padding: 0; font-size: 2.5rem;letter-spacing: 1px;"> MALAYAN COLLEGES LAGUNA</h1>
-        <h4 style="text-align: center;margin: 0; padding: 0; letter-spacing: 1px;"> Malayan Colleges Laguna</h4>
+        <h4 style="text-align: center;margin: 0; padding: 0; letter-spacing: 1px;" id="date_time"> </h4>
         </div>
 
 <p id="getUID" hidden></p>
@@ -163,58 +163,59 @@ border-color: #6C6A69;
       <div class="col-1"></div>
         <div class="col-5" style="align-items: center;" >
           <div class="card" style="background: rgba(0, 0, 0, 0.4);" >
-            <div class="card-header" style="border-color: white; color: white;" ><h3 align="right" id="date_time"></h3></div>
+            <div class="card-header" style="border-color: white; color: cyan;"><h3 style="font-family: 'Noto Sans', sans-serif; color: transparent;" align="right">asd</h3></div>
             <div class="card-body slide-right">
 
+              <div class="row" style="height: 5vh; color: white;">
+              <div class="col-6" hidden>asd</div>
+              <div class="col-6"><h1 style="letter-spacing: 3px;" hidden>asd</h1></div>
+            </div>
 
-    <div style="color: white;">
+
+    <div style="border-color: white; color: cyan;"><h3 style="font-family: 'Noto Sans', sans-serif; color: white;">
       <form>
               <table class="table table-borderless" style="width: 100% !important; color: white;">
                   <thead>
                   </thead>
-               <tr>
+                <tr>
                   <td align="left" class="lf">RFID</td>
                   <td style="font-weight:bold" >:</td>
-                  <td align="left"><?php echo '-------------';?></td>
+                  <td align="left"><?php echo '--------------';?></td>
                 </tr>
                 <tr >
                   <td align="left" class="lf">MCL ID</td>
                   <td style="font-weight:bold">:</td>
-                  <td align="left"><?php echo '-------------';?></td>
+                  <td align="left"><?php echo '--------------';?></td>
                 </tr>
                 <tr>
                   <td align="left" class="lf">Firstname</td>
                   <td style="font-weight:bold">:</td>
-                  <td align="left"><?php echo '-------------';?></td>
+                   <td align="left"><?php echo '--------------';?></td>
                 </tr>
                 <tr>
                   <td align="left" class="lf">Last Name</td>
                   <td style="font-weight:bold">:</td>
-                  <td align="left"><?php echo '-------------';?></td>
+                  <td align="left"><?php echo '--------------';?></td>
                 </tr>
                 <tr >
                   <td align="left" class="lf">Department</td>
                   <td style="font-weight:bold">:</td>
-                  <td align="left"><?php echo '--------------';?></td>
+                   <td align="left"><?php echo '--------------';?></td>
                 </tr>
               </table>        
       </form>
     </div>
 
-            <div class="row" style="height: 5vh; color: white;">
-              <div class="col-6"></div>
-              <div class="col-6"><h1 style="letter-spacing: 3px;">asd</h1></div>
-            </div>
 
             <div class="row" style="height: 5vh; color: white;">
-              <div class="col-6"></div>
-              <div class="col-6"><h1 style="letter-spacing: 3px;"></h1></div>
+              <div class="col-6" hidden>asd</div>
+              <div class="col-6" hidden><h1 style="letter-spacing: 3px;">asd</h1></div>
             </div>
+
 
             </div>
 
-             <div class="card-footer" style="font-family: 'Noto Sans', sans-serif; color: white; border-color: white;">
-              sometext here
+             <div class="card-footer" style="font-family: 'Noto Sans', sans-serif; color: white; border-color: white; color: transaprent; font-size: 12;" align="center"><?php echo "no msg"?>
             </div>
 
           </div>

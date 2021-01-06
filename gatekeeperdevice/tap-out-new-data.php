@@ -1,20 +1,48 @@
-<?php 
-include_once 'connection.php';
+<?php
+    require 'ConnDatabase.php';
+    $id = null;
+    if ( !empty($_GET['id'])) {
+        $id = $_REQUEST['id'];
+    }
+     
+  $pdo = Database::connect();
+  $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+  $sql = "SELECT `rf_id`, `id_no` FROM rfaccounts where rf_id = ?";
+  $q = $pdo->prepare($sql);
+  $q->execute(array($id));
+  $data = $q->fetch(PDO::FETCH_ASSOC);
+  Database::disconnect();
+  
+  $msg = null;
+  if (!isset($data['id_no'])) {
+    $msg = "Unregistered Card !!!";
+    $data['rf_id']=$id;
+    $data['id_no']="--------------";
+  } else {
 
-if(isset($_POST['submit_tapout']))
+    $msg = "NO DATA";
+
+    require 'connection.php';
+
+       $lname = "NO DATA";
+       $fname = "NO DATA";
+       $id = "NO DATA";
+       $acctype = "NO DATA";
+
+if(isset($data['id_no']))
 {
-  if(isset($_POST['tapout']))
+  if(isset($data['id_no']))
   {
-    $user = $_POST['tapout'];
-    $res = mysqli_query($con, "SELECT * FROM user_information WHERE id_no='$user' LIMIT 1");
+    $user = $data['id_no'];
+    $res = mysqli_query($con, "SELECT * FROM user_account WHERE `id_no`='".$user."' LIMIT 1");
     $row = mysqli_fetch_array($res);
 
                 if (mysqli_num_rows($res) > 0) // user exist
                 { 
-                    if($row['user_status'] == 'A'){
-                      $imgname = $row['id_no'];
+                    if($row['acc_status'] == 'Active'){
+                      $imgname = 'img/'.$row['id_no'].'.jpg';
                       $bordercolor = "#83B336";
-                      $res2 = mysqli_query($con, "SELECT * FROM `attnmessage` WHERE `id_no`='$imgname' and `imsg_Status` = 'A' LIMIT 1");
+                      $res2 = mysqli_query($con, "SELECT * FROM `attnmessage` WHERE `id_no`='".$user."' and `imsg_Status` = 'A' ORDER BY `imsg_Date` DESC LIMIT 1");
                       
                            if ($res2->num_rows > 0) 
                            {
@@ -36,7 +64,7 @@ if(isset($_POST['submit_tapout']))
                     }
                     else
                     {
-                       $imgname = $row['id_no'];
+                       $imgname = 'img/'.$row['id_no'].'.jpg';
                        $bordercolor = "##FFFF00";
                        $notif_msg_header = "Welcome Back";
                       $notif_msg_details = "You are not currently enrolled.";
@@ -44,18 +72,34 @@ if(isset($_POST['submit_tapout']))
                       $card1hide = "";
                     }
 
-                      $myqry = "INSERT INTO `tapout_logs`(`id_no`) VALUES ('$imgname')";
+                      $myqry = "INSERT INTO `tapout_logs`(`id_no`) VALUES ('".$user."')";
                       mysqli_query($con, $myqry);  
-                      echo "<script> window.open( 
-                            '', '_blank');                
-                  </script> ";
+
+                      $res3 = mysqli_query($con, "SELECT * FROM `user_account` WHERE `id_no`='".$user."' LIMIT 1");
+
+                      if ($res3->num_rows > 0) {
+                        while($row3 = $res3->fetch_assoc()) {
+                          $lname = $row3['lastname'];
+                          $fname = $row3['firstname'];
+                          $id = $row3['id_no'];
+                          $acctype = $row3['acc_type'];
+                         }  
+                      }
+                      else
+                      {
+                          $lname = "NO DATA";
+                          $fname = "NO DATA";
+                          $id = "NO DATA";
+                          $acctype = "NO DATA";
+                      }
+
 
                     }
                 else if(mysqli_num_rows($res) == null) //invalid user
                 { 
                   // this are new entry and does not exist in database
                   $bordercolor = "#555555";
-                  $imgname = "placeholder";
+                  $imgname = "img/placeholder.jpg";
                   $notif_msg_header = "INVALID";
                   $notif_msg_details = "Please report to the Security Office";
                   $notif_msg_sender = "Welcome Guest";
@@ -66,208 +110,128 @@ if(isset($_POST['submit_tapout']))
   else
   {
                   $bordercolor = "#555555";
-                  $imgname = "placeholder";
+                  $imgname = "img/placeholder.jpg";
                   $notif_msg_header = "INVALID";
                   $notif_msg_details = "Please report to the Security Office";
                   $notif_msg_sender = "Welcome Guest";
                   $card1hide = "";
   }
   
-  
+}
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    
-    <!-- JQuery -->
-
-    <link href="assets/vendor/bootstrap4/css/bootstrap.min.css" rel="stylesheet">
-    <link href="assets/vendor/DataTables/datatables.min.css" rel="stylesheet">
-    <link href="assets/css/master.css" rel="stylesheet">
-    <link href="css/mycss.css" rel="stylesheet">
+  <meta charset="utf-8">
+    <link   href="css/bootstrap.min.css" rel="stylesheet">
+    <script src="js/bootstrap.min.js"></script>
     <script src="js/script_date_time.js"></script>
-
-    <link rel="stylesheet" href="css/loading-bar.min.css">
-    <script src="css/loading-bar.min.js"></script>
-    
-    <style>
-
-
-
-body, html {
-  height: 100%;
-  width: 100%;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-}
-
-.bg-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(6, 11, 61, 0.600);
-}
-
-.bg {
-  /* The image used */
-  background-image: url("img/img-1.jpg");
-
-  /* Full height */
-  height: 100%;
-
-  /* Center and scale the image nicely */
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
-img.slide-slow {
-  animation: slide-slow 1.5s;
-  margin-top:0%;
-}
-
-@keyframes slide-slow {
-  from {
-    margin-left: 100%;
-  }
-
-  to {
-    margin-left: 0%;
-  }
-}
-
-img {
-  border-radius: 50%;
-  width: 400px;
-  height: 400px;
-  -webkit-box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.75);
--moz-box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.75);
-box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.75);
-}
-
-#card1 {
-  animation: slide-right 1.5s;
-  margin-top:0%;
-  border-radius: 4px;
-  padding: 5px;
-}
-
-@keyframes slide-right {
-  from {
-    margin-left: -50%;
-  }
-
-  to {
-    margin-left: 0%;
-  }
-}
-
-.xheader{
-  width: 100%;
-  border-style: solid;
-  border-width: 1px;
-  color: white;
-  border-color: #6C6A69;
-
-}
-.xcontent{
-  width: 100%;
-   border-style: solid;
-  border-width: 1px;
-  color: white;
-border-color: #6C6A69;
-  height: 50%;
-}
-
-.xfooter{
-  width: 100%;
-  border-color: #6C6A69;
-  color: white;
-}
-
-
-
-
-    </style>
 </head>
-<!-- -->
-<body onload="onLoad()">
-<!-- -->
-<div class="bg"></div>
-<div class="bg-overlay"></div>
-<div class="parent-container-vertical" style="position: absolute; top: 0; margin: 0; height: 100%; width: 100%; overflow: hidden;">
-<div class="myBar label-center" style="position: absolute; float: right; right: 10px; top: 10px; color: white;" data-value="0"></div>
-        <div id="titlemcl" class="item-container" style="font-family: 'Noto Sans', sans-serif; color: white; border-style: none; margin-top: 5%;">
-        <h1 style="text-align: center;margin: 0; padding: 0; font-size: 2.5rem;letter-spacing: 1px;"> MALAYAN COLLEGES LAGUNA</h1>
-        <h4 style="text-align: center;margin: 0; padding: 0; letter-spacing: 1px;"> Malayan Colleges Laguna</h4>
-        </div>
+ 
+  <body>  
+    !-- -->
+      <div class="bg"></div>
+      <div class="bg-overlay" hidden> </div>
+      <div class="parent-container-vertical" style="position: absolute; top: 0; margin: 0; height: 100%; width: 100%; overflow: hidden;">
+      <div class="myBar label-center" style="position: absolute; float: right; right: 10px; top: 10px; color: white;" data-value="0"></div>
+              <div id="titlemcl" class="item-container" style="font-family: 'Noto Sans', sans-serif; color: transparent; border-style: none; margin-top: 5%;">
+              <h1 style="text-align: center;margin: 0; padding: 0; font-size: 2.5rem;letter-spacing: 1px;" >L</h1>
+              <h4 style="text-align: center;margin: 0; padding: 0; letter-spacing: 1px;" >l </h4>
+              </div>
+
+      <p id="getUID" hidden></p>
+      <div class="row"><div class="card-body"></div></div>
+      <div class="row"><div class="card-body"></div></div>
 
 
-<div class="row"><div class="card-body"></div></div>
-<div class="row"><div class="card-body"></div></div>
-
-
-<div class="row">
+      <div class="row" id="show_user_data">
   <div class="card-body">
     <div class="row">
       <div class="col-1"></div>
-      <div class="col-1"></div> 
-      <div class="col-4" style="align-items: center;">
-          <div class="row"><div class="card-body"></div></div>
-          <div class="row"><div class="card-body"></div></div>
-          <img class="slide-right" id="img1" src="img/<?php echo $imgname;?>.jpg"  alt="Avatar" style="width: 375px; height: 375px; border: solid 8px <?php echo $bordercolor; ?>">
-        </div>   
-
-                <div class="col-5" style="align-items: center;">
+        <div class="col-5" style="align-items: center;">
           <div class="card" style="background: rgba(0, 0, 0, 0.4);">
-            <div class="card-header" style="border-color: white; color: cyan;">asdasd</div>
-            <div class="card-body">
-              
-              <div class="slide-slow" id="card1" style="height: 50vh; color: white;"></div>
+            <div class="card-header" style="border-color: white; color: cyan;"><h3 style="font-family: 'Noto Sans', sans-serif; color: white;">
+              <div class="row">
+                <div class="col-6" style="color: #C92624">
+                  <?php echo "Tapped Out :"?>
+              </div>
+              <div class="col-6" style="color: #C92624" align="right">
+                <?php echo "". date("h : i : s");?>
+              </div>
+            </div>
+          </h3></div>
+            <div class="card-body slide-right">
+
+            <div class="row" style="height: 5vh; color: transparent;">
+              <div class="col-6" >asd</div>
+              <div class="col-6"><h1 style="letter-spacing: 3px;" hidden>asd</h1></div>
+            </div>
+
+    <div style="border-color: white; color: cyan;"><h3 style="font-family: 'Noto Sans', sans-serif; color: white;">
+      <form>
+              <table class="table table-borderless" style="width: 100% !important; color: white;">
+                  <thead>
+                  </thead>
+                <tr>
+                  <td align="left" class="lf">RFID</td>
+                  <td style="font-weight:bold" >:</td>
+                  <td align="left"><?php echo $data['rf_id'];?></td>
+                </tr>
+                <tr >
+                  <td align="left" class="lf">MCL ID</td>
+                  <td style="font-weight:bold">:</td>
+                  <td align="left"><?php echo $data['id_no'];?></td>
+                </tr>
+                <tr>
+                  <td align="left" class="lf">Firstname</td>
+                  <td style="font-weight:bold">:</td>
+                   <td align="left"><?php echo $fname;?></td>
+                </tr>
+                <tr>
+                  <td align="left" class="lf">Last Name</td>
+                  <td style="font-weight:bold">:</td>
+                  <td align="left"><?php echo $lname;?></td>
+                </tr>
+                <tr >
+                  <td align="left" class="lf">Department</td>
+                  <td style="font-weight:bold">:</td>
+                   <td align="left"><?php echo $acctype; ?></td>
+                </tr>
+              </table>        
+      </form>
+    </div>
+
+    <p style="color:red;"></p>
+
+ <div class="row" style="height: 5vh; color: white;">
+              <div class="col-6" hidden>asd</div>
+              <div class="col-6" hidden><h1 style="letter-spacing: 3px;">asd</h1></div>
+            </div>
+
+
+            </div>
+
+              <div class="card-footer" style="font-family: 'Noto Sans', sans-serif; color: white; border-color: white; color: white; font-size: 12;" align="center"><?php 
+              if(!empty($notif_msg_details))
+                {
+                  echo "'".$notif_msg_details."' | '".$notif_msg_sender."'";}
+                  else{echo "no msg";} ?>
             </div>
           </div>
         </div>
-
         <div class="col-1"></div>
+        <div class="col-1"></div>
+        <div class="col-4" style="align-items: center;">
+          <div class="row"><div class="card-body"></div></div>
+          <div class="row"><div class="card-body"></div></div>
+          <img class="slide-slow" id="img1" src=<?php echo $imgname;?>  alt="Avatar" style="width: 375px; height: 375px; border: solid 8px <?php echo $bordercolor; ?>">
+        </div>
+
+
     </div>
   </div>
 </div>
- 
 
-<!-- -->
-<script>
-  function onLoad(){
-  var bar = new ldBar(".myBar", {
-   "stroke": 'green',
-   "stroke-width": 3,
-   "preset": "circle",
-  });
-
-bar.set(
-  100,     /* target value. */
-  true   /* enable animation. default is true */
-);
-}
-</script>
-
-    <script src="assets/vendor/chartsjs/Chart.min.js"></script>
-    <script src="assets/js/dashboard-charts.js"></script>
-    <script src="assets/vendor/jquery3/jquery.min.js"></script>
-    <script src="assets/vendor/bootstrap4/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/vendor/fontawesome5/js/solid.min.js"></script>
-    <script src="assets/vendor/fontawesome5/js/fontawesome.min.js"></script>
-    <script src="assets/js/script.js"></script>
-    <script src="assets/js/initiate-datatables.js"></script>
-    <script src="assets/vendor/DataTables/datatables.min.js"></script>
-    <script type="text/javascript">window.onload = date_time('date_time');</script>
-
-</body>
+                                      
+  </body>
 </html>

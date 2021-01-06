@@ -17,13 +17,14 @@
   if (!isset($data['id_no'])) {
     $msg = "Unregistered Card !!!";
     $data['rf_id']=$id;
-    $data['id_no']="--------";
+    $data['id_no']="--------------";
   } else {
-    $msg = null;
+
+    $msg = "NO DATA";
 
     require 'connection.php';
 
-      $lname = "NO DATA";
+       $lname = "NO DATA";
        $fname = "NO DATA";
        $id = "NO DATA";
        $acctype = "NO DATA";
@@ -41,7 +42,7 @@ if(isset($data['id_no']))
                     if($row['acc_status'] == 'Active'){
                       $imgname = 'img/'.$row['id_no'].'.jpg';
                       $bordercolor = "#83B336";
-                      $res2 = mysqli_query($con, "SELECT * FROM `attnmessage` WHERE `id_no`='".$user."' and `imsg_Status` = 'A' LIMIT 1");
+                      $res2 = mysqli_query($con, "SELECT * FROM `attnmessage` WHERE `id_no`='".$user."' and `imsg_Status` = 'A' ORDER BY `imsg_Date` DESC LIMIT 1");
                       if ($res2->num_rows > 0) {
                           // output data of each row
                           while($row2 = $res2->fetch_assoc()) {
@@ -111,9 +112,6 @@ if(isset($data['id_no']))
                   $card1hide = "";
   }
 
-
-
-
   }
 
 
@@ -151,9 +149,20 @@ if(isset($data['id_no']))
       <div class="col-1"></div>
         <div class="col-5" style="align-items: center;">
           <div class="card" style="background: rgba(0, 0, 0, 0.4);">
-            <div class="card-header" style="border-color: white; color: cyan;"><h3 style="font-family: 'Noto Sans', sans-serif;" align="right" id="date_time"></h3></div>
-            <div class="card-body">
+            <div class="card-header" style="border-color: white; color: cyan;"><h3 style="font-family: 'Noto Sans', sans-serif; color: white;"><div class="row">
+                <div class="col-6" style="color: #88E22A">
+                  <?php echo "Tapped In :"?>
+              </div>
+              <div class="col-6" style="color: #88E22A" align="right">
+                <?php echo "". date("h : i : s");?>
+              </div>
+            </div></h3></div>
+            <div class="card-body slide-right">
 
+            <div class="row" style="height: 5vh; color: transparent;">
+              <div class="col-6" >asd</div>
+              <div class="col-6"><h1 style="letter-spacing: 3px;" hidden>asd</h1></div>
+            </div>
 
     <div style="border-color: white; color: cyan;"><h3 style="font-family: 'Noto Sans', sans-serif; color: white;">
       <form>
@@ -189,25 +198,22 @@ if(isset($data['id_no']))
       </form>
     </div>
 
-    <p style="color:red;"><?php echo $msg;?></p>
+    <p style="color:red;"></p>
 
-
-            <div class="row" style="height: 5vh; color: white;">
-              <div class="col-6">asd</div>
-              <div class="col-6"><h1 style="letter-spacing: 3px;">asd</h1></div>
+ <div class="row" style="height: 5vh; color: white;">
+              <div class="col-6" hidden>asd</div>
+              <div class="col-6" hidden><h1 style="letter-spacing: 3px;">asd</h1></div>
             </div>
 
-            <div class="row" style="height: 5vh; color: white;">
-              <div class="col-6">asd</div>
-              <div class="col-6"><h1 style="letter-spacing: 3px;">asd</h1></div>
-            </div>
 
             </div>
 
-               <div class="card-footer text-muted" style="font-family: 'Noto Sans', sans-serif; color: white; border-color: white;">
-              2 days ago
+              <div class="card-footer" style="font-family: 'Noto Sans', sans-serif; color: white; border-color: white; color: white; font-size: 12;" align="center"><?php 
+              if(!empty($notif_msg_details) || $notif_msg_details != null)
+                {
+                  echo "'".$notif_msg_details."' | '".$notif_msg_sender."'";}
+                  else{echo "no msg";} ?>
             </div>
-
           </div>
         </div>
         <div class="col-1"></div>
