@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 11, 2020 at 01:29 PM
+-- Generation Time: Jan 07, 2021 at 02:24 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.11
 
@@ -138,8 +138,8 @@ CREATE TABLE `attnmessage` (
 
 INSERT INTO `attnmessage` (`imsg_no`, `imsg_details`, `imsg_sender`, `id_no`, `imsg_Date`, `imsg_Status`) VALUES
 (2, 'You are required to report to the faculty', 'CCIS', 2016180067, '2020-03-27 18:34:20', 'A'),
-(3, 'Followup on your psychological test, please drop by and see us. Cheers!', 'Clinic', 2015102434, '2020-03-28 02:48:58', 'A'),
-(4, 'Please report to our office. Thank you.', 'Admission', 2015102429, '2020-03-28 11:35:34', 'A'),
+(3, 'Follow up... please drop by and see us. Cheers!', 'Clinic', 2015102434, '2020-03-28 02:48:58', 'A'),
+(4, 'Please report to our office. Thank you.', 'Registrar', 2015102429, '2020-03-28 11:35:34', 'A'),
 (5, 'Please drop by our office.', 'MITL', 2015102430, '2020-03-28 13:10:49', 'A');
 
 -- --------------------------------------------------------
@@ -152,6 +152,34 @@ CREATE TABLE `authorized_devices` (
   `device_physical_address` varchar(17) NOT NULL,
   `device_hostname` tinytext NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `count in`
+-- (See below for the actual view)
+--
+CREATE TABLE `count in` (
+`log_no` int(11)
+,`rf_id` int(11)
+,`id_no` int(11)
+,`inDate` datetime
+,`COUNT(``inDate``)` bigint(21)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `count out`
+-- (See below for the actual view)
+--
+CREATE TABLE `count out` (
+`log_no` int(11)
+,`rf_id` int(11)
+,`id_no` int(11)
+,`outDate` datetime
+,`COUNT(``outDate``)` bigint(21)
+);
 
 -- --------------------------------------------------------
 
@@ -276,14 +304,288 @@ CREATE TABLE `mmobile_msgs` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `pma__bookmark`
+--
+
+CREATE TABLE `pma__bookmark` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `dbase` varchar(255) COLLATE utf8_bin NOT NULL DEFAULT '',
+  `user` varchar(255) COLLATE utf8_bin NOT NULL DEFAULT '',
+  `label` varchar(255) CHARACTER SET utf8 NOT NULL DEFAULT '',
+  `query` text COLLATE utf8_bin NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Bookmarks';
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `pma__central_columns`
+--
+
+CREATE TABLE `pma__central_columns` (
+  `db_name` varchar(64) COLLATE utf8_bin NOT NULL,
+  `col_name` varchar(64) COLLATE utf8_bin NOT NULL,
+  `col_type` varchar(64) COLLATE utf8_bin NOT NULL,
+  `col_length` text COLLATE utf8_bin DEFAULT NULL,
+  `col_collation` varchar(64) COLLATE utf8_bin NOT NULL,
+  `col_isNull` tinyint(1) NOT NULL,
+  `col_extra` varchar(255) COLLATE utf8_bin DEFAULT '',
+  `col_default` text COLLATE utf8_bin DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Central list of columns';
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `pma__column_info`
+--
+
+CREATE TABLE `pma__column_info` (
+  `id` int(5) UNSIGNED NOT NULL,
+  `db_name` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '',
+  `table_name` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '',
+  `column_name` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '',
+  `comment` varchar(255) CHARACTER SET utf8 NOT NULL DEFAULT '',
+  `mimetype` varchar(255) CHARACTER SET utf8 NOT NULL DEFAULT '',
+  `transformation` varchar(255) COLLATE utf8_bin NOT NULL DEFAULT '',
+  `transformation_options` varchar(255) COLLATE utf8_bin NOT NULL DEFAULT '',
+  `input_transformation` varchar(255) COLLATE utf8_bin NOT NULL DEFAULT '',
+  `input_transformation_options` varchar(255) COLLATE utf8_bin NOT NULL DEFAULT ''
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Column information for phpMyAdmin';
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `pma__designer_settings`
+--
+
+CREATE TABLE `pma__designer_settings` (
+  `username` varchar(64) COLLATE utf8_bin NOT NULL,
+  `settings_data` text COLLATE utf8_bin NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Settings related to Designer';
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `pma__export_templates`
+--
+
+CREATE TABLE `pma__export_templates` (
+  `id` int(5) UNSIGNED NOT NULL,
+  `username` varchar(64) COLLATE utf8_bin NOT NULL,
+  `export_type` varchar(10) COLLATE utf8_bin NOT NULL,
+  `template_name` varchar(64) COLLATE utf8_bin NOT NULL,
+  `template_data` text COLLATE utf8_bin NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Saved export templates';
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `pma__favorite`
+--
+
+CREATE TABLE `pma__favorite` (
+  `username` varchar(64) COLLATE utf8_bin NOT NULL,
+  `tables` text COLLATE utf8_bin NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Favorite tables';
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `pma__history`
+--
+
+CREATE TABLE `pma__history` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `username` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '',
+  `db` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '',
+  `table` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '',
+  `timevalue` timestamp NOT NULL DEFAULT current_timestamp(),
+  `sqlquery` text COLLATE utf8_bin NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='SQL history for phpMyAdmin';
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `pma__navigationhiding`
+--
+
+CREATE TABLE `pma__navigationhiding` (
+  `username` varchar(64) COLLATE utf8_bin NOT NULL,
+  `item_name` varchar(64) COLLATE utf8_bin NOT NULL,
+  `item_type` varchar(64) COLLATE utf8_bin NOT NULL,
+  `db_name` varchar(64) COLLATE utf8_bin NOT NULL,
+  `table_name` varchar(64) COLLATE utf8_bin NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Hidden items of navigation tree';
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `pma__pdf_pages`
+--
+
+CREATE TABLE `pma__pdf_pages` (
+  `db_name` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '',
+  `page_nr` int(10) UNSIGNED NOT NULL,
+  `page_descr` varchar(50) CHARACTER SET utf8 NOT NULL DEFAULT ''
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='PDF relation pages for phpMyAdmin';
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `pma__recent`
+--
+
+CREATE TABLE `pma__recent` (
+  `username` varchar(64) COLLATE utf8_bin NOT NULL,
+  `tables` text COLLATE utf8_bin NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Recently accessed tables';
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `pma__relation`
+--
+
+CREATE TABLE `pma__relation` (
+  `master_db` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '',
+  `master_table` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '',
+  `master_field` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '',
+  `foreign_db` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '',
+  `foreign_table` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '',
+  `foreign_field` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT ''
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Relation table';
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `pma__savedsearches`
+--
+
+CREATE TABLE `pma__savedsearches` (
+  `id` int(5) UNSIGNED NOT NULL,
+  `username` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '',
+  `db_name` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '',
+  `search_name` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '',
+  `search_data` text COLLATE utf8_bin NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Saved searches';
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `pma__table_coords`
+--
+
+CREATE TABLE `pma__table_coords` (
+  `db_name` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '',
+  `table_name` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '',
+  `pdf_page_number` int(11) NOT NULL DEFAULT 0,
+  `x` float UNSIGNED NOT NULL DEFAULT 0,
+  `y` float UNSIGNED NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Table coordinates for phpMyAdmin PDF output';
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `pma__table_info`
+--
+
+CREATE TABLE `pma__table_info` (
+  `db_name` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '',
+  `table_name` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '',
+  `display_field` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT ''
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Table information for phpMyAdmin';
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `pma__table_uiprefs`
+--
+
+CREATE TABLE `pma__table_uiprefs` (
+  `username` varchar(64) COLLATE utf8_bin NOT NULL,
+  `db_name` varchar(64) COLLATE utf8_bin NOT NULL,
+  `table_name` varchar(64) COLLATE utf8_bin NOT NULL,
+  `prefs` text COLLATE utf8_bin NOT NULL,
+  `last_update` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Tables'' UI preferences';
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `pma__tracking`
+--
+
+CREATE TABLE `pma__tracking` (
+  `db_name` varchar(64) COLLATE utf8_bin NOT NULL,
+  `table_name` varchar(64) COLLATE utf8_bin NOT NULL,
+  `version` int(10) UNSIGNED NOT NULL,
+  `date_created` datetime NOT NULL,
+  `date_updated` datetime NOT NULL,
+  `schema_snapshot` text COLLATE utf8_bin NOT NULL,
+  `schema_sql` text COLLATE utf8_bin DEFAULT NULL,
+  `data_sql` longtext COLLATE utf8_bin DEFAULT NULL,
+  `tracking` set('UPDATE','REPLACE','INSERT','DELETE','TRUNCATE','CREATE DATABASE','ALTER DATABASE','DROP DATABASE','CREATE TABLE','ALTER TABLE','RENAME TABLE','DROP TABLE','CREATE INDEX','DROP INDEX','CREATE VIEW','ALTER VIEW','DROP VIEW') COLLATE utf8_bin DEFAULT NULL,
+  `tracking_active` int(1) UNSIGNED NOT NULL DEFAULT 1
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Database changes tracking for phpMyAdmin';
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `pma__userconfig`
+--
+
+CREATE TABLE `pma__userconfig` (
+  `username` varchar(64) COLLATE utf8_bin NOT NULL,
+  `timevalue` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `config_data` text COLLATE utf8_bin NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='User preferences storage for phpMyAdmin';
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `pma__usergroups`
+--
+
+CREATE TABLE `pma__usergroups` (
+  `usergroup` varchar(64) COLLATE utf8_bin NOT NULL,
+  `tab` varchar(64) COLLATE utf8_bin NOT NULL,
+  `allowed` enum('Y','N') COLLATE utf8_bin NOT NULL DEFAULT 'N'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='User groups with configured menu items';
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `pma__users`
+--
+
+CREATE TABLE `pma__users` (
+  `username` varchar(64) COLLATE utf8_bin NOT NULL,
+  `usergroup` varchar(64) COLLATE utf8_bin NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Users and their assignments to user groups';
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `rfaccounts`
 --
 
 CREATE TABLE `rfaccounts` (
-  `rf_id` int(11) NOT NULL,
+  `rf_id` varchar(11) NOT NULL,
   `id_no` int(11) NOT NULL,
   `passkey` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `rfaccounts`
+--
+
+INSERT INTO `rfaccounts` (`rf_id`, `id_no`, `passkey`) VALUES
+('1707F060', 0, ''),
+('8726F75F', 2016180067, ''),
+('879E1861', 2015102434, ''),
+('979C0460', 2015102429, ''),
+('993226BA', 0, ''),
+('C79CFC5F', 2015380013, ''),
+('E94775B3', 2015102433, '');
 
 -- --------------------------------------------------------
 
@@ -578,12 +880,7 @@ CREATE TABLE `systemusers` (
 --
 
 INSERT INTO `systemusers` (`uid`, `uname`, `pword`, `status`, `urole`) VALUES
-(1, 'admin', 'a147c25f4b18563249aa0291b780cf08', 'A', 'SystemAdmin'),
-(2, 'clinic', '53a6fae0b614a03f0783f67c66694f2d', 'A', 'Admin'),
-(3, 'cgc', '628eed357b818d4c9337b83461a07ce2', 'A', 'Admin'),
-(4, 'oss', '086b2be066b53d2ea26a7742221df698', 'A', 'Admin'),
-(5, 'mitl', '2a161406550ad88d447d0e6a12bfe0eb', 'A', 'SystemAdmin'),
-(6, 'cas', '4f58fe5f945adfb603e83b49ac6b6fb6', 'D', 'SystemAdmin');
+(1, 'admin', 'a147c25f4b18563249aa0291b780cf08', 'A', 'SystemAdmin');
 
 -- --------------------------------------------------------
 
@@ -603,128 +900,16 @@ CREATE TABLE `tapin_logs` (
 --
 
 INSERT INTO `tapin_logs` (`log_no`, `rf_id`, `id_no`, `inDate`) VALUES
-(1, 0, 2016180067, '2020-03-28 10:40:34'),
-(2, 0, 2015102429, '2020-03-28 11:36:22'),
-(3, 0, 2015102429, '2020-03-28 11:40:20'),
-(4, 0, 2016180067, '2020-03-28 11:41:14'),
-(5, 0, 2015102424, '2020-03-28 13:13:17'),
-(6, 0, 2015102424, '2020-03-28 14:11:28'),
-(7, 0, 2016180067, '2020-03-28 14:11:59'),
-(8, 0, 2015102434, '2020-03-28 14:15:48'),
-(9, 0, 2016180067, '2020-03-28 14:23:42'),
-(10, 0, 2016180067, '2020-03-30 06:17:36'),
-(11, 0, 2016180067, '2020-03-30 06:22:49'),
-(12, 0, 2016180067, '2020-03-30 06:25:14'),
-(13, 0, 2016180067, '2020-03-30 06:27:54'),
-(14, 0, 2016180067, '2020-03-30 06:28:19'),
-(15, 0, 2016180067, '2020-03-30 06:28:29'),
-(16, 0, 2016180067, '2020-03-30 06:33:39'),
-(17, 0, 2016180067, '2020-03-30 06:35:20'),
-(18, 0, 2016180067, '2020-03-30 06:36:09'),
-(19, 0, 2016180067, '2020-03-30 06:36:51'),
-(20, 0, 2016180067, '2020-03-30 06:56:34'),
-(21, 0, 2016180067, '2020-03-30 06:59:02'),
-(22, 0, 2016180067, '2020-03-30 07:01:34'),
-(23, 0, 2016180067, '2020-03-30 07:04:49'),
-(24, 0, 2016180067, '2020-03-30 07:05:23'),
-(25, 0, 2016180067, '2020-03-30 07:05:31'),
-(26, 0, 2016180067, '2020-03-30 07:05:45'),
-(27, 0, 2016180067, '2020-03-30 07:05:55'),
-(28, 0, 2016180067, '2020-03-30 07:06:49'),
-(29, 0, 2016180067, '2020-03-30 07:07:23'),
-(30, 0, 2016180067, '2020-03-30 07:11:19'),
-(31, 0, 2016180067, '2020-03-30 07:13:20'),
-(32, 0, 2016180067, '2020-03-30 07:13:24'),
-(33, 0, 2016180067, '2020-03-30 07:17:32'),
-(34, 0, 2016180067, '2020-03-30 07:17:42'),
-(35, 0, 2016180067, '2020-03-30 07:18:41'),
-(36, 0, 2016180067, '2020-03-30 07:20:31'),
-(37, 0, 2016180067, '2020-03-30 07:20:33'),
-(38, 0, 2016180067, '2020-03-30 07:20:36'),
-(39, 0, 2016180067, '2020-03-30 07:20:55'),
-(40, 0, 2016180067, '2020-03-30 07:21:31'),
-(41, 0, 2016180067, '2020-03-30 07:21:38'),
-(42, 0, 2016180067, '2020-03-30 07:21:42'),
-(43, 0, 2016180067, '2020-03-30 07:21:57'),
-(44, 0, 2016180067, '2020-03-30 07:22:10'),
-(45, 0, 2016180067, '2020-03-30 07:22:16'),
-(46, 0, 2016180067, '2020-03-30 07:22:30'),
-(47, 0, 2016180067, '2020-03-30 07:22:31'),
-(48, 0, 2016180067, '2020-03-30 07:22:37'),
-(49, 0, 2016180067, '2020-03-30 07:22:39'),
-(50, 0, 2016180067, '2020-03-30 07:23:32'),
-(51, 0, 2016180067, '2020-03-30 07:24:00'),
-(52, 0, 2016180067, '2020-03-30 08:02:01'),
-(53, 0, 2016180067, '2020-03-30 08:37:23'),
-(54, 0, 2016180067, '2020-03-30 18:49:07'),
-(55, 0, 2016180067, '2020-03-30 18:50:10'),
-(56, 0, 2016180067, '2020-03-30 18:50:17'),
-(57, 0, 2016180067, '2020-03-30 18:50:44'),
-(58, 0, 2016180067, '2020-03-30 18:51:57'),
-(59, 0, 2016180067, '2020-03-30 18:52:56'),
-(60, 0, 2016180067, '2020-03-30 18:53:23'),
-(61, 0, 2016180067, '2020-03-30 18:53:57'),
-(62, 0, 2016180067, '2020-03-30 18:54:49'),
-(63, 0, 2016180067, '2020-03-30 18:55:02'),
-(64, 0, 2016180067, '2020-03-30 18:55:23'),
-(65, 0, 2016180067, '2020-03-30 18:55:29'),
-(66, 0, 2016180067, '2020-03-30 18:56:37'),
-(67, 0, 2016180067, '2020-03-30 18:56:56'),
-(68, 0, 2016180067, '2020-03-30 18:57:46'),
-(69, 0, 2016180067, '2020-03-30 18:58:00'),
-(70, 0, 2016180067, '2020-03-30 18:58:10'),
-(71, 0, 2016180067, '2020-03-30 18:59:09'),
-(72, 0, 2016180067, '2020-03-30 18:59:21'),
-(73, 0, 2016180067, '2020-03-30 19:00:28'),
-(74, 0, 2016180067, '2020-03-30 19:00:55'),
-(75, 0, 2016180067, '2020-03-30 19:01:44'),
-(76, 0, 2016180067, '2020-03-30 19:02:37'),
-(77, 0, 2016180067, '2020-03-30 19:03:22'),
-(78, 0, 2016180067, '2020-03-30 19:04:29'),
-(79, 0, 2016180067, '2020-03-30 19:04:55'),
-(80, 0, 2016180067, '2020-03-30 19:05:08'),
-(81, 0, 2016180067, '2020-03-30 19:05:16'),
-(82, 0, 2016180067, '2020-03-30 19:05:31'),
-(83, 0, 2016180067, '2020-03-30 19:06:31'),
-(84, 0, 2016180067, '2020-03-30 19:06:43'),
-(85, 0, 2016180067, '2020-03-30 19:07:43'),
-(86, 0, 2016180067, '2020-03-30 19:07:50'),
-(87, 0, 2016180067, '2020-03-30 19:07:56'),
-(88, 0, 2016180067, '2020-03-30 19:08:10'),
-(89, 0, 2016180067, '2020-03-30 19:08:41'),
-(90, 0, 2016180067, '2020-03-30 19:09:28'),
-(91, 0, 2016180067, '2020-03-30 19:10:34'),
-(92, 0, 2016180067, '2020-03-30 19:11:36'),
-(93, 0, 2016180067, '2020-03-30 19:12:05'),
-(94, 0, 2016180067, '2020-03-30 19:13:23'),
-(95, 0, 2016180067, '2020-03-30 19:13:57'),
-(96, 0, 2016180067, '2020-03-30 19:14:55'),
-(97, 0, 2016180067, '2020-03-30 19:15:04'),
-(98, 0, 2016180067, '2020-03-30 19:15:45'),
-(99, 0, 2016180067, '2020-03-30 19:16:13'),
-(100, 0, 2016180067, '2020-03-30 19:16:49'),
-(101, 0, 2016180067, '2020-03-30 19:17:00'),
-(102, 0, 2016180067, '2020-03-30 19:18:06'),
-(103, 0, 2016180067, '2020-03-30 19:18:23'),
-(104, 0, 2016180067, '2020-03-30 19:18:47'),
-(105, 0, 2016180067, '2020-03-30 19:18:53'),
-(106, 0, 2016180067, '2020-03-30 19:19:00'),
-(107, 0, 2016180067, '2020-03-30 19:19:06'),
-(108, 0, 2016180067, '2020-03-30 19:19:12'),
-(109, 0, 2016180067, '2020-03-30 19:19:22'),
-(110, 0, 2016180067, '2020-03-30 19:19:28'),
-(111, 0, 2016180067, '2020-03-30 19:19:59'),
-(112, 0, 2016180067, '2020-03-30 19:20:27'),
-(113, 0, 2016180067, '2020-03-30 19:21:19'),
-(114, 0, 2016180067, '2020-03-30 19:21:33'),
-(115, 0, 2016180067, '2020-03-30 19:21:55'),
-(116, 0, 2016180067, '2020-03-30 19:22:12'),
-(117, 0, 2016180067, '2020-03-30 19:22:23'),
-(118, 0, 2016180067, '2020-03-30 19:22:57'),
-(119, 0, 2016180067, '2020-03-30 19:23:32'),
-(120, 0, 2016180067, '2020-03-30 19:27:29'),
-(121, 0, 2016180067, '2020-04-02 19:15:47'),
-(122, 0, 2016180067, '2020-04-02 21:05:32');
+(1, 0, 2015102433, '2021-01-06 22:55:10'),
+(2, 0, 2016180067, '2021-01-06 22:57:18'),
+(3, 0, 2016180067, '2021-01-06 22:57:18'),
+(4, 0, 2015380013, '2021-01-06 23:40:51'),
+(5, 0, 2015380013, '2021-01-06 23:40:51'),
+(6, 0, 2015380013, '2021-01-06 23:44:06'),
+(7, 0, 2015380013, '2021-01-06 23:44:07'),
+(8, 0, 2015102429, '2021-01-07 04:53:14'),
+(9, 0, 2015102429, '2021-01-07 04:53:14'),
+(10, 0, 2015380013, '2021-01-07 20:32:35');
 
 -- --------------------------------------------------------
 
@@ -744,12 +929,9 @@ CREATE TABLE `tapout_logs` (
 --
 
 INSERT INTO `tapout_logs` (`log_no`, `rf_id`, `id_no`, `outDate`) VALUES
-(1, 0, 2016180067, '2020-03-28 10:48:13'),
-(2, 0, 2016180067, '2020-03-28 10:48:38'),
-(3, 0, 2016180067, '2020-03-28 10:49:27'),
-(4, 0, 2016180067, '2020-03-28 10:50:02'),
-(5, 0, 2016180067, '2020-03-30 08:02:10'),
-(6, 0, 2016180067, '2020-04-02 19:15:38');
+(1, 0, 2015102433, '2021-01-06 22:55:35'),
+(2, 0, 2016180067, '2021-01-06 22:56:44'),
+(3, 0, 2015102429, '2021-01-07 04:53:48');
 
 -- --------------------------------------------------------
 
@@ -772,26 +954,28 @@ CREATE TABLE `user_account` (
 
 INSERT INTO `user_account` (`id_no`, `pass_word`, `lastname`, `firstname`, `acc_type`, `acc_status`) VALUES
 ('2014380025', '1', 'Beredo', 'Tommy', 'College', 'Active'),
+('2015102011', '1', 'Chua', 'Jan Edward', 'Admin', 'Active'),
 ('2015102424', '1', 'Flores', 'Cedric', 'Teacher', 'Active'),
 ('2015102425', '1', 'Soliven', 'Zeke', 'College', 'Active'),
 ('2015102426', '1', 'Tamisin', 'Broan', 'College', 'Active'),
 ('2015102427', '1', 'Rondilla', 'John', 'College', 'Active'),
 ('2015102428', '1', 'Paz', 'Patrick', 'College', 'Active'),
-('2015102429', '1', 'Fidel', 'Angelo', 'College', 'Active'),
-('2015102430', '1', 'Lazaga', 'Joseph', 'College', 'Active'),
+('2015102429', '1', 'Fidel', 'Angelo', 'Admin', 'Active'),
 ('2015102431', '1', 'Monserrate', 'James', 'College', 'Active'),
 ('2015102432', '1', 'Sobrevinas', 'Lester', 'College', 'Active'),
-('2015102433', '1', 'Nuval', 'Cyrhene', 'Teacher', 'Active'),
-('2015102434', '1', 'Magbanua', 'Ivan', 'Teacher', 'Active'),
+('2015102433', '1', 'Nuval', 'Cyrhene', 'TeacheSHS', 'Active'),
+('2015102434', '1', 'Magbanua', 'Ivan', 'Admin', 'Active'),
 ('2015130013', '1', 'Gonzaga', 'Justine', 'College', 'Active'),
-('2015380013', '1', 'Lazaga', 'Joseph', 'College', 'Active'),
+('2015380013', '1', 'Lazaga', 'Joseph', 'Teacher', 'Active'),
 ('2015380017', '1', 'Quinto', 'Joviel', 'College', 'Active'),
 ('2016180067', '1', 'Hernandez', 'Mark', 'College', 'Active'),
 ('2017000001', '1', 'Arganda', 'James', 'SHS', 'Active'),
 ('2017000002', '1', 'Laus', 'Clarisse', 'SHS', 'Active'),
 ('2017000003', '1', 'Gonzales', 'Adrian', 'SHS', 'Active'),
 ('2017000004', '1', 'Gilos', 'Mia', 'SHS', 'Active'),
-('2017000005', '1', 'Beredo', 'Anton', 'SHS', 'Active');
+('2017000005', '1', 'Beredo', 'Anton', 'SHS', 'Active'),
+('2020180001', '1', 'testuser1', 'testuser1', 'College', 'Active'),
+('2020180002', '1', 'testuser2', 'testuser2', 'Teacher', 'Active');
 
 -- --------------------------------------------------------
 
@@ -843,6 +1027,24 @@ INSERT INTO `user_information` (`id_no`, `user_fname`, `user_lname`, `user_dept`
 (2016180067, 'Mark Anthony', 'Hernandez', 'CCIS', 'A', 'S'),
 (2016190009, 'Mark Angelo ', 'Co', 'SHS', 'A', 'S');
 
+-- --------------------------------------------------------
+
+--
+-- Structure for view `count in`
+--
+DROP TABLE IF EXISTS `count in`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `count in`  AS SELECT `tapin_logs`.`log_no` AS `log_no`, `tapin_logs`.`rf_id` AS `rf_id`, `tapin_logs`.`id_no` AS `id_no`, `tapin_logs`.`inDate` AS `inDate`, count(`tapin_logs`.`inDate`) AS `COUNT(``inDate``)` FROM `tapin_logs` GROUP BY hour(`tapin_logs`.`inDate`) ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `count out`
+--
+DROP TABLE IF EXISTS `count out`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `count out`  AS SELECT `tapout_logs`.`log_no` AS `log_no`, `tapout_logs`.`rf_id` AS `rf_id`, `tapout_logs`.`id_no` AS `id_no`, `tapout_logs`.`outDate` AS `outDate`, count(`tapout_logs`.`outDate`) AS `COUNT(``outDate``)` FROM `tapout_logs` GROUP BY hour(`tapout_logs`.`outDate`) ;
+
 --
 -- Indexes for dumped tables
 --
@@ -885,6 +1087,132 @@ ALTER TABLE `handled_course`
   ADD PRIMARY KEY (`handled_id`),
   ADD KEY `course_code` (`course_code`),
   ADD KEY `user_name` (`id_no`);
+
+--
+-- Indexes for table `pma__bookmark`
+--
+ALTER TABLE `pma__bookmark`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `pma__central_columns`
+--
+ALTER TABLE `pma__central_columns`
+  ADD PRIMARY KEY (`db_name`,`col_name`);
+
+--
+-- Indexes for table `pma__column_info`
+--
+ALTER TABLE `pma__column_info`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `db_name` (`db_name`,`table_name`,`column_name`);
+
+--
+-- Indexes for table `pma__designer_settings`
+--
+ALTER TABLE `pma__designer_settings`
+  ADD PRIMARY KEY (`username`);
+
+--
+-- Indexes for table `pma__export_templates`
+--
+ALTER TABLE `pma__export_templates`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `u_user_type_template` (`username`,`export_type`,`template_name`);
+
+--
+-- Indexes for table `pma__favorite`
+--
+ALTER TABLE `pma__favorite`
+  ADD PRIMARY KEY (`username`);
+
+--
+-- Indexes for table `pma__history`
+--
+ALTER TABLE `pma__history`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `username` (`username`,`db`,`table`,`timevalue`);
+
+--
+-- Indexes for table `pma__navigationhiding`
+--
+ALTER TABLE `pma__navigationhiding`
+  ADD PRIMARY KEY (`username`,`item_name`,`item_type`,`db_name`,`table_name`);
+
+--
+-- Indexes for table `pma__pdf_pages`
+--
+ALTER TABLE `pma__pdf_pages`
+  ADD PRIMARY KEY (`page_nr`),
+  ADD KEY `db_name` (`db_name`);
+
+--
+-- Indexes for table `pma__recent`
+--
+ALTER TABLE `pma__recent`
+  ADD PRIMARY KEY (`username`);
+
+--
+-- Indexes for table `pma__relation`
+--
+ALTER TABLE `pma__relation`
+  ADD PRIMARY KEY (`master_db`,`master_table`,`master_field`),
+  ADD KEY `foreign_field` (`foreign_db`,`foreign_table`);
+
+--
+-- Indexes for table `pma__savedsearches`
+--
+ALTER TABLE `pma__savedsearches`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `u_savedsearches_username_dbname` (`username`,`db_name`,`search_name`);
+
+--
+-- Indexes for table `pma__table_coords`
+--
+ALTER TABLE `pma__table_coords`
+  ADD PRIMARY KEY (`db_name`,`table_name`,`pdf_page_number`);
+
+--
+-- Indexes for table `pma__table_info`
+--
+ALTER TABLE `pma__table_info`
+  ADD PRIMARY KEY (`db_name`,`table_name`);
+
+--
+-- Indexes for table `pma__table_uiprefs`
+--
+ALTER TABLE `pma__table_uiprefs`
+  ADD PRIMARY KEY (`username`,`db_name`,`table_name`);
+
+--
+-- Indexes for table `pma__tracking`
+--
+ALTER TABLE `pma__tracking`
+  ADD PRIMARY KEY (`db_name`,`table_name`,`version`);
+
+--
+-- Indexes for table `pma__userconfig`
+--
+ALTER TABLE `pma__userconfig`
+  ADD PRIMARY KEY (`username`);
+
+--
+-- Indexes for table `pma__usergroups`
+--
+ALTER TABLE `pma__usergroups`
+  ADD PRIMARY KEY (`usergroup`,`tab`,`allowed`);
+
+--
+-- Indexes for table `pma__users`
+--
+ALTER TABLE `pma__users`
+  ADD PRIMARY KEY (`username`,`usergroup`);
+
+--
+-- Indexes for table `rfaccounts`
+--
+ALTER TABLE `rfaccounts`
+  ADD PRIMARY KEY (`rf_id`);
 
 --
 -- Indexes for table `student_course`
@@ -934,38 +1262,44 @@ ALTER TABLE `user_account`
   ADD PRIMARY KEY (`id_no`);
 
 --
--- Indexes for table `user_accounts`
---
-ALTER TABLE `user_accounts`
-  ADD PRIMARY KEY (`id_no`);
-
---
--- Indexes for table `user_information`
---
-ALTER TABLE `user_information`
-  ADD PRIMARY KEY (`id_no`);
-
---
 -- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT for table `attendance_record`
+-- AUTO_INCREMENT for table `pma__bookmark`
 --
-ALTER TABLE `attendance_record`
-  MODIFY `attendance_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=110;
+ALTER TABLE `pma__bookmark`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `attnmessage`
+-- AUTO_INCREMENT for table `pma__column_info`
 --
-ALTER TABLE `attnmessage`
-  MODIFY `imsg_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+ALTER TABLE `pma__column_info`
+  MODIFY `id` int(5) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `handled_course`
+-- AUTO_INCREMENT for table `pma__export_templates`
 --
-ALTER TABLE `handled_course`
-  MODIFY `handled_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+ALTER TABLE `pma__export_templates`
+  MODIFY `id` int(5) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `pma__history`
+--
+ALTER TABLE `pma__history`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `pma__pdf_pages`
+--
+ALTER TABLE `pma__pdf_pages`
+  MODIFY `page_nr` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `pma__savedsearches`
+--
+ALTER TABLE `pma__savedsearches`
+  MODIFY `id` int(5) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `systemlogs`
@@ -983,49 +1317,13 @@ ALTER TABLE `systemusers`
 -- AUTO_INCREMENT for table `tapin_logs`
 --
 ALTER TABLE `tapin_logs`
-  MODIFY `log_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=123;
+  MODIFY `log_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `tapout_logs`
 --
 ALTER TABLE `tapout_logs`
-  MODIFY `log_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `attnmessage`
---
-ALTER TABLE `attnmessage`
-  ADD CONSTRAINT `attnmessage_ibfk_1` FOREIGN KEY (`id_no`) REFERENCES `user_information` (`id_no`);
-
---
--- Constraints for table `guardianinfo`
---
-ALTER TABLE `guardianinfo`
-  ADD CONSTRAINT `guardianinfo_ibfk_1` FOREIGN KEY (`id_no`) REFERENCES `user_information` (`id_no`);
-
---
--- Constraints for table `handled_course`
---
-ALTER TABLE `handled_course`
-  ADD CONSTRAINT `handled_course_ibfk_1` FOREIGN KEY (`course_code`) REFERENCES `course_record` (`course_code`),
-  ADD CONSTRAINT `handled_course_ibfk_2` FOREIGN KEY (`id_no`) REFERENCES `user_account` (`id_no`);
-
---
--- Constraints for table `student_course`
---
-ALTER TABLE `student_course`
-  ADD CONSTRAINT `student_course_ibfk_1` FOREIGN KEY (`student_id`) REFERENCES `user_account` (`id_no`);
-
---
--- Constraints for table `student_record`
---
-ALTER TABLE `student_record`
-  ADD CONSTRAINT `student_record_ibfk_1` FOREIGN KEY (`attendance_id`) REFERENCES `attendance_record` (`attendance_id`),
-  ADD CONSTRAINT `student_record_ibfk_2` FOREIGN KEY (`id_no`) REFERENCES `user_account` (`id_no`);
+  MODIFY `log_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
