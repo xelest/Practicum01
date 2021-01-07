@@ -156,7 +156,7 @@ if(isset($data['id_no']))
                   <?php echo "Tapped Out :"?>
               </div>
               <div class="col-6" style="color: #C92624" align="right">
-                <?php echo "". date("h : i : s");?>
+                <?php date_default_timezone_set("Asia/Manila"); echo "". date("h : i : s");?>
               </div>
             </div>
           </h3></div>
@@ -188,7 +188,7 @@ if(isset($data['id_no']))
                    <td align="left"><?php echo $fname;?></td>
                 </tr>
                 <tr>
-                  <td align="left" class="lf">Last Name</td>
+                  <td align="left" class="lf">Lastname</td>
                   <td style="font-weight:bold">:</td>
                   <td align="left"><?php echo $lname;?></td>
                 </tr>

@@ -12,36 +12,11 @@
 
   <style>
 
-  </style>
-</head>
-
-<?php
-
-
-switch ($n) {
-  case label1:
-    code to be executed if $n=label1;
-    break;
-  case label2:
-    code to be executed if $n=label2;
-    break;
-  case label3:
-    code to be executed if n=label3;
-    break;
-    ...
-  default:
-    code to be executed if n is different from all labels;
+.page {
+  page-break-after: always;
 }
 
-
-function get_time($stime, $etime){
-
-
-    return $dtime;
-}
-
-?>
-
+}</style>
 <body>
     <div class="wrapper">
         <div id="body" class="active">
@@ -84,11 +59,12 @@ function get_time($stime, $etime){
                             
                         </div>
                     </div>
-                    <div class="containerX" style="height: 80vh;">
+
                     <hr class="style1">
                     <h6 style="text-align: center; letter-spacing: 1px"> P R O F I L E &nbsp;&nbsp;&nbsp; R E P O R T </h6>
                     <table class="table table-striped">
                     <thead>
+                    <div class="page">
                       <tr>
                         <th>Firstname</th>
                         <th>Lastname</th>
@@ -236,7 +212,7 @@ function get_time($stime, $etime){
                         <td>8hrs</td>
                         <td>Late</td>
                       </tr>
-
+                  </div>
                               <tr>
                         <td>July</td>
                         <td>Dooley</td>
@@ -319,7 +295,7 @@ function get_time($stime, $etime){
 
                      </tbody>
                   </table>
-              </div> <!-- CONTAINER X-->
+                     <!-- CONTAINER X-->
                     <!-- ROW X-->
                     <div class="xfooter" style="margin-bottom: 0px;">
                     <hr class="style1">

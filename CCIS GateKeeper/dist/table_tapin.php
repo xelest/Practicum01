@@ -14,7 +14,7 @@
             include_once('connection.php');
           
          
-          $msql = "SELECT `log_no`, `id_no`, `inDate` FROM `tapin_logs`";
+          $msql = "SELECT `log_no`, `id_no`, `inDate` FROM `tapin_logs` order by `inDate` DESC LIMIT 3";
           //fetch
           $result1 = mysqli_query($con, $msql);
 

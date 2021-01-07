@@ -30,11 +30,11 @@ $sFormat = 'Y-m-d H:i:s';
     die( "Unable to select database");
   }
 
-$id_no =  array("2016180067", "2015100022", "201611199");
+$id_no =  array("2016180067", "2015380013", "2015102429", "2015102434", "2015102433");
 $start_time = 0;
 $end_time =0;
 
-for($x = 0; $x < 3; $x++){
+for($x = 0; $x < 5; $x++){
 	//generate
 	$dt = gen_dt();
 	$dt2 = gen_dt();

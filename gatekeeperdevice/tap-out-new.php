@@ -60,7 +60,7 @@ body, html {
 
 .bg {
   /* The image used */
-  background-image: url("img/img-1.jpg");
+  background-image: url("img/img-8.png");
 
   /* Full height */
   height: 100%;
@@ -193,7 +193,7 @@ border-color: #6C6A69;
                    <td align="left"><?php echo '--------------';?></td>
                 </tr>
                 <tr>
-                  <td align="left" class="lf">Last Name</td>
+                  <td align="left" class="lf">Lastname</td>
                   <td style="font-weight:bold">:</td>
                   <td align="left"><?php echo '--------------';?></td>
                 </tr>

@@ -43,7 +43,7 @@
                             <div class="card mb-4">
                             <div class="card-header">
                                 <i class="fas fa-table mr-1"></i>
-                                DataTable Example
+                                Tap-In Logs
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
@@ -99,7 +99,7 @@
                             <div class="card mb-4">
                             <div class="card-header">
                                 <i class="fas fa-table mr-1"></i>
-                                DataTable Example
+                                Tap-Out Logs
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">

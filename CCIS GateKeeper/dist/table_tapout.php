@@ -13,7 +13,7 @@
             include_once('connection.php');
           
          
-          $msql = "SELECT `log_no`, `id_no`, `outDate` FROM `tapout_logs`";
+          $msql = "SELECT `log_no`, `id_no`, `outDate` FROM `tapout_logs` order by `outDate` DESC LIMIT 3";
           //fetch
           $result1 = mysqli_query($con, $msql);
 

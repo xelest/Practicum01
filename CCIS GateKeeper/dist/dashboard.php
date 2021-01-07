@@ -50,45 +50,9 @@
                                 </div>
                             </div></div>
 
-                        <div class="col-lg-2 col-md-2 col-sm-12">
-                        <div class="card">
-                                <div class="card-header">Employees </div>
-                                <div class="card-body">
-                                    <form class="needs-validation" novalidate="" accept-charset="utf-8">
-                                        <div class="form-row">
-                                            
-                                        </div>
-                                    </form>
-                                </div>
-                            </div></div>
-
-                        <div class="col-lg-2 col-md-2 col-sm-12">
-                        <div class="card">
-                                <div class="card-header">Students</div>
-                                <div class="card-body">
-                                    <form class="needs-validation" novalidate="" accept-charset="utf-8">
-                                        <div class="form-row">
-                                            
-                                        </div>
-                                    </form>
-                                </div>
-                            </div></div>
-
-                        <div class="col-lg-2 col-md-2 col-sm-12">
-                        <div class="card">
-                                <div class="card-header">Visitors</div>
-                                <div class="card-body">
-                                    <form class="needs-validation" novalidate="" accept-charset="utf-8">
-                                        <div class="form-row">
-                                            
-                                        </div>
-                                    </form>
-                                </div>
-                            </div></div>
-
                          <div class="col-lg-2 col-md-2 col-sm-12">
                         <div class="card">
-                                <div class="card-header">Logins / TOTAL TAPS</div>
+                                <div class="card-header">Tap-Ins</div>
                                 <div class="card-body">
                                     <form class="needs-validation" novalidate="" accept-charset="utf-8">
                                         <div class="form-row">
@@ -101,7 +65,7 @@
 
                         <div class="col-lg-2 col-md-2 col-sm-12">
                         <div class="card">
-                                <div class="card-header">Logouts / TOTAL TAPS</div>
+                                <div class="card-header">Tap-Outs</div>
                                 <div class="card-body">
                                     <form class="needs-validation" novalidate="" accept-charset="utf-8">
                                         <div class="form-row">
@@ -128,35 +92,12 @@
                             </div>
 
                             <div class="card">
-                                <div class="card-header">Logins / TOTAL TAPS</div>
+                                <div class="card-header">Tap-Outs</div>
                                 <div class="card-body">
                                     <form class="needs-validation" novalidate="" accept-charset="utf-8">
                                         <div class="form-row">
-                                            <table class="table table-striped">
-                                              <thead>
-                                                <tr>
-                                                  <th scope="col">Time In</th>
-                                                  <th scope="col">ID No</th>
-                                                  <th scope="col">Name</th>
-                                                </tr>
-                                              </thead>
-                                              <tbody>
-                                                <tr>
-                                                  <td>Mark</td>
-                                                  <td>Otto</td>
-                                                  <td>@mdo</td>
-                                                </tr>
-                                                <tr>
-                                                  <td>Jacob</td>
-                                                  <td>Thornton</td>
-                                                  <td>@fat</td>
-                                                </tr>
-                                                <tr>
-                                                  <td>Larry</td>
-                                                  <td>the Bird</td>
-                                                  <td>@twitter</td>
-                                                </tr>
-                                              </tbody>
+                                            <table class="table table-striped" id='Tap-Outs'>
+                                              
                                             </table>
                                         </div>
                                     </form>
@@ -177,35 +118,12 @@
                                 </div>
                             </div>
                             <div class="card">
-                                <div class="card-header">Logins / TOTAL TAPS</div>
+                                <div class="card-header">Tap-Ins</div>
                                 <div class="card-body">
                                     <form class="needs-validation" novalidate="" accept-charset="utf-8">
                                         <div class="form-row">
-                                            <table class="table table-striped">
-                                              <thead>
-                                                <tr>
-                                                  <th scope="col">Time In</th>
-                                                  <th scope="col">ID No</th>
-                                                  <th scope="col">Name</th>
-                                                </tr>
-                                              </thead>
-                                              <tbody>
-                                                <tr>
-                                                  <td>Mark</td>
-                                                  <td>Otto</td>
-                                                  <td>@mdo</td>
-                                                </tr>
-                                                <tr>
-                                                  <td>Jacob</td>
-                                                  <td>Thornton</td>
-                                                  <td>@fat</td>
-                                                </tr>
-                                                <tr>
-                                                  <td>Larry</td>
-                                                  <td>the Bird</td>
-                                                  <td>@twitter</td>
-                                                </tr>
-                                              </tbody>
+                                            <table class="table table-striped" id='Tap-Ins'>
+                                              
                                             </table>
                                         </div>
                                     </form>
@@ -265,6 +183,27 @@
     <script src="assets/vendor/fontawesome5/js/solid.min.js"></script>
     <script src="assets/vendor/fontawesome5/js/fontawesome.min.js"></script>
     <script type="text/javascript">window.onload = date_time('date_time');</script>
+
+
+        <script language="javascript" type="text/javascript">
+            function loadlink(){
+                $('#Tap-Outs').load('table_tapout.php',function () {
+                     //$(this).unwrap();
+                });
+                 $('#Tap-Ins').load('table_tapin.php',function () {
+                     //$(this).unwrap();
+                });
+            }
+
+            loadlink(); // This will run on page load
+            setInterval(function(){
+                loadlink() // this will run after every 5 seconds
+            }, 2000);
+</script>
+
+
+
+
 </body>
 
 </html>

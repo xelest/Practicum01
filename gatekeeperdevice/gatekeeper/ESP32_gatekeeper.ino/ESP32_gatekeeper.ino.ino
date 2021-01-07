@@ -1,5 +1,6 @@
 #include <HTTPClient.h>
 #include <WiFi.h>
+#include <WebServer.h>
 
 #include <SPI.h>
 #include <MFRC522.h>

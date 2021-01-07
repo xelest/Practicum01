@@ -196,7 +196,7 @@ border-color: #6C6A69;
                    <td align="left"><?php echo '--------------';?></td>
                 </tr>
                 <tr>
-                  <td align="left" class="lf">Last Name</td>
+                  <td align="left" class="lf">Lastname</td>
                   <td style="font-weight:bold">:</td>
                   <td align="left"><?php echo '--------------';?></td>
                 </tr>

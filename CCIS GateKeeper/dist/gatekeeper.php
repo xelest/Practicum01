@@ -83,17 +83,69 @@
                             <li>
                                    <a class="nav-link" href=".php" target="abc_frame"><div class="sb-nav-link-icon"><i class="fas fa-search"></i></div> Search</a>
                                    <a class="nav-link" href="search_logs.php" target="abc_frame"><div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div> Tap Logs</a>
-                                   <a class="nav-link" href="reports.php" target="abc_frame"><div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div> Reports</a>
-                                   <a class="nav-link" href="messaging.php" target="abc_frame"><div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div> Messaging</a>
+
+
+                                   <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#Reports" aria-expanded="false" aria-controls="collapseLayouts">
+                                          <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                                          Reports
+                                          <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                                      </a>
+
+                                  <div class="collapse" id="Reports" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+                                      <nav class="sb-sidenav-menu-nested nav">
+                                          
+                                      <a class="nav-link" href="reports.php" target="abc_frame"><div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div> Admin Reports</a>
+                                      <a class="nav-link" href="reports.php" target="abc_frame"><div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div> SHS Reports</a>
+                                      <a class="nav-link" href="reports.php" target="abc_frame"><div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div> College Reports</a>
+                                      <a class="nav-link" href="reports.php" target="abc_frame"><div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div> Teachers Reports</a>
+                                          
+                                      </nav>
+                                  </div>
+
+
+
+
+                                   <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#Messaging" aria-expanded="false" aria-controls="collapseLayouts">
+                                          <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                                          Messaging
+                                          <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                                      </a>
+
+                                  <div class="collapse" id="Messaging" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+                                      <nav class="sb-sidenav-menu-nested nav">
+                                        <a class="nav-link" href="messaging.php" data-toggle="modal" data-target="#msg"><div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div> Create Message</a>
+                                           <a class="nav-link" href="messaging.php" target="abc_frame"><div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div> Messaging</a>
+
+                                      </nav>
+                                  </div>
+
+                                  
+
+                                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                                          <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                                          CSV
+                                          <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                                      </a>
+
+                                  <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+                                      <nav class="sb-sidenav-menu-nested nav">
+
+                                          <a class="nav-link" href=".php" id="btn-confirm" data-toggle="modal" data-target="#csv_upload" ><div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div> Upload CSV</a>
+                                      </nav>
+                                  </div>
+
                                 </li>   
 
                             <div class="sb-sidenav-menu-heading">Page Simulation</div>
                             <li>
                                    <a class="nav-link" href=".php" id="btn-confirm" data-toggle="modal" data-target="#tapin"><div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div> Tap In</a>
                                    <a class="nav-link" href=".php" id="btn-confirm" data-toggle="modal" data-target="#tapout"><div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div> Tap Out</a>
-                                   <a class="nav-link" href=".php" id="btn-confirm" data-toggle="modal" data-target="#rstpwd" ><div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div> Quick Password Reset</a>
-                                   <a class="nav-link" href=".php" id="btn-confirm" data-toggle="modal" data-target="#regnew" ><div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div> Register New User</a>
+                                   <a class="nav-link" href="../../gatekeeperdevice/tap-in-new.php" target="_blank"><div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div> RFID Tap In</a>
+                                   <a class="nav-link" href="../../gatekeeperdevice/tap-out-new.php" target="blank"><div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div> RFID Tap Out</a>
 
+                                   <!-- <a class="nav-link" href=".php" id="btn-confirm" data-toggle="modal" data-target="#rstpwd" ><div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div> Quick Password Reset</a>
+                                   <a class="nav-link" href=".php" id="btn-confirm" data-toggle="modal" data-target="#regnew" ><div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div> Register New User</a>
+                                  Navbar-->     
                         </div>
                     </div>
                     <div class="sb-sidenav-footer">
@@ -215,6 +267,108 @@
                                                 <button type="submit"class="btn mcl-yellow" name='pwdreset' class="btn btn-primary btn-block">Reset Password</button>
                                             </div>
                                         </form>
+                                    </div>
+                                    <div class="card-footer text-center mcl-blue">
+                                        <div class="small">Internal Systems | Gatekeeper</div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+            </div>
+          </div>
+        </div>
+        <!-- MODAL FORM -->
+
+         <!-- CSV UPLOAD  MODAL FORM -->
+        <div class="modal fade" id="csv_upload" tabindex="-1" role="dialog" aria-labelledby="csv_upload" aria-hidden="false">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content" style="width: 90%;">
+                            <div class="col-md-12 col-lg-12" style="height: 100% !important; width: 100% !important; padding: 0px; margin: 0px;;">
+                                <div class="card shadow-lg border-0 rounded-lg">
+                                    <div class="card-header mcl-blue"><h3 class="text-center font-weight-light my-3">CSV UPLOADER</h3></div>
+                                    <div class="card-body mcl-blue">
+                                            <div class="form-group">
+                                              <div class="row">
+                                              <form method="POST" enctype="multipart/form-data">
+                                                    <div class="col-12 col-sm-12 col-md-12">
+                                                      <div class="row">
+                                                        <div class="col-9">
+                                                        <div class="input-group input-file">
+                                                          <input  style="width: 100%;" type="file" name="file" class="form-control" placeholder='Choose a file...' />
+                                                        </div>
+                                                        </div>
+                                                        <div class="col-3">
+                                                           <button type="submit" name="submit" value="Import"class="btn mcl-yellow" name='pwdreset' class="btn btn-primary btn-block"> UPLOAD</button>
+                                                        </div>
+                                                      </div>
+                                                  </div>
+                                              </form>
+                              </div>
+                                            </div>
+                                    </div>
+                                    <div class="card-footer text-center mcl-blue">
+                                        <div class="small">Internal Systems | Gatekeeper</div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+            </div>
+          </div>
+        </div>
+        <!-- MODAL FORM -->
+
+
+          <!-- MESSAGE   MODAL FORM -->
+        <div class="modal fade" id="msg" tabindex="-1" role="dialog" aria-labelledby="msg" aria-hidden="false">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+
+                            <div class="col-md-12 col-lg-12" style="height: 100% !important; width: 100% !important; padding: 0px; margin: 0px;">
+                                <div class="card shadow-lg border-0 rounded-lg">
+                                    <div class="card-header mcl-blue"><h3 class="text-center font-weight-light my-3">CREATE MESSAGE</h3></div>
+                                    <div class="card-body mcl-blue">
+                                            <div class="form-group">
+                                              <div class="row" >
+                                              <form method="POST"  style="width: 100% !important;">
+                                                       <div class="row">
+
+                                                    <div class="col-lg-12 col-sm-12 col-md-12">
+                                                    <div class="input-group mb-3">
+                                                      <div class="input-group-prepend">
+                                                        <span class="input-group-text" id="inputGroup-sizing-default">Recipient</span>
+                                                      </div>
+                                                      <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                                                    </div>
+
+                                                      <div class="input-group mb-3">
+                                                      <div class="input-group-prepend">
+                                                        <span class="input-group-text" id="inputGroup-sizing-default">Sender&nbsp;&nbsp;&nbsp;</span>
+                                                      </div>
+                                                      <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                                                    </div>
+
+                                                    <div class="input-group">
+                                                      <div class="input-group-prepend">
+                                                      </div>
+                                                      <textarea class="form-control" aria-label="With textarea" rows="5" cols="20"></textarea>
+                                                    </div>
+                                                    
+      
+                                                    <br>
+                                                     <div class="row">
+                                                      <div class="col-12" align="right">
+                                                      <button class="btn btn-primary" align="right">SEND</button>
+                                                      </div>
+                                                     </div>
+                                                                                                     </div>
+
+
+                                                           </div>
+                                              </form>
+                              </div>
+                                            </div>
                                     </div>
                                     <div class="card-footer text-center mcl-blue">
                                         <div class="small">Internal Systems | Gatekeeper</div>

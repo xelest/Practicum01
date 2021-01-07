@@ -16,9 +16,9 @@
 
   $mwf = array('21','22');
   $tth = array('21','22');
- $dday = '2020-12-21';
+ $dday = '2021-1-8';
 
-  $v1  = array(''.$dday.' 07:00:00',''.$dday.' 11:30:00');
+  $v1  = array(''.$dday.' 06:50:00',''.$dday.' 9:30:00');
   $v2 = array(''.$dday.' 07:30:00',''.$dday.' 13:30:00');
 
 for($x = 0 ; $x <= 1; $x++)
@@ -74,10 +74,12 @@ if ($result->num_rows > 0)
 
       $getid = $row["id_no"];
       $w = get_who($getid);
+      $x = get_whof($getid);
      
       echo "" . $row["log_no"]. " 
             " . $row["id_no"]." 
-            ".$w." 
+            ".$w."
+            ".$x."
             ". $row["inDate"]. 
             "<br>";
     }
@@ -118,6 +120,37 @@ else
     }
  return $lname;
 }
+
+function get_whof($who){
+
+  $DB_HOST = 'localhost';
+  $DB_USER = 'root';
+  $DB_PASS = '';
+  $DB_NAME = 'mclccisn_gatekeeper';
+
+
+  $con = mysqli_connect($DB_HOST,$DB_USER,$DB_PASS,$DB_NAME);
+
+  if(!$con)
+  {
+    die( "Unable to select database");
+  }
+
+    $sql2 = 'SELECT * FROM user_account WHERE id_no = '.$who.'';
+    $result2 = $con->query($sql2);
+
+    if ($result2->num_rows > 0) {
+      // output data of each row
+      while($row2 = $result2->fetch_assoc()) {
+        $fname = $row2["firstname"];
+      }
+    } else {
+      echo "0 results";
+    }
+ return $fname;
+}
+
+
 
 
 function get_date($when){

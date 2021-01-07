@@ -154,7 +154,7 @@ if(isset($data['id_no']))
                   <?php echo "Tapped In :"?>
               </div>
               <div class="col-6" style="color: #88E22A" align="right">
-                <?php echo "". date("h : i : s");?>
+                <?php date_default_timezone_set("Asia/Manila"); echo "". date("h : i : s");?>
               </div>
             </div></h3></div>
             <div class="card-body slide-right">
@@ -185,7 +185,7 @@ if(isset($data['id_no']))
                    <td align="left"><?php echo $fname;?></td>
                 </tr>
                 <tr>
-                  <td align="left" class="lf">Last Name</td>
+                  <td align="left" class="lf">Lastname</td>
                   <td style="font-weight:bold">:</td>
                   <td align="left"><?php echo $lname;?></td>
                 </tr>
