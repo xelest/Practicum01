@@ -14,14 +14,6 @@
     
   <script src="js/script_date_time.js"></script>
 
-  <style>
-    td{
-      font-family: "Lato", "Helvetica Neue", Arial, Helvetica, sans-serif !important;
-      font-size: 15px !important;
-      font-weight: 400px !important;
-      color: rgb(47, 51, 61) !important;
-    }
-  </style>
 
 </head>
 
@@ -32,13 +24,14 @@
                 <div class="container-fluid">
                     <div class="page-title">
                         <div class="row">
-                            <div class="col-7"><h3>Logs </h3></div>
+                            <div class="col-7"><h3>Dashboard </h3></div>
 
-                            <div class="col-5"><div class="card-body" style="text-align: right;" ><span id="date_time"></span></div></div>
+                            <div class="col-5"><div class="card-body" style="text-align: right;" ><span id="date_time">asd</span></div></div>
                         </div>
                     </div>
+ 
 
-                    <div class="row"><div class="col-6">
+<div class="row"><div class="col-12">
                     <!--=============TABLE PROFILE========== -->
                             <div class="card mb-4">
                             <div class="card-header">
@@ -61,7 +54,7 @@
                                         //config
                                         include_once('connection.php');
                                       
-                                     $msql = "SELECT `log_no`, `id_no`, `inDate` FROM `tapin_logs` order by `inDate` DESC";
+                                     $msql = "SELECT `log_no`, `id_no`, `inDate` FROM `tapin_logs`";
                                       //fetch
                                       $result1 = mysqli_query($con, $msql);
 
@@ -93,61 +86,24 @@
                         </div>                       
                     </div>
                    <!--=============MODAL========== -->
-                   <div class="col-6">
-                   <!--=============TABLE PROFILE========== -->
-
-                            <div class="card mb-4">
-                            <div class="card-header">
-                                <i class="fas fa-table mr-1"></i>
-                                Tap-Out Logs
-                            </div>
-                            <div class="card-body">
-                                <div class="table-responsive">
-                                    <table class="table table-bordered table-striped" id="tapin_table"  width="100%" cellspacing="0">
-                                        <thead>
-                                          <tr>     
-                                              <th>Log No</th>  
-                                              <th>ID No</th>
-                                              <th>Tap Out</th>
-                                          </tr>
-                                      </thead>
-                                      <tbody>
-                                          <?php
-
-                                    //config
-                                    include_once('connection.php');
-                                  
-                                 
-                                  
-                                 $msql = "SELECT `log_no`, `id_no`, `outDate` FROM `tapout_logs` order by `outDate` DESC";
-                                  //fetch
-                                  $result1 = mysqli_query($con, $msql);
-
-                                  //contents populate
-                                  while ($row1 = mysqli_fetch_assoc($result1)) {
-                                      echo "<tr>";
-                                      foreach ($row1 as $field => $value) {
-                                          echo "<td>" . $value . "</td>";
-                                      }
-                                      echo "</tr>";
-                                  }
-                                    ?>      
-                                      </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>                       
-                    </div>
-
-                   <!--=============MODAL========== -->
                </div>
 
         </div>
-    </div>
-</div>
+
+
+
+
+
+
+
+                </div>
+            </div>
+
+        </div>
+
     </div>
 
-    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
+<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
     <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
     
 
@@ -165,10 +121,6 @@
     <script>
     $(document).ready(function() {
     $('#tapin_table').DataTable();
-    } );
-
-     $(document).ready(function() {
-    $('#tapout_table').DataTable();
     } );
 
   </script>

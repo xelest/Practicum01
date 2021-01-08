@@ -60,7 +60,7 @@ body, html {
 
 .bg {
   /* The image used */
-  background-image: url("img/img-8.png");
+  background-image: url("img/img-9.jpg");
 
   /* Full height */
   height: 100%;

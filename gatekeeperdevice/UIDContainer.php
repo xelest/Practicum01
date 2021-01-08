@@ -1,1 +1,1 @@
-<?php $UIDresult='C79CFC5F'; echo $UIDresult; ?>
+<?php $UIDresult='979C0460'; echo $UIDresult; ?>

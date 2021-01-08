@@ -94,7 +94,7 @@
                                   <div class="collapse" id="Reports" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                                       <nav class="sb-sidenav-menu-nested nav">
                                           
-                                      <a class="nav-link" href="reports.php" target="abc_frame"><div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div> Admin Reports</a>
+                                      <a class="nav-link" href="reports_admin.php" target="abc_frame"><div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div> Admin Reports</a>
                                       <a class="nav-link" href="reports.php" target="abc_frame"><div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div> SHS Reports</a>
                                       <a class="nav-link" href="reports.php" target="abc_frame"><div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div> College Reports</a>
                                       <a class="nav-link" href="reports.php" target="abc_frame"><div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div> Teachers Reports</a>
