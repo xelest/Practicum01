@@ -193,7 +193,7 @@
         </div>
         <!-- MODAL FORM -->
 
-        <!-- LOGOUT MODAL FORM -->
+        <!-- TAPIN MODAL FORM -->
         <div class="modal fade" id="tapin" tabindex="-1" role="dialog" aria-labelledby="tapin" aria-hidden="false">
           <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
@@ -206,7 +206,7 @@
               <div class="modal-body mcl-gray">
                 
                   <!-- TAP IN -->
-                <form action="http://localhost/it199R_02/gatekeeperdevice/getUID.php" method="POST" target="_blank">
+                <form action="../../gatekeeperdevice/getUID.php" method="POST" target="_blank">
                                              <div class="form-group">
                                                 <label class="small mb-1" for="inputPassword">RFID</label>
                                                 <input class="form-control py-4" id="tap_in" name="UIDresult" type="text" placeholder="RFID NUMBER" required="required" />
@@ -221,7 +221,7 @@
         </div>
         <!-- MODAL FORM -->
 
-        <!-- LOGOUT MODAL FORM -->
+        <!-- TAPOUT MODAL FORM -->
         <div class="modal fade" id="tapout" tabindex="-1" role="dialog" aria-labelledby="tapout" aria-hidden="false">
           <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
@@ -234,7 +234,7 @@
               <div class="modal-body mcl-gray">
                 
                   <!-- TAP IN -->
-                <form action="http://localhost/it199R_02/gatekeeperdevice/getUID_out.php" method="POST" target="_blank">
+                <form action="../../gatekeeperdevice/getUID_out.php" method="POST" target="_blank">
                                              <div class="form-group">
                                                 <label class="small mb-1" for="inputPassword">RFID</label>
                                                 <input class="form-control py-4" id="tapout" name="UIDresult" type="text" placeholder="RFID NUMBER" required="required" />
@@ -290,20 +290,14 @@
                                     <div class="card-body mcl-blue">
                                             <div class="form-group">
                                               <div class="row">
-                                              <form method="POST" enctype="multipart/form-data">
-                                                    <div class="col-12 col-sm-12 col-md-12">
-                                                      <div class="row">
-                                                        <div class="col-9">
-                                                        <div class="input-group input-file">
-                                                          <input  style="width: 100%;" type="file" name="file" class="form-control" placeholder='Choose a file...' />
-                                                        </div>
-                                                        </div>
-                                                        <div class="col-3">
-                                                           <button type="submit" name="submit" value="Import"class="btn mcl-yellow" name='pwdreset' class="btn btn-primary btn-block"> UPLOAD</button>
-                                                        </div>
+                                              <form method="post" enctype="multipart/form-data">
+                                                      <div align="center">
+                                                        <label>Select CSV File:</label>
+                                                        <input type="file" name="file" />
+                                                        <br />
+                                                        <input type="submit" name="submit" value="Import" class="btn btn-info" />
                                                       </div>
-                                                  </div>
-                                              </form>
+                                                      </form>
                               </div>
                                             </div>
                                     </div>
@@ -331,7 +325,7 @@
                                     <div class="card-body mcl-blue">
                                             <div class="form-group">
                                               <div class="row" >
-                                              <form method="POST"  style="width: 100% !important;">
+                                              <form method="POST"  action="" style="width: 100% !important;">
                                                        <div class="row">
 
                                                     <div class="col-lg-12 col-sm-12 col-md-12">
@@ -339,27 +333,27 @@
                                                       <div class="input-group-prepend">
                                                         <span class="input-group-text" id="inputGroup-sizing-default">Recipient</span>
                                                       </div>
-                                                      <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                                                      <input type="text" name="recipient" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
                                                     </div>
 
                                                       <div class="input-group mb-3">
                                                       <div class="input-group-prepend">
                                                         <span class="input-group-text" id="inputGroup-sizing-default">Sender&nbsp;&nbsp;&nbsp;</span>
                                                       </div>
-                                                      <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                                                      <input type="text" name="sender" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
                                                     </div>
 
                                                     <div class="input-group">
                                                       <div class="input-group-prepend">
                                                       </div>
-                                                      <textarea class="form-control" aria-label="With textarea" rows="5" cols="20"></textarea>
+                                                      <textarea class="form-control" name="msg" aria-label="With textarea" rows="5" cols="20"></textarea>
                                                     </div>
                                                     
       
                                                     <br>
                                                      <div class="row">
                                                       <div class="col-12" align="right">
-                                                      <button class="btn btn-primary" align="right">SEND</button>
+                                                      <input class="btn btn-primary" type="submit" name="insertmsg" value="SEND" align="right"></input>
                                                       </div>
                                                      </div>
                                                                                                      </div>
@@ -380,7 +374,8 @@
             </div>
           </div>
         </div>
-        <!-- MODAL FORM -->
+
+  
 
         <!-- REGISTER MODAL FORM -->
         <div class="modal fade" id="regnew" tabindex="-1" role="dialog" aria-labelledby="regnew" aria-hidden="false">
@@ -463,3 +458,12 @@
         <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>        
     </body>
 </html>
+
+
+<?php 
+
+include('uploader_minfo.php'); 
+include('insert_message.php'); 
+
+
+?>

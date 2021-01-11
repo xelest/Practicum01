@@ -9,9 +9,12 @@
   $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
   $sql = "SELECT `rf_id`, `id_no` FROM rfaccounts where rf_id = ?";
   $q = $pdo->prepare($sql);
+  if ($q != null|){
   $q->execute(array($id));
   $data = $q->fetch(PDO::FETCH_ASSOC);
-  Database::disconnect();
+  Database::disconnect();}
+
+  
   
   $msg = null;
   if (!isset($data['id_no'])) {

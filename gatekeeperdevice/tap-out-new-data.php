@@ -232,6 +232,10 @@ if(isset($data['id_no']))
   </div>
 </div>
 
+<script>
+
+</script>
+
                                       
   </body>
 </html>

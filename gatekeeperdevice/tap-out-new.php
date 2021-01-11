@@ -278,6 +278,13 @@ border-color: #6C6A69;
           };
           xmlhttp.open("GET","tap-out-new-data.php?id="+str,true);
           xmlhttp.send();
+
+          (function countdown(remaining) {
+              if(remaining === 0)
+                  location.reload(true);
+              //document.getElementById('countdown').innerHTML = remaining;
+              setTimeout(function(){ countdown(remaining - 1); }, 1000);
+          })(5);
         }
       }
       
