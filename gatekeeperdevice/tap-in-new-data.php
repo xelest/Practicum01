@@ -120,6 +120,8 @@ if(isset($data['id_no']))
 
 
 ?>
+
+
  
 <!DOCTYPE html>
 <html lang="en">

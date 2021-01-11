@@ -64,12 +64,11 @@
                         </div>
                     </div>
 
-                    <hr class="style1">
+                    <hr>
                     <h6 style="text-align: center; letter-spacing: 1px"> P R O F I L E &nbsp;&nbsp;&nbsp; R E P O R T </h6>
                     <table class="table table-striped">
                     <thead>
-                    <div class="page">
-                      <tr>
+                        <tr>
                         <th>Firstname</th>
                         <th>Lastname</th>
                         <th>Date</th>
@@ -79,239 +78,47 @@
                         <th>Remarks</th>
                       </tr>
                     </thead>
-                    <tbody>
-                      <tr>
-                        <td>John</td>
-                        <td>Doe</td>
-                        <td>December 22, 2020</td>
-                        <td>09:00 PM</td>
-                        <td>05:00 PM</td>
-                        <td>8hrs</td>
-                        <td>Late</td>
-                      </tr>
-                      <tr>
-                        <td>Mary</td>
-                        <td>Moe</td>
-                        <td>December 22, 2020</td>
-                        <td>09:00 PM</td>
-                        <td>05:00 PM</td>
-                        <td>8hrs</td>
-                        <td>Late</td>
-                      </tr>
-                      <tr>
-                        <td>July</td>
-                        <td>Dooley</td>
-                        <td>December 22, 2020</td>
-                        <td>09:00 AM</td>
-                        <td>05:00 PM</td>
-                        <td>8hrs</td>
-                        <td>Late</td>
-                      </tr>
-                         <tr>
-                        <td>July</td>
-                        <td>Dooley</td>
-                        <td>December 22, 2020</td>
-                        <td>09:00 AM</td>
-                        <td>05:00 PM</td>
-                        <td>8hrs</td>
-                        <td>Late</td>
-                      </tr>
-                         <tr>
-                        <td>July</td>
-                        <td>Dooley</td>
-                        <td>December 22, 2020</td>
-                        <td>09:00 AM</td>
-                        <td>05:00 PM</td>
-                        <td>8hrs</td>
-                        <td>Late</td>
-                      </tr>
-                         <tr>
-                        <td>July</td>
-                        <td>Dooley</td>
-                        <td>December 22, 2020</td>
-                        <td>09:00 AM</td>
-                        <td>05:00 PM</td>
-                        <td>8hrs</td>
-                        <td>Late</td>
-                      </tr>
-                         <tr>
-                        <td>July</td>
-                        <td>Dooley</td>
-                        <td>December 22, 2020</td>
-                        <td>09:00 AM</td>
-                        <td>05:00 PM</td>
-                        <td>8hrs</td>
-                        <td>Late</td>
-                      </tr>
-                         <tr>
-                        <td>July</td>
-                        <td>Dooley</td>
-                        <td>December 22, 2020</td>
-                        <td>09:00 AM</td>
-                        <td>05:00 PM</td>
-                        <td>8hrs</td>
-                        <td>Late</td>
-                      </tr>
-                         <tr>
-                        <td>July</td>
-                        <td>Dooley</td>
-                        <td>December 22, 2020</td>
-                        <td>09:00 AM</td>
-                        <td>05:00 PM</td>
-                        <td>8hrs</td>
-                        <td>Late</td>
-                      </tr>
-                         <tr>
-                        <td>July</td>
-                        <td>Dooley</td>
-                        <td>December 22, 2020</td>
-                        <td>09:00 AM</td>
-                        <td>05:00 PM</td>
-                        <td>8hrs</td>
-                        <td>Late</td>
-                      </tr>
-                         <tr>
-                        <td>July</td>
-                        <td>Dooley</td>
-                        <td>December 22, 2020</td>
-                        <td>09:00 AM</td>
-                        <td>05:00 PM</td>
-                        <td>8hrs</td>
-                        <td>Late</td>
-                      </tr>
-                              <tr>
-                        <td>July</td>
-                        <td>Dooley</td>
-                        <td>December 22, 2020</td>
-                        <td>09:00 AM</td>
-                        <td>05:00 PM</td>
-                        <td>8hrs</td>
-                        <td>Late</td>
-                      </tr>
-                              <tr>
-                        <td>July</td>
-                        <td>Dooley</td>
-                        <td>December 22, 2020</td>
-                        <td>09:00 AM</td>
-                        <td>05:00 PM</td>
-                        <td>8hrs</td>
-                        <td>Late</td>
-                      </tr>
-                              <tr>
-                        <td>July</td>
-                        <td>Dooley</td>
-                        <td>December 22, 2020</td>
-                        <td>09:00 AM</td>
-                        <td>05:00 PM</td>
-                        <td>8hrs</td>
-                        <td>Late</td>
-                      </tr>
-
-                              <tr>
-                        <td>July</td>
-                        <td>Dooley</td>
-                        <td>December 22, 2020</td>
-                        <td>09:00 AM</td>
-                        <td>05:00 PM</td>
-                        <td>8hrs</td>
-                        <td>Late</td>
-                      </tr>
-                  </div>
-                              <tr>
-                        <td>July</td>
-                        <td>Dooley</td>
-                        <td>December 22, 2020</td>
-                        <td>09:00 AM</td>
-                        <td>05:00 PM</td>
-                        <td>8hrs</td>
-                        <td>Late</td>
-                      </tr>
-
-                              <tr>
-                        <td>July</td>
-                        <td>Dooley</td>
-                        <td>December 22, 2020</td>
-                        <td>09:00 AM</td>
-                        <td>05:00 PM</td>
-                        <td>8hrs</td>
-                        <td>Late</td>
-                      </tr>
-
-                              <tr>
-                        <td>July</td>
-                        <td>Dooley</td>
-                        <td>December 22, 2020</td>
-                        <td>09:00 AM</td>
-                        <td>05:00 PM</td>
-                        <td>8hrs</td>
-                        <td>Late</td>
-                      </tr>
-
-                              <tr>
-                        <td>July</td>
-                        <td>Dooley</td>
-                        <td>December 22, 2020</td>
-                        <td>09:00 AM</td>
-                        <td>05:00 PM</td>
-                        <td>8hrs</td>
-                        <td>Late</td>
-                      </tr>
-
-                              <tr>
-                        <td>July</td>
-                        <td>Dooley</td>
-                        <td>December 22, 2020</td>
-                        <td>09:00 AM</td>
-                        <td>05:00 PM</td>
-                        <td>8hrs</td>
-                        <td>Late</td>
-                      </tr>
-
-                              <tr>
-                        <td>July</td>
-                        <td>Dooley</td>
-                        <td>December 22, 2020</td>
-                        <td>09:00 AM</td>
-                        <td>05:00 PM</td>
-                        <td>8hrs</td>
-                        <td>Late</td>
-                      </tr>
-
-                              <tr>
-                        <td>July</td>
-                        <td>Dooley</td>
-                        <td>December 22, 2020</td>
-                        <td>09:00 AM</td>
-                        <td>05:00 PM</td>
-                        <td>8hrs</td>
-                        <td>Late</td>
-                      </tr>
-
-                              <tr>
-                        <td>July</td>
-                        <td>Dooley</td>
-                        <td>December 22, 2020</td>
-                        <td>09:00 AM</td>
-                        <td>05:00 PM</td>
-                        <td>8hrs</td>
-                        <td>Late</td>
-                      </tr>
-
-                     </tbody>
+                        <!-- CONTAINER PHP-->
+                        <?php
+                        ?>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <!-- CONTAINER PHP-->
+                    </tbody>
                   </table>
                      <!-- CONTAINER X-->
-                    <!-- ROW X-->
-                    <div class="xfooter" style="margin-bottom: 0px;">
-                    <hr class="style1">
-                    <div class="row">
-                        <div class="col-6">
-                            <h6 style="font-size: 12px !important"> Copyright © CCIS College of Computing and Information Science 2020</h6>
-                        </div>
-                        <div class="col-6">
-                           <h6 align="right" style="font-size: 12px !important"> Report generation requested by: </h6>
-                        </div>
-                    </div>
+
+                     <hr class="style1">
+                     <div class="row">
+                         <div class="col-6" align="center">_______________________</div>
+                         <div class="col-6" align="center">_______________________</div>
                      </div>
+                     <div class="row">
+                         <div class="col-6" align="center"><h6>SIGNATURE 1</h6></div>
+                         <div class="col-6" align="center"><h6>SIGNATURE 2</h6></div>
+                     </div>
+                    <!-- ROW X-->
+                    <div class="">
+                            <div class="xfooter" style="margin-bottom: 0px;">
+                            <hr class="style1">
+                            <div class="row">
+                                <div class="col-6">
+                                    <h6 style="font-size: 14px !important"> Copyright © CCIS College of Computing and Information Science 2020</h6>
+                                </div>
+                                <div class="col-6">
+                                   <h6 align="right" style="font-size: 14px !important"> Report generation requested by: </h6>
+                                </div>
+                            </div>
+                            </div>
+                    </div>
                     <!-- ROW X-->
 
                 </div>

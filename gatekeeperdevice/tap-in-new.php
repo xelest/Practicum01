@@ -42,6 +42,13 @@ file_put_contents('UIDContainer.php',$Write);
         });
       </script>
 
+  <?php
+  $bg = array('img-1.jpg', 'img-8.png', 'img-9.jpg', 'img-10.png'); // array of filenames
+
+  $i = rand(0, count($bg)-1); // generate random number size of the array
+  $selectedBg = "$bg[$i]"; // set variable equal to which random filename was chosen
+?>
+
     <style>
 
 body, html {
@@ -63,7 +70,7 @@ body, html {
 
 .bg {
   /* The image used */
-  background-image: url("img/img-1.jpg");
+  background-image: url("img/<?php echo $selectedBg; ?>");
 
   /* Full height */
   height: 100%;
