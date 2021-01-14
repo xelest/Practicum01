@@ -12,6 +12,7 @@
     <link href="css/mycss.css" rel="stylesheet">
     
   <script src="js/script_date_time.js"></script>
+  <script src="assets/js/dashboard-charts.js"></script>
   <style> 
     th, td, tr {
         padding: 3px !important;
@@ -44,7 +45,7 @@
                                 <div class="card-body">
                                     <form class="needs-validation" novalidate="" accept-charset="utf-8">
                                         <div class="form-row">
-                                            
+                                            <p id="livepop"></p>
                                         </div>
                                     </form>
                                 </div>
@@ -56,7 +57,7 @@
                                 <div class="card-body">
                                     <form class="needs-validation" novalidate="" accept-charset="utf-8">
                                         <div class="form-row">
-                                            
+                                            <p id="tapinz"></p>
                                         </div>
                                     </form>
                                 </div>
@@ -69,7 +70,7 @@
                                 <div class="card-body">
                                     <form class="needs-validation" novalidate="" accept-charset="utf-8">
                                         <div class="form-row">
-                                            
+                                            <p id="tapoutz"></p>
                                         </div>
                                     </form>
                                 </div>
@@ -554,11 +555,14 @@ AND HOUR(`inDate`) <= HOUR('09:00:00')";
 ?>
 
     <div id="chartX" hidden> </div>
+
     <script src="assets/vendor/chartsjs/Chart.min.js"></script>
+
     <script src="assets/vendor/jquery3/jquery.min.js"></script>
     <script src="assets/vendor/bootstrap4/js/bootstrap.bundle.min.js"></script>
     <script src="assets/vendor/fontawesome5/js/solid.min.js"></script>
     <script src="assets/vendor/fontawesome5/js/fontawesome.min.js"></script>
+
     <script type="text/javascript">window.onload = date_time('date_time');</script>
 
 
@@ -571,6 +575,18 @@ AND HOUR(`inDate`) <= HOUR('09:00:00')";
                      //$(this).unwrap();
                 });
                  $('#chartX').load('hr_counter.php',function () {
+                     //$(this).unwrap();
+                });
+
+                  $('#livepop').load('livepop.php',function () {
+                     //$(this).unwrap();
+                });
+
+                   $('#tapinz').load('tapinz.php',function () {
+                     //$(this).unwrap();
+                });
+
+                    $('#tapoutz').load('tapoutz.php',function () {
                      //$(this).unwrap();
                 });
             }

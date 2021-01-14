@@ -1,15 +1,16 @@
 
   <?php  
  $connect = mysqli_connect("localhost", "root", "", "mclccisn_gatekeeper");  
- if(!empty($_POST))  
+ if(!empty($_POST['update']))  
  {  
       $output = '';  
       $message = '';  
+
       $rcpnt = mysqli_real_escape_string($connect, $_POST["rcpnt"]);  
       $sndr = mysqli_real_escape_string($connect, $_POST["sndr"]);  
       $msg2 = mysqli_real_escape_string($connect, $_POST["msg2"]);  
       $dt2 = mysqli_real_escape_string($connect, $_POST["dt2"]);  
-     // $age = mysqli_real_escape_string($connect, $_POST["age"]);  
+
       if($_POST["imsg_no"] != '')  
       {  
            $query = "  
@@ -23,10 +24,12 @@
       else  
       {  
            $query = "  
-           INSERT INTO tbl_employee(name, address, gender, designation, age)  
-           VALUES('$name', '$address', '$gender', '$designation', '$age');  
-           ";  
-           $message = 'Data Inserted';  
+           UPDATE attnmessage   
+           SET id_no='$rcpnt',   
+           imsg_sender='$sndr',   
+           imsg_details='$msg2',     
+           WHERE imsg_no='".$_POST["imsg_no"]."'";  
+           $message = 'Message Updated!';  
       }  
       
       if(mysqli_query($connect, $query))  
@@ -35,7 +38,7 @@
            $select_query = "SELECT * FROM attnmessage";  
            $result = mysqli_query($connect, $select_query);  
            $output .= '  
-                <table class="table table-bordered table-striped" id="tapout_table" cellspacing="0">
+                <table class="table table-bordered table-striped" id="employee_table" cellspacing="0">
                       <thead>
                         <tr>
                           <th>Msg ID</th>

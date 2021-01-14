@@ -26,7 +26,7 @@
       <body>  
         <div class="wrapper">
     <div id="body" class="active">
-      <div class="content">
+      <div class="content" id="msg_table">
         <div class="container-fluid">
           <div class="page-title">
             <div class="row">
@@ -49,7 +49,7 @@
                   <i class="fas fa-envelope mr-1"></i>
                   Messages
                 </div>
-                <div class="card-body">
+                <div class="card-body" >
  
                 <div class="table-responsive">    
                      <div id="employee_table">  
@@ -77,7 +77,12 @@
                                     <td><?php echo $row["id_no"]; ?></td> 
                                     <td><?php echo $row["imsg_Date"]; ?></td> 
                                     <td><?php echo $row["imsg_Status"]; ?></td> 
-                                    <td><input type="button" name="edit" value="Edit" id="<?php echo $row["imsg_no"]; ?>" class="btn btn-info btn-xs edit_data" />  
+                                    <td>
+
+
+                                      <input type="button" name="edit" value="Edit" id="<?php echo $row["imsg_no"]; ?>" class="btn btn-info btn-xs edit_data" />  
+
+
                                     </td>  
                                </tr>  
                                <?php  
@@ -168,11 +173,11 @@
                 <div class="modal-body mcl-blue">  
                      <form method="post" id="insert_form">
                           <label>Recipient</label>  
-                          <input type="text" name="rcpnt" id="rcpnt" class="form-control" />  
+                          <input type="text" name="rcpnt" id="rcpnt" class="form-control" required/>  
                           <br />
                           <label>Sender</label>  
-                                 <select name="sndr" id="sndr" class="form-control" >
-                                                          <option value="CCIS Faculty">CCIS Faculty</option>
+                                 <select name="sndr" id="sndr" class="form-control" required>
+                                                          <option value="CCIS Faculty" >CCIS Faculty</option>
                                                           <option value="MITL Faculty">MITL Faculty</option>
                                                           <option value="CAS Faculty">CAS Faculty</option>
                                                           <option value="Clinic">Clinic</option>
@@ -181,16 +186,29 @@
                                                         </select>
 
                           <br /> 
+
+                          <label>Status</label>  
+                                 <select name="imsg_Status" id="imsg_Status" class="form-control" required>
+                                                          <option value="Active">Active</option>
+                                                          <option value="Closed">Closed</option>
+                                                        </select>
+
+                          <br />
+
                           <label>Message</label>  
-                          <textarea name="msg2" id="msg2" class="form-control"></textarea>  
+                          <textarea name="msg2" id="msg2" class="form-control" required></textarea>  
                           <br />  
+
+                          
+
                             
         
-                          <label>Date - Time</label>  
-                          <input type="text" name="dt2" id="dt2" class="form-control" disabled />  
+                          <label hidden>Date - Time</label>  
+                          <input type="Date" name="dt2" id="dt2" class="form-control"  hidden/>  
                           <br />
+
                           <input type="hidden" name="imsg_no" id="imsg_no" />  
-                          <input type="submit" name="insert" id="insert" value="Insert" class="btn btn-success" align="right" />
+                          <input type="submit" name="update" id="udpate" value="Update" class="btn btn-success" align="right" />
                           <button type="button" class="btn btn-secondary" data-dismiss="modal" align="right">Close</button>
                      </form>  
                 </div>  
@@ -224,15 +242,13 @@
                      $('#sndr').val(data.imsg_sender);  
                      $('#msg2').val(data.imsg_details); 
                      $('#dt2').val(data.imsg_Date);
-                     $('#imsg_no').val(data.imsg_no);  
-                     $('#insert').val("Update");  
-                     $('#add_data_Modal').modal('show');  
-
-                     alert($('#imsg_no').val(data.id));
+                     $('#imsg_no').val(data.imsg_no);
+                     $('#imsg_Status') .val(data.msg_Status);
+                     $('#add_data_Modal').modal('show'); 
                 }  
            });  
       });  
-      $('#insert_form').on("submit", function(event){  
+     /* $('#insert_form').on("submit", function(event){  
            event.preventDefault();  
            if($('#rcpnt').val() == "")  
            {  
@@ -250,6 +266,10 @@
            {  
                 alert("Date is required");  
            }  
+           else if($('#imsg_no').val() == '' || $('#imsg_no').val() == null)
+           {
+                alert("Date is required");
+           }
            else  
            {  
                 $.ajax({  
@@ -257,7 +277,7 @@
                      method:"POST",  
                      data:$('#insert_form').serialize(),  
                      beforeSend:function(){  
-                          $('#insert').val("Inserting");  
+                          $('#udpate').val("Update");  
                      },  
                      success:function(data){  
                           $('#insert_form')[0].reset();  
@@ -266,22 +286,59 @@
                      }  
                 });  
            }  
-      });  
-      $(document).on('click', '.view_data', function(){  
-           var employee_id = $(this).attr("id");  
-           if(employee_id != '')  
-           {  
-                $.ajax({  
-                     url:"select.php",  
-                     method:"POST",  
-                     data:{employee_id:employee_id},  
-                     success:function(data){  
-                          $('#employee_detail').html(data);  
-                          $('#dataModal').modal('show');  
-                     }  
-                });  
-           }            
-      });  
+      });  */
+ 
  });  
  </script>
 
+
+ <?php  
+ $connect = mysqli_connect("localhost", "root", "", "mclccisn_gatekeeper");  
+
+ if(isset($_POST['update']))  
+ {  
+
+      $rcpnt = mysqli_real_escape_string($connect, $_POST["rcpnt"]);  
+      //echo "<script>alert('".$rcpnt."') </script>";
+
+      $sndr = mysqli_real_escape_string($connect, $_POST["sndr"]);  
+      //echo "<script>alert('".$sndr."') </script>";
+
+      $msg2 = mysqli_real_escape_string($connect, $_POST["msg2"]);  
+      //echo "<script>alert('".$msg2."') </script>";
+
+      $dt2 = mysqli_real_escape_string($connect, $_POST["dt2"]);
+      //echo "<script>alert('".$dt2."') </script>";
+
+      $msgno = mysqli_real_escape_string($connect, $_POST["imsg_no"]);
+      //echo "<script>alert('".$msgno."') </script>";
+
+      $status = mysqli_real_escape_string($connect, $_POST["imsg_Status"]);
+
+      if($_POST["imsg_no"] != '')  
+      {  
+           $query = "  
+           UPDATE attnmessage   
+           SET id_no='$rcpnt',   
+           imsg_sender='$sndr',   
+           imsg_details='$msg2',
+           imsg_Date = now(),
+           imsg_Status = '$status'    
+           WHERE imsg_no='".$msgno."'";
+
+           $message = 'Message Updated!';  
+
+           if(mysqli_query($connect, $query))
+           {
+             echo "<script>alert('".$message."') </script>";
+
+            echo "<script> $('#abc_frame').load('messaging.php');</script>";
+
+           }
+           else
+           {
+             echo "<script>alert(' MESSAGE FAILED ') </script>";
+           }
+      }  
+ }  
+ ?>

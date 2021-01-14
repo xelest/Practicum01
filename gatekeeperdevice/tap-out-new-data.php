@@ -42,7 +42,7 @@ if(isset($data['id_no']))
                     if($row['acc_status'] == 'Active'){
                       $imgname = 'img/'.$row['id_no'].'.jpg';
                       $bordercolor = "#83B336";
-                      $res2 = mysqli_query($con, "SELECT * FROM `attnmessage` WHERE `id_no`='".$user."' and `imsg_Status` = 'A' ORDER BY `imsg_Date` DESC LIMIT 1");
+                      $res2 = mysqli_query($con, "SELECT * FROM `attnmessage` WHERE `id_no`='".$user."' and `imsg_Status` = 'Active' ORDER BY `imsg_Date` DESC LIMIT 1");
                       
                            if ($res2->num_rows > 0) 
                            {

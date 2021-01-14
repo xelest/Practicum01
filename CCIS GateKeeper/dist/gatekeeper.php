@@ -81,7 +81,6 @@
                             </a>                         
                             <div class="sb-sidenav-menu-heading">Featured Pages</div>
                             <li>
-                                   <a class="nav-link" href=".php" target="abc_frame"><div class="sb-nav-link-icon"><i class="fas fa-search"></i></div> Search</a>
                                    <a class="nav-link" href="search_logs.php" target="abc_frame"><div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div> Tap Logs</a>
 
 
@@ -130,7 +129,10 @@
                                   <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                                       <nav class="sb-sidenav-menu-nested nav">
 
-                                          <a class="nav-link" href=".php" id="btn-confirm" data-toggle="modal" data-target="#csv_upload" ><div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div> Upload CSV</a>
+
+                                          <a class="nav-link" href=".php" id="btn-confirm" data-toggle="modal" data-target="#csv_upload" ><div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div> Users CSV</a>
+
+                                         <!-- <a class="nav-link" href=".php" id="btn-confirm" data-toggle="modal" data-target="#csv_calendar" ><div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div> Calendar CSV</a>-->
                                       </nav>
                                   </div>
 
@@ -286,19 +288,57 @@
             <div class="modal-content" style="width: 90%;">
                             <div class="col-md-12 col-lg-12" style="height: 100% !important; width: 100% !important; padding: 0px; margin: 0px;;">
                                 <div class="card shadow-lg border-0 rounded-lg">
-                                    <div class="card-header mcl-blue"><h3 class="text-center font-weight-light my-3">CSV UPLOADER</h3></div>
+                                    <div class="card-header mcl-blue"><h3 class="text-center font-weight-light my-3">USERS CSV</h3></div>
                                     <div class="card-body mcl-blue">
                                             <div class="form-group">
-                                              <div class="row">
                                               <form method="post" enctype="multipart/form-data">
-                                                      <div align="center">
-                                                        <label>Select CSV File:</label>
+                                                      <div align="left">
+                                                        <label>Select USER CSV File:</label>
+                                                        <div class="card col-12">
                                                         <input type="file" name="file" />
-                                                        <br />
+                                                        </div>
+                                                        <div align="right">                                                        <br>
                                                         <input type="submit" name="submit" value="Import" class="btn btn-info" />
+                                                        </div>
                                                       </div>
                                                       </form>
-                              </div>
+                                            </div>
+                                    </div>
+                                    <div class="card-footer text-center mcl-blue">
+                                        <div class="small">Internal Systems | Gatekeeper</div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+            </div>
+          </div>
+        </div>
+        <!-- MODAL FORM -->
+
+        <!-- CSV UPLOAD  MODAL FORM -->
+        <div class="modal fade" id="csv_calendar" tabindex="-1" role="dialog" aria-labelledby="csv_calendar" aria-hidden="false">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content" style="width: 90%;">
+                            <div class="col-md-12 col-lg-12" style="height: 100% !important; width: 100% !important; padding: 0px; margin: 0px;;">
+                                <div class="card shadow-lg border-0 rounded-lg">
+                                    <div class="card-header mcl-blue"><h3 class="text-center font-weight-light my-3">CALENDAR CSV</h3></div>
+                                    <div class="card-body mcl-blue">
+                                            <div class="form-group">
+                                              <form method="post" enctype="multipart/form-data">
+                                                      <div align="left">
+
+                                                        <label>Select CALENDAR CSV File:</label>
+
+                                                         <div class="card">
+                                                        <input type="file" name="file" />
+                                                        </div>
+
+                                                        <div align="right">                                                        <br>
+                                                        <input type="submit" name="submit_calendar" value="Import" class="btn btn-info" />
+                                                        </div>
+                                                      </div>
+                                                      </form>
                                             </div>
                                     </div>
                                     <div class="card-footer text-center mcl-blue">
@@ -518,15 +558,11 @@ if(isset($_POST['insertmsg']))
                           }
           }
 
-
-
-
-
-
-
         
 }
                
               
-include('uploader_minfo.php'); 
+include('uploader_minfo.php');
+include('uploader_calendar.php'); 
+
 ?>

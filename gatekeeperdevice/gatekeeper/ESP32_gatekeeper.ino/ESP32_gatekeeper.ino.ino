@@ -63,12 +63,12 @@ void setup() {
   digitalWrite(ON_Board_LED, HIGH); //--> Turn off the On Board LED when it is connected to the wifi router.
 
   Serial.println("");
-  Serial.print("Successfully connected to : ");
-  Serial.println(ssid);
-  Serial.print("IP address: ");
-  Serial.println(WiFi.localIP());
+  Serial.println("Successfully connected to the network! ");
+  //Serial.println(ssid);
+  //Serial.print("IP address: ");
+  //Serial.println(WiFi.localIP());
 
-  Serial.println("Waiting.... !");
+  Serial.println("Scanning....");
   Serial.println("");
 }
 
@@ -76,11 +76,10 @@ void setup() {
 void loop() {
   // put your main code here, to run repeatedly
   readsuccess = getid();
- 
+  
   if(readsuccess) { 
-   
   digitalWrite(ON_Board_LED, LOW);
-    HTTPClient http;    //Declare object of class HTTPClient
+    HTTPClient http;    
  
     String UIDresultSend, postData;
     UIDresultSend = StrUID;
@@ -88,8 +87,6 @@ void loop() {
     //Post Data
     postData = "UIDresult=" + UIDresultSend;
      Serial.println(UIDresultSend);
-     //Serial.println("[in] Time in");
-     //Serial.println("[ou] Time out");
 
     http.begin("http://192.168.0.243/IT199R_02/gatekeeperdevice/getUID.php");  //Specify request destination 
     http.addHeader("Content-Type", "application/x-www-form-urlencoded"); //Specify content-type header   
@@ -113,7 +110,7 @@ void loop() {
 }
 
 
-//----------------------------------------Procedure for reading and obtaining a UID from a card or keychain---------------------------------------------------------------------------------//
+//-//GET CARD UID
 int getid() {  
   if(!mfrc522.PICC_IsNewCardPresent()) {
     return 0;
@@ -121,8 +118,7 @@ int getid() {
   if(!mfrc522.PICC_ReadCardSerial()) {
     return 0;
   }
- 
-  
+   
   Serial.print("RF CARD SCANNED : ");
   
   for(int i=0;i<4;i++){
@@ -134,7 +130,7 @@ int getid() {
   return 1;
 }
 
-//--------Procedure to change the result of reading an array UID into a string---------------------//
+///CHANGE CARD TO UID
 void array_to_string(byte array[], unsigned int len, char buffer[]) {
     for (unsigned int i = 0; i < len; i++)
     {
