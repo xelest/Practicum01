@@ -187,16 +187,16 @@ border-color: #6C6A69;
               <table class="table table-borderless" style="width: 100% !important; color: white;">
                   <thead>
                   </thead>
-                <tr>
+               <!-- <tr>
                   <td align="left" class="lf">RFID</td>
                   <td style="font-weight:bold" >:</td>
-                  <td align="left"><?php echo '--------------';?></td>
+                  <td align="left"><?php //echo '--------------';?></td>
                 </tr>
                 <tr >
                   <td align="left" class="lf">MCL ID</td>
                   <td style="font-weight:bold">:</td>
-                  <td align="left"><?php echo '--------------';?></td>
-                </tr>
+                  <td align="left"><?php //echo '--------------';?></td>
+                </tr> -->
                 <tr>
                   <td align="left" class="lf">Firstname</td>
                   <td style="font-weight:bold">:</td>
@@ -225,7 +225,7 @@ border-color: #6C6A69;
 
             </div>
 
-             <div class="card-footer" style="font-family: 'Noto Sans', sans-serif; color: white; border-color: white; color: transaprent; font-size: 12;" align="center"><?php echo "no msg"?>
+             <div class="card-footer" style="font-family: 'Noto Sans', sans-serif; color: white; border-color: white; color: transparent" align="center"><h3>no msg</h3><h6>1234</h6>
             </div>
 
           </div>
@@ -308,9 +308,9 @@ border-color: #6C6A69;
     <script src="assets/vendor/fontawesome5/js/solid.min.js"></script>
     <script src="assets/vendor/fontawesome5/js/fontawesome.min.js"></script>
     <script src="assets/js/script.js"></script>
-    <script type="text/javascript">window.onload = date_time();</script>
+    <script type="text/javascript">window.onload = date_time('date_time');</script>
 
-    <src
+    
 
 </body>
 </html>

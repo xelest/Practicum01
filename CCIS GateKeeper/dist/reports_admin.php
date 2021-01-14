@@ -32,33 +32,34 @@
                         </div>
                     </div>
                     <div class="row">
-                         <div class="col-3 col-md-4">
-                                <div class="row">
+                         <div class="col-5 col-md-5">
+                                <div class="row style="align-items: center;">
                                     <div class="col-6" style="padding: 3px;">
                                         <input type="text" class="form-control datepicker-here" data-range="true" data-multiple-dates-separator="-" id="myTextbox" data-language="en" data-position="bottom left" aria-describedby="daterange" placeholder="Date Range">
                                     </div>
-                                    <div class="col-4" style="padding: 3px;">
+                                    <div class="col-3" style="padding: 3px;">
                                         <input type="text" class="form-control" data-range="false" data-multiple-dates-separator="-" id="myTextbox2" data-language="en" data-position="bottom left" aria-describedby="daterange" placeholder="ID No.">
                                     </div>
-                                    <div class="col-2" style="padding: 3px;">
-                                        <button href="http://localhost/IT199R_02/ccis%20gatekeeper/dist/print_report_admins.php" class="btn btn-primary" id="test" target="_blank">  <a class="nav-link" href="http://localhost/IT199R_02/ccis%20gatekeeper/dist/print_report_admins.php" target="_blank"><div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div> PRINT</a></button>
+
+                                    <div class="col-3" style="padding: 3px;">
+                                        <input type="button" class="btn btn-primary" data-range="false" data-multiple-dates-separator="-" data-language="en" data-position="bottom left" aria-describedby="daterange" value="Generate">
                                     </div>
-  
+
+                            </div>
+                    </div>
+                    <div class="col-2 col-md-2"></div>
+                     <div class="col-5 col-md-5">
+                        <div class="row" >
+                            <div class="col-9" align="right" style="align-items: right;padding: 3px;">
+                                Below is a preview of the generated report.
+                                Press print to save to pdf or print page.
                             </div>
 
-                    </div>
-                    <div class="col-5 col-md-4"></div>
-                     <div class="col-5 col-md-4">
-                        <div class="row">
-                            <div class="col-6">
-                            <select class="form-control">
-                              <option>Default select</option>
-                            </select></div>
 
-                            <div class="col-6">
-                            <select class="form-control">
-                              <option>Default select</option>
-                            </select></div>
+                            <div class="col-3" style="padding: 3px;">
+                                        <input type="button" class="btn btn-primary" data-range="false" data-multiple-dates-separator="-" data-language="en" data-position="bottom left" aria-describedby="daterange" href="print_report_admins.php" target="_blank" value="PRIN / SAVE PDF">
+                            </div>
+
                         </div>
                          </div> 
                 </div>
@@ -79,23 +80,23 @@
                     <hr class="style1">
                     <div class="row">
                         <div class="col-6">
-                            HERNANDEZ, MARK ANTHONY
+                            NAME&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;HERNANDEZ, MARK ANTHONY
                         </div>
                         <div class="col-6">
-                            DATE FR:
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-6">
-                            2016180067
-                        </div>
-                        <div class="col-6">
-                            DATE TO:
+                            DATE FR&nbsp;&nbsp;:&nbsp;&nbsp;
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-6">
-                            POSITION
+                            ID NO&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;2016180067
+                        </div>
+                        <div class="col-6">
+                            DATE TO&nbsp;:&nbsp;&nbsp;
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            POSITION&nbsp;:&nbsp;&nbsp;ADMIN
                         </div>
                         <div class="col-6">
                             

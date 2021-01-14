@@ -1,17 +1,42 @@
-function date_time()
-{
-        function pad(num) {return ("0" + num).slice(-2);}
-        function time1() {
-  var today = new Date(),
-    h = today.getHours(),
-    m = today.getMinutes(),
-    s = today.getSeconds();
-    
-  h = h % 12;
-  h = h ? h : 12; // the hour '0' should be '12'
-  clk.innerHTML = h + ':' + 
-    pad(m) + ':' + 
-    pad(s) + ' ' + 
-    (h >= 12 ? 'PM' : 'AM');
-   {
+
+function date_time(id) {
+    date = new Date;
+    year = date.getFullYear();
+    month = date.getMonth();
+    months = new Array('January', 'February', 'March', 'April', 'May', 'June', 'Jully', 'August', 'September', 'October', 'November', 'December');
+    d = date.getDate();
+    day = date.getDay();
+    days = new Array('Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday');
+    var AMPM = "";
+
+    h = date.getHours();
+    if (h < 10) {
+        h = "0" + h;
+    }
+
+    if (h < 12) {
+        AMPM = "AM";
+        h = h;
+    }
+    else
+    {
+        AMPM = "PM";
+    }
+
+    if(h > 12) {
+        h = h -12;
+    }
+
+    m = date.getMinutes();
+    if (m < 10) {
+        m = "0" + m;
+    }
+    s = date.getSeconds();
+    if (s < 10) {
+        s = "0" + s;
+    }
+    result = '' + days[day] + ' ' + months[month] + ' ' + d + ' ' + year + ' ' + h + ':' + m + ':' + s + ' ' + AMPM;
+    document.getElementById(id).innerHTML = result;
+    setTimeout('date_time("' + id + '");', '1000');
+    return true;
 }

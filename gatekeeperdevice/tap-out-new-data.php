@@ -172,16 +172,16 @@ if(isset($data['id_no']))
               <table class="table table-borderless" style="width: 100% !important; color: white;">
                   <thead>
                   </thead>
-                <tr>
+      <!-- <tr>
                   <td align="left" class="lf">RFID</td>
                   <td style="font-weight:bold" >:</td>
-                  <td align="left"><?php echo $data['rf_id'];?></td>
+                  <td align="left"><?php //echo $data['rf_id'];?></td>
                 </tr>
                 <tr >
                   <td align="left" class="lf">MCL ID</td>
                   <td style="font-weight:bold">:</td>
-                  <td align="left"><?php echo $data['id_no'];?></td>
-                </tr>
+                  <td align="left"><?php //echo $data['id_no'];?></td>
+                </tr> -->
                 <tr>
                   <td align="left" class="lf">Firstname</td>
                   <td style="font-weight:bold">:</td>
@@ -211,11 +211,11 @@ if(isset($data['id_no']))
 
             </div>
 
-              <div class="card-footer" style="font-family: 'Noto Sans', sans-serif; color: white; border-color: white; color: white; font-size: 12;" align="center"><?php 
-              if(!empty($notif_msg_details))
+              <div class="card-footer" style="font-family: 'Noto Sans', sans-serif; color: white; border-color: white; color: white;" align="center"><?php 
+              if(!empty($notif_msg_details) || $notif_msg_details != null)
                 {
-                  echo "'".$notif_msg_details."' | '".$notif_msg_sender."'";}
-                  else{echo "no msg";} ?>
+                  echo "<h3>'".$notif_msg_details."'</h3> <h6>'".$notif_msg_sender."'</h6>";}
+                  else{echo "<h6> no msg </6>";} ?>
             </div>
           </div>
         </div>

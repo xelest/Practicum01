@@ -325,23 +325,33 @@
                                     <div class="card-body mcl-blue">
                                             <div class="form-group">
                                               <div class="row" >
-                                              <form method="POST"  action="" style="width: 100% !important;">
-                                                       <div class="row">
 
-                                                    <div class="col-lg-12 col-sm-12 col-md-12">
+                                                <div class="col-lg-12 col-sm-12 col-md-12">
+                                                   <form method="POST"  action="" style="width: 100% !important">
+
+
                                                     <div class="input-group mb-3">
                                                       <div class="input-group-prepend">
-                                                        <span class="input-group-text" id="inputGroup-sizing-default">Recipient</span>
+                                                      <span class="input-group-text">Recipient</span>
                                                       </div>
-                                                      <input type="text" name="recipient" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                                                      <input type="text" name="rt" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
                                                     </div>
 
-                                                      <div class="input-group mb-3">
-                                                      <div class="input-group-prepend">
-                                                        <span class="input-group-text" id="inputGroup-sizing-default">Sender&nbsp;&nbsp;&nbsp;</span>
+                                                       <div class="input-group mb-3">
+                                                        <div class="input-group-prepend">
+                                                          <span class="input-group-text"
+                                                            id="inputGroup-sizing-default">Sender&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                                                        </div>
+                                                         <select name="sr" class="form-control" >
+                                                          <option value="CCIS Faculty">CCIS Faculty</option>
+                                                          <option value="MITL Faculty">MITL Faculty</option>
+                                                          <option value="CAS Faculty">CAS Faculty</option>
+                                                          <option value="Clinic">Clinic</option>
+                                                          <option value="Admission's Office">Admission's Office</option>
+                                                          <option value="Registrar's Office">Registrar's Office</option>
+                                                        </select>
                                                       </div>
-                                                      <input type="text" name="sender" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
-                                                    </div>
+
 
                                                     <div class="input-group">
                                                       <div class="input-group-prepend">
@@ -353,14 +363,13 @@
                                                     <br>
                                                      <div class="row">
                                                       <div class="col-12" align="right">
-                                                      <input class="btn btn-primary" type="submit" name="insertmsg" value="SEND" align="right"></input>
+                                                      <input class="btn btn-primary" type="submit" name="insertmsg" value="CREATE" align="right"/>
+                                                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                                       </div>
-                                                     </div>
-                                                                                                     </div>
+                                                     </div></form>
+                                                </div>
 
 
-                                                           </div>
-                                              </form>
                               </div>
                                             </div>
                                     </div>
@@ -387,7 +396,7 @@
                                 <div class="card shadow-lg border-0 rounded-lg">
                                     <div class="card-header mcl-blue"><h3 class="text-center font-weight-light my-3" style="color: white; letter-spacing: 5px;">NEW USER</h3></div>
                                     <div class="card-body mcl-blue">
-                                        <form>
+                                        <form method="POST" action="">
                                             <div class="form-row">
                                                 <div class="col-md-6">
                                                     <div class="form-group">
@@ -455,15 +464,69 @@
         <script src="js/scripts.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
         <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
-        <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>        
+        <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script> 
+        
+               
     </body>
 </html>
 
 
-<?php 
+<?php
+require 'connection.php';
 
+if(isset($_POST['insertmsg']))
+{
+ 
+        $rt = $_POST['rt'];
+        $sr = $_POST['sr'];
+        $msg = $_POST['msg'];
+        $A = "Active";
+
+
+
+        $query = mysqli_query($con, "SELECT * FROM `user_account` WHERE `id_no` = '".$rt."'");
+
+          if (!$query)
+          {
+              die('Error: ' . mysqli_error($con));
+          }
+          else
+          {
+                      if(mysqli_num_rows($query) > 0)
+                          {
+
+                                      
+                            $myqryX = "INSERT INTO `attnmessage`(`imsg_details`, `imsg_sender`, `id_no`, `imsg_Status`)
+                                      VALUES                   ('" . $msg . "' , '" . $sr . "' , '" . $rt . "' , '" .$A . "')";
+
+                                      
+                                if(mysqli_query($con, $myqryX))
+                                {
+                                        echo "<script>alert('Message Created!')</script>";
+                                }
+                                else
+                                {
+                                        echo "<script>alert('Message FAILED!')</script>";
+                                }
+
+                          }
+                          else
+                          {
+
+                                        echo "<script>alert('FAILED! No such ID exist!')</script>";
+
+                          }
+          }
+
+
+
+
+
+
+
+        
+}
+               
+              
 include('uploader_minfo.php'); 
-include('insert_message.php'); 
-
-
 ?>

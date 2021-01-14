@@ -320,9 +320,20 @@
     <script type="text/javascript">window.onload = date_time('date_time');</script>
     <script type="text/javascript">
     <!--
-    window.print();
+        if (window.confirm('Really go to another page?'))
+        {
+            // They clicked Yes
+        }
+        else
+        {
+            window.print();
+            // They clicked no
+        }
+    
     //-->
     </script>
+
+
 
 </body>
 

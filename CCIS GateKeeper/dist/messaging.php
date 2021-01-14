@@ -1,5 +1,11 @@
-<!doctype html>
-<html lang="en">
+
+ <?php  
+ $connect = mysqli_connect("localhost", "root", "", "mclccisn_gatekeeper");  
+ $query = "SELECT * FROM attnmessage";  
+ $result = mysqli_query($connect, $query);  
+ ?>  
+ <!DOCTYPE html>  
+ <html>  
 
 <head>
   <meta charset="utf-8">
@@ -16,10 +22,9 @@
 
   <script src="js/script_date_time.js"></script>
 
-</head>
-
-<body>
-  <div class="wrapper">
+</head> 
+      <body>  
+        <div class="wrapper">
     <div id="body" class="active">
       <div class="content">
         <div class="container-fluid">
@@ -45,7 +50,9 @@
                   Messages
                 </div>
                 <div class="card-body">
-                  <div class="table-responsive">
+ 
+                <div class="table-responsive">    
+                     <div id="employee_table">  
                     <table class="table table-bordered table-striped" id="tapout_table" cellspacing="0">
                       <thead>
                         <tr>
@@ -58,130 +65,44 @@
                           <th>Action</th>
                         </tr>
                       </thead>
-                      <tbody>
-                        <?php
-                            //insert inside tbody tag
-                            //databaseconnection
-                            include_once('connection.php');
-                            //mysql query       
-                            $msql = "SELECT * from attnmessage order by `imsg_no` desc";
-                            //execute mysql  query
-                            $records = mysqli_query($con, $msql);
-                            //start fetching data - iterration
-                            while($data = mysqli_fetch_array($records))
-                              {
-                        ?>
-                        <tr>
-                          <td><?php echo $data['imsg_no']; ?></td>
-                          <td><?php echo $data['imsg_details']; ?></td>
-                          <td><?php echo $data['imsg_sender']; ?></td>
-                          <td><?php echo $data['id_no']; ?></td>
-                          <td><?php echo $data['imsg_Date']; ?></td>
-                          <td><?php echo $data['imsg_Status']; ?></td>
-                          <td>
-                            <!----- button for actions ----->
-                            <!----- assign each button an id where button id is equal to the id of the row ----->
-                            <button data-toggle="modal" data-target="#msg" type="button" 
-                            class="btn btn-warning btn-sm" 
-                            id=<?php echo $data['imsg_no'];
-                            $imsgno = $data['imsg_no']?> onclick="show(this.id)">edit</button>
+                      <tbody> 
+                               <?php  
+                               while($row = mysqli_fetch_array($result))  
+                               {  
+                               ?>  
+                               <tr>  
+                                    <td><?php echo $row["imsg_no"]; ?></td> 
+                                    <td><?php echo $row["imsg_details"]; ?></td> 
+                                    <td><?php echo $row["imsg_sender"]; ?></td> 
+                                    <td><?php echo $row["id_no"]; ?></td> 
+                                    <td><?php echo $row["imsg_Date"]; ?></td> 
+                                    <td><?php echo $row["imsg_Status"]; ?></td> 
+                                    <td><input type="button" name="edit" value="Edit" id="<?php echo $row["imsg_no"]; ?>" class="btn btn-info btn-xs edit_data" />  
+                                    </td>  
+                               </tr>  
+                               <?php  
+                               }  
+                               ?>
+                             </tbody>
+                          </table>  
+                     </div>  
+                </div>  
 
-                            <button type="button" class="btn btn-success btn-sm"
-                            href="edit.php?id=<?php echo $data['imsg_no']; ?>"> resolved</button>
-                            <!----- button for actions ----->
-                          </td>
-                        </tr>
-                        <?php
-                          //end of php 
-                          //before ending tbody tag
-                          }
-                        ?>
-                      </tbody>
-                    </table>
-                  </div>
                 </div>
               </div>
             </div>
           </div>
           <!--=============MODAL========== -->
-          <!-- MESSAGE   MODAL FORM -->
-        <div class="modal mcl_blue fade" id="msg" tabindex="-1" role="dialog" aria-labelledby="msg" aria-hidden="false">
-          <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-            
-              <div class="col-md-12 col-lg-12"
-                style="height: 100% !important; width: 100% !important; padding: 0px; margin: 0px;">
-                <div class="card shadow-lg border-0 rounded-lg">
-                  <div class="card-header mcl-blue">
-                    <h3 class="text-center font-weight-light my-3">EDIT</h3>
-                  </div>
-                  <div class="card-body mcl-blue">
-                    <div class="form-group">
-                      <div class="row">
-                        <form method="POST" style="width: 100% !important;">
-                          <div class="row">
-
-                            <div class="col-lg-12 col-sm-12 col-md-12">
-                              <div class="input-group mb-3">
-                                <div class="input-group-prepend">
-                                  <span class="input-group-text" id="inputGroup-sizing-default" disabled id="textRecipient">Recipient</span>
-                                </div>
-                                <input type="text" class="form-control" aria-label="Default"
-                                  aria-describedby="inputGroup-sizing-default">
-                              </div>
-
-                              <div class="input-group mb-3">
-                                <div class="input-group-prepend">
-                                  <span class="input-group-text"
-                                    id="inputGroup-sizing-default">Sender&nbsp;&nbsp;&nbsp;</span>
-                                </div>
-                                <input type="text" class="form-control" aria-label="Default"
-                                  aria-describedby="inputGroup-sizing-default" disabled id="textSender">
-                              </div>
-
-                              <div class="input-group">
-                                <div class="input-group-prepend">
-                                </div>
-                                <textarea class="form-control" aria-label="With textarea" rows="5" cols="20" id="editTextArea">
-
-                                </textarea>
-                              </div>
-
-
-                              <br>
-                              <div class="row">
-                                <div class="col-12" align="right">
-                                  <button class="btn btn-primary" align="right">SEND</button>
-                                </div>
-                              </div>
-                            </div>
-
-
-                          </div>
-                        </form>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="card-footer text-center mcl-blue">
-                    <div class="small">Internal Systems | Gatekeeper</div>
-                  </div>
-                </div>
-              </div>
-
-
-            </div>
-          </div>
-        </div>
-        <!-- MODAL FORM -->
-        <!-- MODAL FORM -->
-          </div>
-
+        
         </div>
       </div>
     </div>
   </div>
 
-  <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
+
+
+
+<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
   <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
 
 
@@ -207,17 +128,160 @@
       $('#tapout_table').DataTable();
     });
 
+    $(document).ready( function () {
+  var table = $('#example').DataTable();
+  });
+</script>
 
-    function show(clicked_id) {
+
+      </body>  
+ </html>  
+
+
+
 
  
+ <div id="dataModal" class="modal fade">  
+      <div class="modal-dialog">  
+           <div class="modal-content">  
+                <div class="modal-header">  
+                     <button type="button" class="close" data-dismiss="modal">&times;</button>  
+                     <h4 class="modal-title">Employee Details</h4>  
+                </div>  
+                <div class="modal-body" id="employee_detail">  
+                </div>  
+                <div class="modal-footer">  
+                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>  
+                </div>  
+           </div>  
+      </div>  
+ </div>  
+ <div id="add_data_Modal" class="modal fade">  
+      <div class="modal-dialog">  
+           <div class="modal-content">  
 
-      document.getElementById("editTextArea").value =<?php echo $txtArea ;?>
-      document.getElementByID("textRecipient").value =<?php echo $txtRecipient; ?>
-      document.getElementByID("textSender").value =<?php echo $txtSender; ?>
 
-    }
-  </script>
-</body>
 
-</html>
+                <div class="modal-header mcl-blue" align="center">  
+                     <h4 class="modal-title" align="center">Edit & Update Message</h4>  
+                </div>  
+                <div class="modal-body mcl-blue">  
+                     <form method="post" id="insert_form">
+                          <label>Recipient</label>  
+                          <input type="text" name="rcpnt" id="rcpnt" class="form-control" />  
+                          <br />
+                          <label>Sender</label>  
+                                 <select name="sndr" id="sndr" class="form-control" >
+                                                          <option value="CCIS Faculty">CCIS Faculty</option>
+                                                          <option value="MITL Faculty">MITL Faculty</option>
+                                                          <option value="CAS Faculty">CAS Faculty</option>
+                                                          <option value="Clinic">Clinic</option>
+                                                          <option value="Admission's Office">Admission's Office</option>
+                                                          <option value="Registrar's Office">Registrar's Office</option>
+                                                        </select>
+
+                          <br /> 
+                          <label>Message</label>  
+                          <textarea name="msg2" id="msg2" class="form-control"></textarea>  
+                          <br />  
+                            
+        
+                          <label>Date - Time</label>  
+                          <input type="text" name="dt2" id="dt2" class="form-control" disabled />  
+                          <br />
+                          <input type="hidden" name="imsg_no" id="imsg_no" />  
+                          <input type="submit" name="insert" id="insert" value="Insert" class="btn btn-success" align="right" />
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal" align="right">Close</button>
+                     </form>  
+                </div>  
+                                                <div class="card-footer text-center mcl-blue">
+                                        <div class="small">Internal Systems | Gatekeeper</div>
+                                    </div>
+
+
+
+
+           </div>  
+      </div>  
+ </div>  
+
+
+ <script>  
+ $(document).ready(function(){  
+      $('#add').click(function(){  
+           $('#insert').val("Insert");  
+           $('#insert_form')[0].reset();  
+      });  
+      $(document).on('click', '.edit_data', function(){  
+           var imsg_no = $(this).attr("id");  
+           $.ajax({  
+                url:"fetch_msg.php",  
+                method:"POST",  
+                data:{imsg_no:imsg_no},  
+                dataType:"json",  
+                success:function(data){
+                     $('#rcpnt').val(data.id_no); 
+                     $('#sndr').val(data.imsg_sender);  
+                     $('#msg2').val(data.imsg_details); 
+                     $('#dt2').val(data.imsg_Date);
+                     $('#imsg_no').val(data.imsg_no);  
+                     $('#insert').val("Update");  
+                     $('#add_data_Modal').modal('show');  
+
+                     alert($('#imsg_no').val(data.id));
+                }  
+           });  
+      });  
+      $('#insert_form').on("submit", function(event){  
+           event.preventDefault();  
+           if($('#rcpnt').val() == "")  
+           {  
+                alert("Recipient is required");  
+           }  
+           else if($('#sndr').val() == '')  
+           {  
+                alert("Sender is required");  
+           }  
+           else if($('#msg2').val() == '')  
+           {  
+                alert("Message is required");  
+           }  
+           else if($('#dt2').val() == '')  
+           {  
+                alert("Date is required");  
+           }  
+           else  
+           {  
+                $.ajax({  
+                     url:"insert_msg.php",  
+                     method:"POST",  
+                     data:$('#insert_form').serialize(),  
+                     beforeSend:function(){  
+                          $('#insert').val("Inserting");  
+                     },  
+                     success:function(data){  
+                          $('#insert_form')[0].reset();  
+                          $('#add_data_Modal').modal('hide');  
+                          $('#employee_table').html(data);  
+                     }  
+                });  
+           }  
+      });  
+      $(document).on('click', '.view_data', function(){  
+           var employee_id = $(this).attr("id");  
+           if(employee_id != '')  
+           {  
+                $.ajax({  
+                     url:"select.php",  
+                     method:"POST",  
+                     data:{employee_id:employee_id},  
+                     success:function(data){  
+                          $('#employee_detail').html(data);  
+                          $('#dataModal').modal('show');  
+                     }  
+                });  
+           }            
+      });  
+ });  
+ </script>
+

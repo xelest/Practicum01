@@ -15,8 +15,8 @@
 //#define SS_PIN          D8
 
 // For ESP32 Microcontroller
-#define RST_PIN         27
-#define SS_PIN          15
+#define RST_PIN         16
+#define SS_PIN          21
 
 //#define SS_PIN D2  //--> SDA / SS is connected to pinout D2
 //#define RST_PIN D1  //--> RST is connected to pinout D1
@@ -68,7 +68,7 @@ void setup() {
   Serial.print("IP address: ");
   Serial.println(WiFi.localIP());
 
-  Serial.println("Please tag a card or keychain to see the UID !");
+  Serial.println("Waiting.... !");
   Serial.println("");
 }
 
@@ -123,7 +123,7 @@ int getid() {
   }
  
   
-  Serial.print("THE UID OF THE SCANNED CARD IS : ");
+  Serial.print("RF CARD SCANNED : ");
   
   for(int i=0;i<4;i++){
     readcard[i]=mfrc522.uid.uidByte[i]; //storing the UID of the tag in readcard
@@ -134,7 +134,7 @@ int getid() {
   return 1;
 }
 
-//----------------------------------------Procedure to change the result of reading an array UID into a string------------------------------------------------------------------------------//
+//--------Procedure to change the result of reading an array UID into a string---------------------//
 void array_to_string(byte array[], unsigned int len, char buffer[]) {
     for (unsigned int i = 0; i < len; i++)
     {

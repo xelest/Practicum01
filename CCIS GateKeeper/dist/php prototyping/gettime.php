@@ -12,6 +12,24 @@
     die( "Unable to select database");
   }
 
+$sql = "SELECT `id_no` from tapin_logs group by id_no";
+$result = $con->query($sql);
+
+//count the ids
+if ($result->num_rows > 0) 
+{
+  $cnt = 1;
+    while($row = $result->fetch_assoc()) 
+    {
+    	$ids[$cnt] = $row['id_no'];
+    	$cnt++;
+    }
+} 
+else 
+{
+  echo "0 results";
+}
+
 
 $sql = "SELECT `id_no` from tapin_logs group by id_no";
 $result = $con->query($sql);
