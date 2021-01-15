@@ -81,6 +81,7 @@
                             </a>                         
                             <div class="sb-sidenav-menu-heading">Featured Pages</div>
                             <li>
+                                     <a class="nav-link" href="members.php" target="abc_frame"><div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div> Members</a>
                                    <a class="nav-link" href="search_logs.php" target="abc_frame"><div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div> Tap Logs</a>
 
 
@@ -92,7 +93,7 @@
 
                                   <div class="collapse" id="Reports" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                                       <nav class="sb-sidenav-menu-nested nav">
-                                          
+                                      <a class="nav-link" href="admin_logs.php" target="abc_frame"><div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div> Admin Tap Logs</a>
                                       <a class="nav-link" href="reports_admin.php" target="abc_frame"><div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div> Admin Reports</a>
                                       <a class="nav-link" href="reports.php" target="abc_frame"><div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div> SHS Reports</a>
                                       <a class="nav-link" href="reports.php" target="abc_frame"><div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div> College Reports</a>

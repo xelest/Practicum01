@@ -319,7 +319,7 @@ function update_admin_report($user)
                                                             $datetime1 = new DateTime($NEWXtime);
                                                             $datetime2 = new DateTime($NEWXtime2);
                                                             $interval = $datetime1->diff($datetime2);
-                                                            $duration =  $interval->format('%H hours and %M minutes |');
+                                                            $duration =  $interval->format('%H hours and %M minutes');
 
 
                                                       //----------------------------------//

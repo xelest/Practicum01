@@ -18,13 +18,12 @@
 
     <?php
     //onload variables
-    $name = "NO DATA";
-    $id_no = "NO DATA";
+    $newname = "NO DATA";
+    $xidno = "NO DATA";
     $position = "NO DATA";
-
-    $from_date = "NO DATA";
-    $to_date = "NO DATA";
-
+    $frdaterange = "NO DATA";
+    $todaterange = "NO DATA";
+    session_start();
     ?>
 
 
@@ -49,17 +48,18 @@
                          <div class="col-5 col-md-5">
                                 <div class="row style="align-items: center;">
                                     <div class="col-3" style="padding: 3px;">
-                                    <form method="post" action="">
-                                        <input type="text" class="form-control datepicker-here" data-range="false"   id="frdaterange" name="frdaterange" data-language="en" data-position="bottom left" aria-describedby="daterange" placeholder="Date Start" required>
+
+                                    <form method="post" id="form1"  action="">
+                                        <input type="text" class="form-control datepicker-here" data-range="false"   id="frdaterange" name="frdaterange" data-language="en" data-position="bottom left"  data-date-format="yyyy/mm/dd" aria-describedby="daterange" placeholder="Date Start" required>
                                     </div>
 
                                     <div class="col-3" style="padding: 3px;">
 
-                                        <input type="text" class="form-control datepicker-here" data-range="false"   id="todaterange" name="todaterange" data-language="en" data-position="bottom left" aria-describedby="daterange" placeholder="Date End" required>
+                                    <input type="text" class="form-control datepicker-here" data-range="false"   id="todaterange" name="todaterange" data-language="en" data-position="bottom left" data-date-format="yyyy/mm/dd" aria-describedby="daterange" placeholder="Date End" required>
                                     </div>
 
                                     <div class="col-3" style="padding: 3px;">
-                                       <input type="text" name="xidno" id="xidno"  class="form-control" required/>
+                                       <input type="text" name="xidno" id="xidno"  class="form-control" required />
                                     </div>
 
                                     <div class="col-3" style="padding: 3px;">
@@ -72,13 +72,17 @@
                     <div class="col-2 col-md-2"></div>
                      <div class="col-5 col-md-5">
                         <div class="row" >
-                            <div class="col-9" align="left" style="align-items: right;padding: 3px;">
+                            <div class="col-9" align="left" style="align-items: right;padding: 0px; margin-right: 0px;">
                                 Below is a preview of the generated report.<br>
                                 Press print to save to pdf or print page.
                             </div>
 
-
+                                
                             <div class="col-3" style="padding: 3px;">
+                              <form id="form2" action="print_repor_admins_TESTING.php" method="POST" target="_blank">
+                                 <input type="submit" class="btn btn-primary btn-block" id="PRINT" name="PRINT" value="PRINT / SAVE">
+                              </form>
+                               </div>
                             </div>
 
                         </div>
@@ -95,7 +99,19 @@
                         {
                                       $frdaterange = $_POST['frdaterange'];
                                       $todaterange = $_POST['todaterange'];
-                                      $xidno = $_POST['xidno'];;
+                                      $xidno = $_POST['xidno'];
+
+                                        $_SESSION['frd'] = $frdaterange;
+                                        $_SESSION['tod'] =  $todaterange;
+                                        $_SESSION['id'] =  $xidno;
+
+                                        session_commit();
+
+                                      $str1 = "00:00:00";
+                                      $str2 = "23:59:00";
+
+                                      $newfrdate = $frdaterange . ' ' . $str1;
+                                      $newtodate = $todaterange . ' ' . $str2;
 
                                     if($frdaterange > $todaterange)
                                     {
@@ -103,35 +119,37 @@
                                     }
                                     else //VALID DATE RANGE
                                     {
-                                        if(!empty($xidno)|| $xidno!=null)
-                                            {
-                                                $query = "SELECT * FROM user_account where `id_no`= '".$xidno."' AND `acc_type`='Admin' LIMIT 1";  
+
+                                               $query = "SELECT * FROM reports_admin WHERE `id_no`='".$xidno."' AND `Date` BETWEEN '".$frdaterange. "' AND '".$todaterange."' ";  
                                                 $result = mysqli_query($connect, $query); 
 
                                                 //VALID USER EXIST 
                                                  if(mysqli_num_rows($result) > 0)
                                                  {
-                                                    echo "<script>alert('valid user admin')</script>;";
+                                                    $_POST['xprocess'] = "submit";
+                                                    $position = 'Admin';
 
-                                                        $name = $xidno;
-                                                        $id_no = $xidno;
-                                                        $position = $xidno;
+                                                    $query1 = "SELECT * FROM user_account WHERE `id_no`='".$xidno."' AND acc_type = 'Admin' LIMIT 1";  
+                                                    $result1 = mysqli_query($connect, $query1);
+                                                     if(mysqli_num_rows($result1) > 0)
+                                                    { 
+                                                       while($row1 = $result1->fetch_assoc()) {
+                                                             $fma = $row1['firstname'];
+                                                             $lma = $row1['lastname'];
+                                                             $newname = $lma .' '. $fma;
+                                                       }
 
-                                                        $from_date = $frdaterange;
-                                                        $to_date = $todaterange;
+                                                    }
 
-                                                        //get_duration($from_date, $to_date);
-                                                        $fname = get_whofirstname($id_no);
-                                                        $lname = get_wholastname($id_no);
 
-                                                        echo "<script>alert('".$fname." is not a valid member of MCL')</script>;";
-                                                        echo "<script>alert('".$lname." is not a valid member of MCL')</script>;";
+
                                                  }
                                                  else
                                                 {
-                                                    echo "<script>alert('".$xidno." is not a valid member of MCL')</script>;";
+                                                    echo "<script>alert('".$xidno." is not a valid member of MCL Admins')</script>;";
                                                 }
-                                            }
+
+
                                     }
 
                         }
@@ -159,18 +177,18 @@
                     <hr class="style1">
                     <div class="row">
                         <div class="col-6">
-                            NAME&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;<?php echo $name?>
+                            NAME&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;<?php echo $newname?>
                         </div>
                         <div class="col-6">
-                            DATE FR&nbsp;&nbsp;:&nbsp;&nbsp;<?php echo $from_date?>
+                            DATE FR&nbsp;&nbsp;:&nbsp;&nbsp;<?php echo $frdaterange?>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-6">
-                            ID NO&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;<?php echo $id_no?>
+                            ID NO&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;<?php echo $xidno?>
                         </div>
                         <div class="col-6">
-                            DATE TO&nbsp;:&nbsp;&nbsp;<?php echo $to_date?>
+                            DATE TO&nbsp;:&nbsp;&nbsp;<?php echo $todaterange?>
                         </div>
                     </div>
                     <div class="row">
@@ -188,6 +206,7 @@
                     <thead>
                     <div class="page">
                       <tr>
+                        <th>Id No</th>
                         <th>Firstname</th>
                         <th>Lastname</th>
                         <th>Date</th>
@@ -205,20 +224,15 @@
                         while($row = mysqli_fetch_array($result))  
                                {  
                                ?>  
-                               <tr>  
-                                    <td><?php echo $row["imsg_no"]; ?></td> 
-                                    <td><?php echo $row["imsg_details"]; ?></td> 
-                                    <td><?php echo $row["imsg_sender"]; ?></td> 
-                                    <td><?php echo $row["id_no"]; ?></td> 
-                                    <td><?php echo $row["imsg_Date"]; ?></td> 
-                                    <td><?php echo $row["imsg_Status"]; ?></td> 
-                                    <td>
-
-
-                                      <input type="button" name="edit" value="Edit" id="<?php echo $row["imsg_no"]; ?>" class="btn btn-info btn-xs edit_data" />  
-
-
-                                    </td>  
+                               <tr> 
+                                    <td><?php echo $row["id_no"]; ?></td>  
+                                    <td><?php echo $row["Firstname"]; ?></td> 
+                                    <td><?php echo $row["Lastname"]; ?></td> 
+                                    <td><?php echo $row["Date"]; ?></td> 
+                                    <td><?php echo $row["TimeIn"]; ?></td> 
+                                    <td><?php echo $row["TimeOut"]; ?></td> 
+                                    <td><?php echo $row["Duration"]; ?></td> 
+                                    <td><?php echo $row["Remarks"]; ?></td>  
                                </tr>  
                                <?php 
                                } 
@@ -229,6 +243,7 @@
                      if(!isset($_POST['xprocess']))
                         {
                         ?>
+                       <td>ND</td>
                        <td>ND</td>
                        <td>ND</td>
                        <td>ND</td>
@@ -308,71 +323,15 @@
 
 <?php
 
-function get_duration($stime,$etime)
+if(isset($_POST['PRINT'])) {
+echo'
+<script>
+  window.open("print_report_admins_TESTING.php");
+</script>';
+}
+else
 {
 
-    $xstime = $stime;
-    $xetime = $etime;
-
-    $xtime1 = new DateTime($xstime);
-    $xtime2 = new DateTime($xetime);
-
-    $dg = $xtime1->diff($xtime2);
-    $dg = $dg->format('%d days');
-
-    echo "<script>alert(".$dg.")</script>;";
 }
-
-function get_whofirstname($who){
-
-require 'connection.php';
-
-  $con = mysqli_connect($DB_HOST,$DB_USER,$DB_PASS,$DB_NAME);
-
-  if(!$con)
-  {
-    die( "Unable to select database");
-  }
-
-    $sql2 = 'SELECT * FROM user_account WHERE id_no = '.$who.'';
-    $result2 = $con->query($sql2);
-
-    if ($result2->num_rows > 0) {
-      // output data of each row
-      while($row2 = $result2->fetch_assoc()) {
-        $fname = $row2["firstname"];
-      }
-    } else {
-      echo "0 results";
-    }
- return $fname;
-}
-
-function get_wholastname($who){
-
-require 'connection.php';
-
-  $con = mysqli_connect($DB_HOST,$DB_USER,$DB_PASS,$DB_NAME);
-
-  if(!$con)
-  {
-    die( "Unable to select database");
-  }
-
-    $sql2 = 'SELECT * FROM user_account WHERE id_no = '.$who.'';
-    $result2 = $con->query($sql2);
-
-    if ($result2->num_rows > 0) {
-      // output data of each row
-      while($row2 = $result2->fetch_assoc()) {
-        $lname = $row2["lastname"];
-      }
-    } else {
-      echo "0 results";
-    }
- return $lname;
-}
-
-
 
 ?>
