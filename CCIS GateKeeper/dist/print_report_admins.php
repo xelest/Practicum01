@@ -91,6 +91,8 @@
                             <td></td>
                             <td></td>
                         </tr>
+                        <?php
+                        ?>
                         <!-- CONTAINER PHP-->
                     </tbody>
                   </table>

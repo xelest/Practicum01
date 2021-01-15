@@ -2,7 +2,7 @@
 require_once('connection.php');
 
 
-$myqryS = "SELECT COUNT(DISTINCT `id_no`) as `gg`
+$myqryS = "SELECT COUNT( `id_no`) as `gg`
 FROM `tapin_logs` WHERE DATE(`inDate`) = DATE(CURDATE())";
 
 
@@ -13,7 +13,7 @@ FROM `tapin_logs` WHERE DATE(`inDate`) = DATE(CURDATE())";
     }
 
 
-$myqryS = "SELECT COUNT(DISTINCT `id_no`) as `gg`
+$myqryS = "SELECT COUNT( `id_no`) as `gg`
 FROM `tapout_logs` WHERE DATE(`outDate`) = DATE(CURDATE())";
 
 

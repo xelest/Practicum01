@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -12,6 +13,19 @@
     <link href="css/mycss.css" rel="stylesheet">
 
     <link href="assets/vendor/airdatepicker/dist/css/datepicker.min.css" rel="stylesheet">
+
+
+
+    <?php
+    //onload variables
+    $name = "NO DATA";
+    $id_no = "NO DATA";
+    $position = "NO DATA";
+
+    $from_date = "NO DATA";
+    $to_date = "NO DATA";
+
+    ?>
 
 
     
@@ -34,35 +48,100 @@
                     <div class="row">
                          <div class="col-5 col-md-5">
                                 <div class="row style="align-items: center;">
-                                    <div class="col-6" style="padding: 3px;">
-                                        <input type="text" class="form-control datepicker-here" data-range="true" data-multiple-dates-separator="-" id="myTextbox" data-language="en" data-position="bottom left" aria-describedby="daterange" placeholder="Date Range">
-                                    </div>
                                     <div class="col-3" style="padding: 3px;">
-                                        <input type="text" class="form-control" data-range="false" data-multiple-dates-separator="-" id="myTextbox2" data-language="en" data-position="bottom left" aria-describedby="daterange" placeholder="ID No.">
+                                    <form method="post" action="">
+                                        <input type="text" class="form-control datepicker-here" data-range="false"   id="frdaterange" name="frdaterange" data-language="en" data-position="bottom left" aria-describedby="daterange" placeholder="Date Start" required>
                                     </div>
 
                                     <div class="col-3" style="padding: 3px;">
-                                        <input type="button" class="btn btn-primary" data-range="false" data-multiple-dates-separator="-" data-language="en" data-position="bottom left" aria-describedby="daterange" value="Generate">
+
+                                        <input type="text" class="form-control datepicker-here" data-range="false"   id="todaterange" name="todaterange" data-language="en" data-position="bottom left" aria-describedby="daterange" placeholder="Date End" required>
                                     </div>
 
+                                    <div class="col-3" style="padding: 3px;">
+                                       <input type="text" name="xidno" id="xidno"  class="form-control" required/>
+                                    </div>
+
+                                    <div class="col-3" style="padding: 3px;">
+                                        <input type="submit" name="query" value="generate" class="btn btn-primary" />
+                                    </div>
+
+                                    <form>
                             </div>
                     </div>
                     <div class="col-2 col-md-2"></div>
                      <div class="col-5 col-md-5">
                         <div class="row" >
-                            <div class="col-9" align="right" style="align-items: right;padding: 3px;">
-                                Below is a preview of the generated report.
+                            <div class="col-9" align="left" style="align-items: right;padding: 3px;">
+                                Below is a preview of the generated report.<br>
                                 Press print to save to pdf or print page.
                             </div>
 
 
                             <div class="col-3" style="padding: 3px;">
-                                        <input type="button" class="btn btn-primary" data-range="false" data-multiple-dates-separator="-" data-language="en" data-position="bottom left" aria-describedby="daterange" href="print_report_admins.php" target="_blank" value="PRIN / SAVE PDF">
                             </div>
 
                         </div>
                          </div> 
                 </div>
+                <?php
+                $connect = mysqli_connect("localhost", "root", "", "mclccisn_gatekeeper");
+
+                         //$query = "SELECT * FROM attnmessage";  
+                        // $result = mysqli_query($connect, $query);  
+
+
+                        if(isset($_POST['query']))
+                        {
+                                      $frdaterange = $_POST['frdaterange'];
+                                      $todaterange = $_POST['todaterange'];
+                                      $xidno = $_POST['xidno'];;
+
+                                    if($frdaterange > $todaterange)
+                                    {
+                                        echo "<script>alert('invalid date range FROM is greater than TO')</script>;";
+                                    }
+                                    else //VALID DATE RANGE
+                                    {
+                                        if(!empty($xidno)|| $xidno!=null)
+                                            {
+                                                $query = "SELECT * FROM user_account where `id_no`= '".$xidno."' AND `acc_type`='Admin' LIMIT 1";  
+                                                $result = mysqli_query($connect, $query); 
+
+                                                //VALID USER EXIST 
+                                                 if(mysqli_num_rows($result) > 0)
+                                                 {
+                                                    echo "<script>alert('valid user admin')</script>;";
+
+                                                        $name = $xidno;
+                                                        $id_no = $xidno;
+                                                        $position = $xidno;
+
+                                                        $from_date = $frdaterange;
+                                                        $to_date = $todaterange;
+
+                                                        //get_duration($from_date, $to_date);
+                                                        $fname = get_whofirstname($id_no);
+                                                        $lname = get_wholastname($id_no);
+
+                                                        echo "<script>alert('".$fname." is not a valid member of MCL')</script>;";
+                                                        echo "<script>alert('".$lname." is not a valid member of MCL')</script>;";
+                                                 }
+                                                 else
+                                                {
+                                                    echo "<script>alert('".$xidno." is not a valid member of MCL')</script>;";
+                                                }
+                                            }
+                                    }
+
+                        }
+
+
+                    ?>
+
+
+
+
                 <div class="row">
                     <div class="container-fluid">
                     <div class="page-title">
@@ -80,23 +159,23 @@
                     <hr class="style1">
                     <div class="row">
                         <div class="col-6">
-                            NAME&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;HERNANDEZ, MARK ANTHONY
+                            NAME&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;<?php echo $name?>
                         </div>
                         <div class="col-6">
-                            DATE FR&nbsp;&nbsp;:&nbsp;&nbsp;
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-6">
-                            ID NO&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;2016180067
-                        </div>
-                        <div class="col-6">
-                            DATE TO&nbsp;:&nbsp;&nbsp;
+                            DATE FR&nbsp;&nbsp;:&nbsp;&nbsp;<?php echo $from_date?>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-6">
-                            POSITION&nbsp;:&nbsp;&nbsp;ADMIN
+                            ID NO&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;<?php echo $id_no?>
+                        </div>
+                        <div class="col-6">
+                            DATE TO&nbsp;:&nbsp;&nbsp;<?php echo $to_date?>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            POSITION&nbsp;:&nbsp;&nbsp;<?php echo $position?>
                         </div>
                         <div class="col-6">
                             
@@ -120,221 +199,48 @@
                     </thead>
                     <tbody>
                       <tr>
-                        <td>John</td>
-                        <td>Doe</td>
-                        <td>December 22, 2020</td>
-                        <td>09:00 PM</td>
-                        <td>05:00 PM</td>
-                        <td>8hrs</td>
-                        <td>Late</td>
-                      </tr>
-                      <tr>
-                        <td>Mary</td>
-                        <td>Moe</td>
-                        <td>December 22, 2020</td>
-                        <td>09:00 PM</td>
-                        <td>05:00 PM</td>
-                        <td>7 hrs 30 mins</td>
-                        <td>Late</td>
-                      </tr>
-                      <tr>
-                        <td>July</td>
-                        <td>Dooley</td>
-                        <td>December 22, 2020</td>
-                        <td>09:00 AM</td>
-                        <td>05:00 PM</td>
-                        <td>8hrs</td>
-                        <td>Late</td>
-                      </tr>
-                         <tr>
-                        <td>July</td>
-                        <td>Dooley</td>
-                        <td>December 22, 2020</td>
-                        <td>09:00 AM</td>
-                        <td>05:00 PM</td>
-                        <td>8hrs</td>
-                        <td>Late</td>
-                      </tr>
-                         <tr>
-                        <td>July</td>
-                        <td>Dooley</td>
-                        <td>December 22, 2020</td>
-                        <td>09:00 AM</td>
-                        <td>05:00 PM</td>
-                        <td>8hrs</td>
-                        <td>Late</td>
-                      </tr>
-                         <tr>
-                        <td>July</td>
-                        <td>Dooley</td>
-                        <td>December 22, 2020</td>
-                        <td>09:00 AM</td>
-                        <td>05:00 PM</td>
-                        <td>8hrs</td>
-                        <td>Late</td>
-                      </tr>
-                         <tr>
-                        <td>July</td>
-                        <td>Dooley</td>
-                        <td>December 22, 2020</td>
-                        <td>09:00 AM</td>
-                        <td>05:00 PM</td>
-                        <td>8hrs</td>
-                        <td>Late</td>
-                      </tr>
-                         <tr>
-                        <td>July</td>
-                        <td>Dooley</td>
-                        <td>December 22, 2020</td>
-                        <td>09:00 AM</td>
-                        <td>05:00 PM</td>
-                        <td>8hrs</td>
-                        <td>Late</td>
-                      </tr>
-                         <tr>
-                        <td>July</td>
-                        <td>Dooley</td>
-                        <td>December 22, 2020</td>
-                        <td>09:00 AM</td>
-                        <td>05:00 PM</td>
-                        <td>8hrs</td>
-                        <td>Late</td>
-                      </tr>
-                         <tr>
-                        <td>July</td>
-                        <td>Dooley</td>
-                        <td>December 22, 2020</td>
-                        <td>09:00 AM</td>
-                        <td>05:00 PM</td>
-                        <td>8hrs</td>
-                        <td>Late</td>
-                      </tr>
-                         <tr>
-                        <td>July</td>
-                        <td>Dooley</td>
-                        <td>December 22, 2020</td>
-                        <td>09:00 AM</td>
-                        <td>05:00 PM</td>
-                        <td>8hrs</td>
-                        <td>Late</td>
-                      </tr>
-                              <tr>
-                        <td>July</td>
-                        <td>Dooley</td>
-                        <td>December 22, 2020</td>
-                        <td>09:00 AM</td>
-                        <td>05:00 PM</td>
-                        <td>8hrs</td>
-                        <td>Late</td>
-                      </tr>
-                              <tr>
-                        <td>July</td>
-                        <td>Dooley</td>
-                        <td>December 22, 2020</td>
-                        <td>09:00 AM</td>
-                        <td>05:00 PM</td>
-                        <td>8hrs</td>
-                        <td>Late</td>
-                      </tr>
-                              <tr>
-                        <td>July</td>
-                        <td>Dooley</td>
-                        <td>December 22, 2020</td>
-                        <td>09:00 AM</td>
-                        <td>05:00 PM</td>
-                        <td>8hrs</td>
-                        <td>Late</td>
-                      </tr>
+                        <?php
+                        if(isset($_POST['xprocess']))
+                        {
+                        while($row = mysqli_fetch_array($result))  
+                               {  
+                               ?>  
+                               <tr>  
+                                    <td><?php echo $row["imsg_no"]; ?></td> 
+                                    <td><?php echo $row["imsg_details"]; ?></td> 
+                                    <td><?php echo $row["imsg_sender"]; ?></td> 
+                                    <td><?php echo $row["id_no"]; ?></td> 
+                                    <td><?php echo $row["imsg_Date"]; ?></td> 
+                                    <td><?php echo $row["imsg_Status"]; ?></td> 
+                                    <td>
 
-                              <tr>
-                        <td>July</td>
-                        <td>Dooley</td>
-                        <td>December 22, 2020</td>
-                        <td>09:00 AM</td>
-                        <td>05:00 PM</td>
-                        <td>8hrs</td>
-                        <td>Late</td>
-                      </tr>
-                  </div>
-                              <tr>
-                        <td>July</td>
-                        <td>Dooley</td>
-                        <td>December 22, 2020</td>
-                        <td>09:00 AM</td>
-                        <td>05:00 PM</td>
-                        <td>8hrs</td>
-                        <td>Late</td>
-                      </tr>
 
-                              <tr>
-                        <td>July</td>
-                        <td>Dooley</td>
-                        <td>December 22, 2020</td>
-                        <td>09:00 AM</td>
-                        <td>05:00 PM</td>
-                        <td>8hrs</td>
-                        <td>Late</td>
-                      </tr>
+                                      <input type="button" name="edit" value="Edit" id="<?php echo $row["imsg_no"]; ?>" class="btn btn-info btn-xs edit_data" />  
 
-                              <tr>
-                        <td>July</td>
-                        <td>Dooley</td>
-                        <td>December 22, 2020</td>
-                        <td>09:00 AM</td>
-                        <td>05:00 PM</td>
-                        <td>8hrs</td>
-                        <td>Late</td>
-                      </tr>
 
-                              <tr>
-                        <td>July</td>
-                        <td>Dooley</td>
-                        <td>December 22, 2020</td>
-                        <td>09:00 AM</td>
-                        <td>05:00 PM</td>
-                        <td>8hrs</td>
-                        <td>Late</td>
+                                    </td>  
+                               </tr>  
+                               <?php 
+                               } 
+                               }  
+                               ?>
+                             </tbody>
+                    <?PHP
+                     if(!isset($_POST['xprocess']))
+                        {
+                        ?>
+                       <td>ND</td>
+                       <td>ND</td>
+                       <td>ND</td>
+                       <td>ND</td>
+                       <td>ND</td>
+                       <td>ND</td>
+                       <td>ND</td>
                       </tr>
-
-                              <tr>
-                        <td>July</td>
-                        <td>Dooley</td>
-                        <td>December 22, 2020</td>
-                        <td>09:00 AM</td>
-                        <td>05:00 PM</td>
-                        <td>8hrs</td>
-                        <td>Late</td>
-                      </tr>
-
-                              <tr>
-                        <td>July</td>
-                        <td>Dooley</td>
-                        <td>December 22, 2020</td>
-                        <td>09:00 AM</td>
-                        <td>05:00 PM</td>
-                        <td>8hrs</td>
-                        <td>Late</td>
-                      </tr>
-
-                              <tr>
-                        <td>July</td>
-                        <td>Dooley</td>
-                        <td>December 22, 2020</td>
-                        <td>09:00 AM</td>
-                        <td>05:00 PM</td>
-                        <td>8hrs</td>
-                        <td>Late</td>
-                      </tr>
-
-                              <tr>
-                        <td>July</td>
-                        <td>Dooley</td>
-                        <td>December 22, 2020</td>
-                        <td>09:00 AM</td>
-                        <td>05:00 PM</td>
-                        <td>8hrs</td>
-                        <td>Late</td>
-                      </tr>
+                    <?php
+                     }
+                       
+                      ?>
 
                      </tbody>
                   </table>
@@ -384,26 +290,89 @@
         <script src="assets/vendor/airdatepicker/dist/js/datepicker.min.js"></script>
     <script src="assets/vendor/airdatepicker/dist/js/i18n/datepicker.en.js"></script>
 
+
+    
     <script>
-        
-        $('#myTextbox').on('input', function() {
-            var x = document.getElementById("myTextbox").value; 
-            alert(x);
-        });
-
-        $('#myTextbox2').on('input', function() {
-            var y = document.getElementById("myTextbox2").value;
-        });
-
-         
-        function test()
-        {
-             var y = document.getElementById("myTextbox2").value; 
-             alert(y);
+        function getInputValue(){
+            // Selecting the input element and get its value 
+            var inputVal = document.getElementById("daterange").value;
+            
+            // Displaying the value
+            alert(inputVal);
         }
-
     </script>
 
 </body>
-
 </html>
+
+
+<?php
+
+function get_duration($stime,$etime)
+{
+
+    $xstime = $stime;
+    $xetime = $etime;
+
+    $xtime1 = new DateTime($xstime);
+    $xtime2 = new DateTime($xetime);
+
+    $dg = $xtime1->diff($xtime2);
+    $dg = $dg->format('%d days');
+
+    echo "<script>alert(".$dg.")</script>;";
+}
+
+function get_whofirstname($who){
+
+require 'connection.php';
+
+  $con = mysqli_connect($DB_HOST,$DB_USER,$DB_PASS,$DB_NAME);
+
+  if(!$con)
+  {
+    die( "Unable to select database");
+  }
+
+    $sql2 = 'SELECT * FROM user_account WHERE id_no = '.$who.'';
+    $result2 = $con->query($sql2);
+
+    if ($result2->num_rows > 0) {
+      // output data of each row
+      while($row2 = $result2->fetch_assoc()) {
+        $fname = $row2["firstname"];
+      }
+    } else {
+      echo "0 results";
+    }
+ return $fname;
+}
+
+function get_wholastname($who){
+
+require 'connection.php';
+
+  $con = mysqli_connect($DB_HOST,$DB_USER,$DB_PASS,$DB_NAME);
+
+  if(!$con)
+  {
+    die( "Unable to select database");
+  }
+
+    $sql2 = 'SELECT * FROM user_account WHERE id_no = '.$who.'';
+    $result2 = $con->query($sql2);
+
+    if ($result2->num_rows > 0) {
+      // output data of each row
+      while($row2 = $result2->fetch_assoc()) {
+        $lname = $row2["lastname"];
+      }
+    } else {
+      echo "0 results";
+    }
+ return $lname;
+}
+
+
+
+?>

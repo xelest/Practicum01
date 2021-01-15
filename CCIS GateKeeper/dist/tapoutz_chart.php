@@ -12,7 +12,10 @@
     <link href="css/mycss.css" rel="stylesheet">
     
   <script src="js/script_date_time.js"></script>
-  <script src="assets/js/dashboard-charts.js"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   <style> 
     th, td, tr {
         padding: 3px !important;
@@ -26,26 +29,23 @@
   </style>
 </head>
 <body>
-<div class="row">
-                        <div class="col-md-5">
-     <div class="card">
+
+
                                 <div class="content">
                                     <div class="head">
                                         <h4 class="mb-0">Tap In Traffic</h4>
-                                        <p class="text-muted">Today's Tap In Frequency</p>
+                                        <p class="text-muted">Today's Frequency</p>
                                     </div>
                                     <div class="canvas-wrapper"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
-                                        <canvas class="chart chartjs-render-monitor" id="sales" style="display: block; width: 311px; height: 155px;" width="311" height="155"></canvas>
+                                        <canvas class="chart chartjs-render-monitor" id="chartright" style="display: block; width: 464px; height: 232px;" width="464" height="232"></canvas>
                                     </div>
                                     <div class="ui hidden divider"></div>
                                 </div>
                             </div>
-                            </div>
 
-</div>
 </body>
 
-       <script src="assets/vendor/chartsjs/Chart.min.js"></script>
+    <script src="assets/vendor/chartsjs/Chart.min.js"></script>
     <script src="assets/vendor/jquery3/jquery.min.js"></script>
     <script src="assets/vendor/bootstrap4/js/bootstrap.bundle.min.js"></script>
     <script src="assets/vendor/fontawesome5/js/solid.min.js"></script>
@@ -69,159 +69,15 @@
 $cnt = array();
 
 
-$myqryS = "SELECT COUNT(`outDate`) as `gg`
-FROM tapout_logs WHERE DATE(`outDate`) = DATE(CURDATE()) 
-AND HOUR(`outDate`) >= HOUR('06:59:00')
-AND HOUR(`outDate`) <= HOUR('08:00:00')";
 
 
-    if ($result = mysqli_query($con, $myqryS)) {
-     while ($row = mysqli_fetch_row($result)) {
-        $cnt[0] = $row[0];
-      }
-    }
-//echo $cnt; echo "<br>";
-
-$myqryS = "SELECT COUNT(`outDate`) as `gg`
-FROM tapout_logs WHERE DATE(`outDate`) = DATE(CURDATE()) 
-AND HOUR(`outDate`) >= HOUR('07:59:00')
-AND HOUR(`outDate`) <= HOUR('09:00:00')";
-
-
-    if ($result = mysqli_query($con, $myqryS)) {
-     while ($row = mysqli_fetch_row($result)) {
-        $cnt[1] = $row[0];
-      }
-    }
-//echo $cnt; echo "<br>";
-
-$myqryS = "SELECT COUNT(`outDate`) as `gg`
-FROM tapout_logs WHERE DATE(`outDate`) = DATE(CURDATE()) 
-AND HOUR(`outDate`) >= HOUR('08:59:00')
-AND HOUR(`outDate`) <= HOUR('10:00:00')";
-
-
-    if ($result = mysqli_query($con, $myqryS)) {
-     while ($row = mysqli_fetch_row($result)) {
-        $cnt[2] = $row[0];
-      }
-    }
-//echo $cnt; echo "<br>";echo $cnt; echo "<br>";
-
-$myqryS = "SELECT COUNT(`outDate`) as `gg`
-FROM tapout_logs WHERE DATE(`outDate`) = DATE(CURDATE()) 
-AND HOUR(`outDate`) >= HOUR('9:59:00')
-AND HOUR(`outDate`) <= HOUR('11:00:00')";
-
-
-    if ($result = mysqli_query($con, $myqryS)) {
-     while ($row = mysqli_fetch_row($result)) {
-        $cnt[3] = $row[0];
-      }
-    }
-//echo $cnt; echo "<br>";
-
-$myqryS = "SELECT COUNT(`outDate`) as `gg`
-FROM tapout_logs WHERE DATE(`outDate`) = DATE(CURDATE()) 
-AND HOUR(`outDate`) >= HOUR('10:59:00')
-AND HOUR(`outDate`) <= HOUR('12:00:00')";
-
-
-    if ($result = mysqli_query($con, $myqryS)) {
-     while ($row = mysqli_fetch_row($result)) {
-        $cnt[4] = $row[0];
-      }
-    }
-//echo $cnt; echo "<br>";
-
-$myqryS = "SELECT COUNT(`outDate`) as `gg`
-FROM tapout_logs WHERE DATE(`outDate`) = DATE(CURDATE()) 
-AND HOUR(`outDate`) >= HOUR('11:59:00')
-AND HOUR(`outDate`) <= HOUR('13:00:00')";
-
-
-    if ($result = mysqli_query($con, $myqryS)) {
-     while ($row = mysqli_fetch_row($result)) {
-        $cnt[5] = $row[0];
-      }
-    }
-//echo $cnt; echo "<br>";
-
-$myqryS = "SELECT COUNT(`outDate`) as `gg`
-FROM tapout_logs WHERE DATE(`outDate`) = DATE(CURDATE()) 
-AND HOUR(`outDate`) >= HOUR('12:59:00')
-AND HOUR(`outDate`) <= HOUR('14:00:00')";
-
-
-    if ($result = mysqli_query($con, $myqryS)) {
-     while ($row = mysqli_fetch_row($result)) {
-        $cnt[6] = $row[0];
-      }
-    }
-//echo $cnt; echo "<br>";
-
-$myqryS = "SELECT COUNT(`outDate`) as `gg`
-FROM tapout_logs WHERE DATE(`outDate`) = DATE(CURDATE()) 
-AND HOUR(`outDate`) >= HOUR('13:59:00')
-AND HOUR(`outDate`) <= HOUR('15:00:00')";
-
-
-    if ($result = mysqli_query($con, $myqryS)) {
-     while ($row = mysqli_fetch_row($result)) {
-        $cnt[7] = $row[0];
-      }
-    }
-//echo $cnt; echo "<br>";
-
-$myqryS = "SELECT COUNT(`outDate`) as `gg`
-FROM tapout_logs WHERE DATE(`outDate`) = DATE(CURDATE()) 
-AND HOUR(`outDate`) >= HOUR('14:59:00')
-AND HOUR(`outDate`) <= HOUR('16:00:00')";
-
-
-    if ($result = mysqli_query($con, $myqryS)) {
-     while ($row = mysqli_fetch_row($result)) {
-        $cnt[8] = $row[0];
-      }
-    }
-//echo $cnt; echo "<br>";
-
-$myqryS = "SELECT COUNT(`outDate`) as `gg`
-FROM tapout_logs WHERE DATE(`outDate`) = DATE(CURDATE()) 
-AND HOUR(`outDate`) >= HOUR('15:59:00')
-AND HOUR(`outDate`) <= HOUR('17:00:00')";
-
-
-    if ($result = mysqli_query($con, $myqryS)) {
-     while ($row = mysqli_fetch_row($result)) {
-        $cnt[9] = $row[0];
-      }
-    }
-//echo $cnt; echo "<br>";
-
-
-$myqryS = "SELECT COUNT(`outDate`) as `gg`
-FROM tapout_logs WHERE DATE(`outDate`) = DATE(CURDATE()) 
-AND HOUR(`outDate`) >= HOUR('19:59:00')
-AND HOUR(`outDate`) <= HOUR('21:00:00')";
-
-
-    if ($result = mysqli_query($con, $myqryS)) {
-     while ($row = mysqli_fetch_row($result)) {
-        $cnt[10] = $row[0];
-      }
-    }
-//echo $cnt; echo "<br>";
-
-
-//-------------------------------
 
 //-------------------------------
 
 $myqryS = "SELECT COUNT(`inDate`) as `gg`
 FROM `tapin_logs` WHERE DATE(`inDate`) = DATE(CURDATE()) 
-AND HOUR(`inDate`) >= HOUR('06:59:00')
-AND HOUR(`inDate`) <= HOUR('08:00:00')";
+AND HOUR(`inDate`) >= HOUR('07:00:00')
+AND HOUR(`inDate`) <= HOUR('07:59:00')";
 
 
     if ($result = mysqli_query($con, $myqryS)) {
@@ -233,8 +89,8 @@ AND HOUR(`inDate`) <= HOUR('08:00:00')";
 
 $myqryS = "SELECT COUNT(`inDate`) as `gg`
 FROM `tapin_logs` WHERE DATE(`inDate`) = DATE(CURDATE()) 
-AND HOUR(`inDate`) >= HOUR('07:59:00')
-AND HOUR(`inDate`) <= HOUR('09:00:00')";
+AND HOUR(`inDate`) >= HOUR('08:00:00')
+AND HOUR(`inDate`) <= HOUR('08:59:00')";
 
 
     if ($result = mysqli_query($con, $myqryS)) {
@@ -246,8 +102,8 @@ AND HOUR(`inDate`) <= HOUR('09:00:00')";
 
 $myqryS = "SELECT COUNT(`inDate`) as `gg`
 FROM `tapin_logs` WHERE DATE(`inDate`) = DATE(CURDATE()) 
-AND HOUR(`inDate`) >= HOUR('08:59:00')
-AND HOUR(`inDate`) <= HOUR('10:00:00')";
+AND HOUR(`inDate`) >= HOUR('09:00:00')
+AND HOUR(`inDate`) <= HOUR('09:59:00')";
 
 
     if ($result = mysqli_query($con, $myqryS)) {
@@ -259,8 +115,8 @@ AND HOUR(`inDate`) <= HOUR('10:00:00')";
 
 $myqryS = "SELECT COUNT(`inDate`) as `gg`
 FROM `tapin_logs` WHERE DATE(`inDate`) = DATE(CURDATE()) 
-AND HOUR(`inDate`) >= HOUR('9:59:00')
-AND HOUR(`inDate`) <= HOUR('11:00:00')";
+AND HOUR(`inDate`) >= HOUR('10:00:00')
+AND HOUR(`inDate`) <= HOUR('10:59:00')";
 
 
     if ($result = mysqli_query($con, $myqryS)) {
@@ -272,8 +128,8 @@ AND HOUR(`inDate`) <= HOUR('11:00:00')";
 
 $myqryS = "SELECT COUNT(`inDate`) as `gg`
 FROM `tapin_logs` WHERE DATE(`inDate`) = DATE(CURDATE()) 
-AND HOUR(`inDate`) >= HOUR('10:59:00')
-AND HOUR(`inDate`) <= HOUR('12:00:00')";
+AND HOUR(`inDate`) >= HOUR('11:00:00')
+AND HOUR(`inDate`) <= HOUR('11:59:00')";
 
 
     if ($result = mysqli_query($con, $myqryS)) {
@@ -285,8 +141,8 @@ AND HOUR(`inDate`) <= HOUR('12:00:00')";
 
 $myqryS = "SELECT COUNT(`inDate`) as `gg`
 FROM `tapin_logs` WHERE DATE(`inDate`) = DATE(CURDATE()) 
-AND HOUR(`inDate`) >= HOUR('11:59:00')
-AND HOUR(`inDate`) <= HOUR('13:00:00')";
+AND HOUR(`inDate`) >= HOUR('12:00:00')
+AND HOUR(`inDate`) <= HOUR('12:59:00')";
 
 
     if ($result = mysqli_query($con, $myqryS)) {
@@ -298,8 +154,8 @@ AND HOUR(`inDate`) <= HOUR('13:00:00')";
 
 $myqryS = "SELECT COUNT(`inDate`) as `gg`
 FROM `tapin_logs` WHERE DATE(`inDate`) = DATE(CURDATE()) 
-AND HOUR(`inDate`) >= HOUR('12:59:00')
-AND HOUR(`inDate`) <= HOUR('14:00:00')";
+AND HOUR(`inDate`) >= HOUR('13:00:00')
+AND HOUR(`inDate`) <= HOUR('13:59:00')";
 
 
     if ($result = mysqli_query($con, $myqryS)) {
@@ -311,8 +167,8 @@ AND HOUR(`inDate`) <= HOUR('14:00:00')";
 
 $myqryS = "SELECT COUNT(`inDate`) as `gg`
 FROM `tapin_logs` WHERE DATE(`inDate`) = DATE(CURDATE()) 
-AND HOUR(`inDate`) >= HOUR('13:59:00')
-AND HOUR(`inDate`) <= HOUR('15:00:00')";
+AND HOUR(`inDate`) >= HOUR('14:00:00')
+AND HOUR(`inDate`) <= HOUR('14:59:00')";
 
 
     if ($result = mysqli_query($con, $myqryS)) {
@@ -324,8 +180,8 @@ AND HOUR(`inDate`) <= HOUR('15:00:00')";
 
 $myqryS = "SELECT COUNT(`inDate`) as `gg`
 FROM `tapin_logs` WHERE DATE(`inDate`) = DATE(CURDATE()) 
-AND HOUR(`inDate`) >= HOUR('14:59:00')
-AND HOUR(`inDate`) <= HOUR('16:00:00')";
+AND HOUR(`inDate`) >= HOUR('15:00:00')
+AND HOUR(`inDate`) <= HOUR('15:59:00')";
 
 
     if ($result = mysqli_query($con, $myqryS)) {
@@ -337,8 +193,8 @@ AND HOUR(`inDate`) <= HOUR('16:00:00')";
 
 $myqryS = "SELECT COUNT(`inDate`) as `gg`
 FROM `tapin_logs` WHERE DATE(`inDate`) = DATE(CURDATE()) 
-AND HOUR(`inDate`) >= HOUR('15:59:00')
-AND HOUR(`inDate`) <= HOUR('17:00:00')";
+AND HOUR(`inDate`) >= HOUR('16:00:00')
+AND HOUR(`inDate`) <= HOUR('16:59:00')";
 
 
     if ($result = mysqli_query($con, $myqryS)) {
@@ -351,8 +207,8 @@ AND HOUR(`inDate`) <= HOUR('17:00:00')";
 
 $myqryS = "SELECT COUNT(`inDate`) as `gg`
 FROM `tapin_logs` WHERE DATE(`inDate`) = DATE(CURDATE()) 
-AND HOUR(`inDate`) >= HOUR('16:59:00')
-AND HOUR(`inDate`) <= HOUR('18:00:00')";
+AND HOUR(`inDate`) >= HOUR('17:00:00')
+AND HOUR(`inDate`) <= HOUR('17:59:00')";
 
 
     if ($result = mysqli_query($con, $myqryS)) {
@@ -364,8 +220,8 @@ AND HOUR(`inDate`) <= HOUR('18:00:00')";
 
     $myqryS = "SELECT COUNT(`inDate`) as `gg`
 FROM `tapin_logs` WHERE DATE(`inDate`) = DATE(CURDATE()) 
-AND HOUR(`inDate`) >= HOUR('17:59:00')
-AND HOUR(`inDate`) <= HOUR('19:00:00')";
+AND HOUR(`inDate`) >= HOUR('18:00:00')
+AND HOUR(`inDate`) <= HOUR('18:59:00')";
 
 
     if ($result = mysqli_query($con, $myqryS)) {
@@ -378,8 +234,8 @@ AND HOUR(`inDate`) <= HOUR('19:00:00')";
 
     $myqryS = "SELECT COUNT(`inDate`) as `gg`
 FROM `tapin_logs` WHERE DATE(`inDate`) = DATE(CURDATE()) 
-AND HOUR(`inDate`) >= HOUR('18:59:00')
-AND HOUR(`inDate`) <= HOUR('20:00:00')";
+AND HOUR(`inDate`) >= HOUR('19:00:00')
+AND HOUR(`inDate`) <= HOUR('19:59:00')";
 
 
     if ($result = mysqli_query($con, $myqryS)) {
@@ -388,52 +244,22 @@ AND HOUR(`inDate`) <= HOUR('20:00:00')";
       }
     }
 //echo $cnt; echo "<br>";
-    $top = array();
-$myqryS = "SELECT COUNT(`inDate`) as `gg`
-FROM `tapin_logs` WHERE DATE(`inDate`) = DATE(CURDATE()) 
-AND HOUR(`inDate`) >= HOUR('07:59:00')
-AND HOUR(`inDate`) <= HOUR('09:00:00')";
 
-
-    if ($result = mysqli_query($con, $myqryS)) {
-     while ($row = mysqli_fetch_row($result)) {
-        $top[1] = $row[0];
-      }
-    }
-
-
-    $myqryS = "SELECT COUNT(`inDate`) as `gg`
-FROM `tapin_logs` WHERE DATE(`inDate`) = DATE(CURDATE()) 
-AND HOUR(`inDate`) >= HOUR('07:59:00')
-AND HOUR(`inDate`) <= HOUR('09:00:00')";
-
-
-    if ($result = mysqli_query($con, $myqryS)) {
-     while ($row = mysqli_fetch_row($result)) {
-        $top[2] = $row[0];
-      }
-    }
-
-    $myqryS = "SELECT COUNT(`inDate`) as `gg`
-FROM `tapin_logs` WHERE DATE(`inDate`) = DATE(CURDATE()) 
-AND HOUR(`inDate`) >= HOUR('07:59:00')
-AND HOUR(`inDate`) <= HOUR('09:00:00')";
-
-
-    if ($result = mysqli_query($con, $myqryS)) {
-     while ($row = mysqli_fetch_row($result)) {
-        $top[3] = $row[0];
-      }
-    }
 
 ?>
 
+    <div id="chartX" hidden> </div>
 
+    <script src="assets/vendor/chartsjs/Chart.min.js"></script>
+    <script src="assets/vendor/jquery3/jquery.min.js"></script>
+    <script src="assets/vendor/bootstrap4/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/vendor/fontawesome5/js/solid.min.js"></script>
+    <script src="assets/vendor/fontawesome5/js/fontawesome.min.js"></script>
 
 
 <script>
-var trafficchart = document.getElementById("trafficflow");
-var saleschart = document.getElementById("sales");
+var trafficchart = document.getElementById("chartleft");
+var saleschart = document.getElementById("chartright");
 
 var myChart1 = new Chart(trafficchart, {
     type: 'line',
@@ -444,7 +270,7 @@ var myChart1 = new Chart(trafficchart, {
                 borderColor: "rgba(48, 164, 255, 0.8)",
                 data: [<?php echo $cnt[0];?>,<?php echo $cnt[1];?>,<?php echo $cnt[2];?>,<?php echo $cnt[3];?>,<?php echo $cnt[4];?>,
                     <?php echo $cnt[5];?>,<?php echo $cnt[6];?>,<?php echo $cnt[7];?>,<?php echo $cnt[8];?>,<?php echo $cnt[9];?>,<?php echo $cnt[10];?>,
-                    <?php echo $cnt[11];?>],
+                    <?php echo $cnt[25]?>,<?php echo $cnt[16];?>],
                 label: '',
                 fill: true
             }]
