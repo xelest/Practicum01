@@ -13,7 +13,7 @@
             include_once('connection.php');
           
          
-          $msql = "SELECT  `id_no`, `outDate` FROM `tapout_logs` WHERE `outDate`>=(CURRENT_DATE())  order by `outDate` DESC LIMIT 4";
+          $msql = "SELECT  `id_no`, `outDate` FROM `tapout_logs` WHERE `outDate`>=(CURRENT_DATE())  order by `outDate` DESC LIMIT 3";
           //fetch
           $result1 = mysqli_query($con, $msql);
 

@@ -25,149 +25,31 @@
     }
   </style>
 </head>
-
 <body>
-    <div class="wrapper">
-        <div id="body" class="active">
-            <div class="content">
-                <div class="container-fluid">
-                    <div class="page-title">
-                        <div class="row">
-                            <div class="col-4"><h3>Dashboard </h3></div>
-
-                            <div class="col-8"><div class="card-body" style="text-align: right;" ><span id="date_time"></span></div></div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-2 col-md-2 col-sm-12">
-                        <div class="card">
-                                <div class="card-header">Live Population</div>
-                                <div class="card-body">
-                                            <h5 id="livepop" style="padding: 0px;" align="center"></h5>
-                                </div>
-                            </div></div>
-
-                         <div class="col-lg-2 col-md-2 col-sm-12">
-                        <div class="card">
-                                <div class="card-header">Tap-Ins</div>
-                                <div class="card-body">
-                                            <h5 id="tapinz" style="padding: 0px" align="center"></h5>
-                                </div>
-                            </div></div>
-
-
-                        <div class="col-lg-2 col-md-2 col-sm-12">
-                        <div class="card">
-                                <div class="card-header">Tap-Outs</div>
-                                <div class="card-body">
-                                            <h5 id="tapoutz" style="padding: 0px" align="center"></h5>
-                                </div>
-                            </div></div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-5">
+<div class="row">
+<div class="col-md-5">
                             <div class="card">
                                 <div class="content">
                                     <div class="head">
                                         <h4 class="mb-0">Tap Out Traffic</h4>
-                                        <p class="text-muted">Tap Out Frequency</p>
+                                        <p class="text-muted">Demo not yet done</p>
                                     </div>
-                                    <div class="canvas-wrapper"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
-                                        <canvas class="chart chartjs-render-monitor" id="trafficflow" style="display: block; width: 882px; height: 441px;" width="882" height="441"></canvas>
-                                    </div>
-                                    <div class="ui hidden divider"></div>
-                                </div>
-                            </div>
-
-                            <div class="card">
-                                <div class="card-header">Tap-Outs</div>
-                                <div class="card-body">
-                                    <form class="needs-validation" novalidate="" accept-charset="utf-8">
-                                        <div class="form-row">
-                                            <table class="table table-striped" id='Tap-Outs'>
-                                              
-                                            </table>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-5">
-                            <div class="card">
-                                <div class="content">
-                                    <div class="head">
-                                        <h4 class="mb-0">Tap In Traffic</h4>
-                                        <p class="text-muted">Today's Tap In Frequency</p>
-                                    </div>
-                                    <div class="canvas-wrapper"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
-                                        <canvas class="chart chartjs-render-monitor" id="sales" style="display: block; width: 882px; height: 441px;" width="882" height="441"></canvas>
+                                    <div class="canvas-wrapper"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
+                                        <canvas class="chart chartjs-render-monitor" id="trafficflow" style="display: block; width: 464px; height: 232px;" width="464" height="232"></canvas>
                                     </div>
                                     <div class="ui hidden divider"></div>
                                 </div>
                             </div>
-                            <div class="card">
-                                <div class="card-header">Tap-Ins</div>
-                                <div class="card-body">
-                                    <form class="needs-validation" novalidate="" accept-charset="utf-8">
-                                        <div class="form-row">
-                                            <table class="table table-striped" id='Tap-Ins'>
-                                              
-                                            </table>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
                         </div>
-                        <div class="col-md-2">
+</body>
 
-                             <div class="card">
-                                <div class="card-header p-2">Emergency Fire</div>
-                                <div class="card-body p-2">
-                                            <button type="button" class="btn mcl-red btn-sm btn-block">ACTIVE</button>
-                                </div>
-                            </div>
+    <script src="assets/vendor/chartsjs/Chart.min.js"></script>
+    <script src="assets/vendor/jquery3/jquery.min.js"></script>
+    <script src="assets/vendor/bootstrap4/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/vendor/fontawesome5/js/solid.min.js"></script>
+    <script src="assets/vendor/fontawesome5/js/fontawesome.min.js"></script>
 
-                            <div class="card">
-                                <div class="card-header  p-2">Emergency Earthquake</div>
-                                <div class="card-body p-2">
-                                            <button type="button" class="btn btn-sm mcl-yellow btn-block">ON-DRILLS</button>
-                                </div>
-                            </div>
-
-                            <div class="card">
-                                <div class="card-header  p-2">Emergency Typhoon</div>
-                                <div class="card-body p-2">
-                                            <button type="button" class="btn btn-sm mcl-green btn-block">ACTIVATE</button>
-                                </div>
-                            </div>
-
-                            <div class="card">
-                                <div class="card-header  p-2">Emergency Hi-jack</div>
-                                <div class="card-body p-2">
-                                            <button type="button" class="btn btn-primary btn-sm btn-block">IN-PROGRESS</button>
-                                </div>
-                            </div>
-
-                            <div class="card">
-                                <div class="card-header  p-2">Emergency Hi-jack</div>
-                                <div class="card-body p-2">
-                                            <button type="button" class="btn btn-primary btn-sm btn-block">IN-PROGRESS</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                
-
-                
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <?php 
+ <?php 
 
 
   $DB_HOST = 'localhost';
@@ -328,28 +210,29 @@ AND HOUR(`outDate`) <= HOUR('17:59:00')";
       }
     }
 //echo $cnt; echo "<br>";
+
     $myqryS = "SELECT COUNT(`outDate`) as `gg`
 FROM tapout_logs WHERE DATE(`outDate`) = DATE(CURDATE()) 
-AND HOUR(`outDate`) >= HOUR('18:00:00')
-AND HOUR(`outDate`) <= HOUR('18:59:00')";
+AND HOUR(`outDate`) >= HOUR('17:00:00')
+AND HOUR(`outDate`) <= HOUR('17:59:00')";
 
 
     if ($result = mysqli_query($con, $myqryS)) {
      while ($row = mysqli_fetch_row($result)) {
-        $cnt[25] = $row[0];
+        $cnt[10] = $row[0];
       }
     }
 //echo $cnt; echo "<br>";
 
     $myqryS = "SELECT COUNT(`outDate`) as `gg`
 FROM tapout_logs WHERE DATE(`outDate`) = DATE(CURDATE()) 
-AND HOUR(`outDate`) >= HOUR('19:00:00')
-AND HOUR(`outDate`) <= HOUR('19:59:00')";
+AND HOUR(`outDate`) >= HOUR('17:00:00')
+AND HOUR(`outDate`) <= HOUR('17:59:00')";
 
 
     if ($result = mysqli_query($con, $myqryS)) {
      while ($row = mysqli_fetch_row($result)) {
-        $cnt[26] = $row[0];
+        $cnt[10] = $row[0];
       }
     }
 //echo $cnt; echo "<br>";
@@ -357,10 +240,12 @@ AND HOUR(`outDate`) <= HOUR('19:59:00')";
 
 //-------------------------------
 
+//-------------------------------
+
 $myqryS = "SELECT COUNT(`inDate`) as `gg`
 FROM `tapin_logs` WHERE DATE(`inDate`) = DATE(CURDATE()) 
-AND HOUR(`inDate`) >= HOUR('07:00:00')
-AND HOUR(`inDate`) <= HOUR('07:59:00')";
+AND HOUR(`inDate`) >= HOUR('06:59:00')
+AND HOUR(`inDate`) <= HOUR('08:00:00')";
 
 
     if ($result = mysqli_query($con, $myqryS)) {
@@ -372,8 +257,8 @@ AND HOUR(`inDate`) <= HOUR('07:59:00')";
 
 $myqryS = "SELECT COUNT(`inDate`) as `gg`
 FROM `tapin_logs` WHERE DATE(`inDate`) = DATE(CURDATE()) 
-AND HOUR(`inDate`) >= HOUR('08:00:00')
-AND HOUR(`inDate`) <= HOUR('08:59:00')";
+AND HOUR(`inDate`) >= HOUR('07:59:00')
+AND HOUR(`inDate`) <= HOUR('09:00:00')";
 
 
     if ($result = mysqli_query($con, $myqryS)) {
@@ -385,8 +270,8 @@ AND HOUR(`inDate`) <= HOUR('08:59:00')";
 
 $myqryS = "SELECT COUNT(`inDate`) as `gg`
 FROM `tapin_logs` WHERE DATE(`inDate`) = DATE(CURDATE()) 
-AND HOUR(`inDate`) >= HOUR('09:00:00')
-AND HOUR(`inDate`) <= HOUR('09:59:00')";
+AND HOUR(`inDate`) >= HOUR('08:59:00')
+AND HOUR(`inDate`) <= HOUR('10:00:00')";
 
 
     if ($result = mysqli_query($con, $myqryS)) {
@@ -398,8 +283,8 @@ AND HOUR(`inDate`) <= HOUR('09:59:00')";
 
 $myqryS = "SELECT COUNT(`inDate`) as `gg`
 FROM `tapin_logs` WHERE DATE(`inDate`) = DATE(CURDATE()) 
-AND HOUR(`inDate`) >= HOUR('10:00:00')
-AND HOUR(`inDate`) <= HOUR('10:59:00')";
+AND HOUR(`inDate`) >= HOUR('9:59:00')
+AND HOUR(`inDate`) <= HOUR('11:00:00')";
 
 
     if ($result = mysqli_query($con, $myqryS)) {
@@ -411,8 +296,8 @@ AND HOUR(`inDate`) <= HOUR('10:59:00')";
 
 $myqryS = "SELECT COUNT(`inDate`) as `gg`
 FROM `tapin_logs` WHERE DATE(`inDate`) = DATE(CURDATE()) 
-AND HOUR(`inDate`) >= HOUR('11:00:00')
-AND HOUR(`inDate`) <= HOUR('11:59:00')";
+AND HOUR(`inDate`) >= HOUR('10:59:00')
+AND HOUR(`inDate`) <= HOUR('12:00:00')";
 
 
     if ($result = mysqli_query($con, $myqryS)) {
@@ -424,8 +309,8 @@ AND HOUR(`inDate`) <= HOUR('11:59:00')";
 
 $myqryS = "SELECT COUNT(`inDate`) as `gg`
 FROM `tapin_logs` WHERE DATE(`inDate`) = DATE(CURDATE()) 
-AND HOUR(`inDate`) >= HOUR('12:00:00')
-AND HOUR(`inDate`) <= HOUR('12:59:00')";
+AND HOUR(`inDate`) >= HOUR('11:59:00')
+AND HOUR(`inDate`) <= HOUR('13:00:00')";
 
 
     if ($result = mysqli_query($con, $myqryS)) {
@@ -437,8 +322,8 @@ AND HOUR(`inDate`) <= HOUR('12:59:00')";
 
 $myqryS = "SELECT COUNT(`inDate`) as `gg`
 FROM `tapin_logs` WHERE DATE(`inDate`) = DATE(CURDATE()) 
-AND HOUR(`inDate`) >= HOUR('13:00:00')
-AND HOUR(`inDate`) <= HOUR('13:59:00')";
+AND HOUR(`inDate`) >= HOUR('12:59:00')
+AND HOUR(`inDate`) <= HOUR('14:00:00')";
 
 
     if ($result = mysqli_query($con, $myqryS)) {
@@ -450,8 +335,8 @@ AND HOUR(`inDate`) <= HOUR('13:59:00')";
 
 $myqryS = "SELECT COUNT(`inDate`) as `gg`
 FROM `tapin_logs` WHERE DATE(`inDate`) = DATE(CURDATE()) 
-AND HOUR(`inDate`) >= HOUR('14:00:00')
-AND HOUR(`inDate`) <= HOUR('14:59:00')";
+AND HOUR(`inDate`) >= HOUR('13:59:00')
+AND HOUR(`inDate`) <= HOUR('15:00:00')";
 
 
     if ($result = mysqli_query($con, $myqryS)) {
@@ -463,8 +348,8 @@ AND HOUR(`inDate`) <= HOUR('14:59:00')";
 
 $myqryS = "SELECT COUNT(`inDate`) as `gg`
 FROM `tapin_logs` WHERE DATE(`inDate`) = DATE(CURDATE()) 
-AND HOUR(`inDate`) >= HOUR('15:00:00')
-AND HOUR(`inDate`) <= HOUR('15:59:00')";
+AND HOUR(`inDate`) >= HOUR('14:59:00')
+AND HOUR(`inDate`) <= HOUR('16:00:00')";
 
 
     if ($result = mysqli_query($con, $myqryS)) {
@@ -476,8 +361,8 @@ AND HOUR(`inDate`) <= HOUR('15:59:00')";
 
 $myqryS = "SELECT COUNT(`inDate`) as `gg`
 FROM `tapin_logs` WHERE DATE(`inDate`) = DATE(CURDATE()) 
-AND HOUR(`inDate`) >= HOUR('16:00:00')
-AND HOUR(`inDate`) <= HOUR('16:59:00')";
+AND HOUR(`inDate`) >= HOUR('15:59:00')
+AND HOUR(`inDate`) <= HOUR('17:00:00')";
 
 
     if ($result = mysqli_query($con, $myqryS)) {
@@ -490,8 +375,8 @@ AND HOUR(`inDate`) <= HOUR('16:59:00')";
 
 $myqryS = "SELECT COUNT(`inDate`) as `gg`
 FROM `tapin_logs` WHERE DATE(`inDate`) = DATE(CURDATE()) 
-AND HOUR(`inDate`) >= HOUR('17:00:00')
-AND HOUR(`inDate`) <= HOUR('17:59:00')";
+AND HOUR(`inDate`) >= HOUR('16:59:00')
+AND HOUR(`inDate`) <= HOUR('18:00:00')";
 
 
     if ($result = mysqli_query($con, $myqryS)) {
@@ -503,8 +388,8 @@ AND HOUR(`inDate`) <= HOUR('17:59:00')";
 
     $myqryS = "SELECT COUNT(`inDate`) as `gg`
 FROM `tapin_logs` WHERE DATE(`inDate`) = DATE(CURDATE()) 
-AND HOUR(`inDate`) >= HOUR('18:00:00')
-AND HOUR(`inDate`) <= HOUR('18:59:00')";
+AND HOUR(`inDate`) >= HOUR('17:59:00')
+AND HOUR(`inDate`) <= HOUR('19:00:00')";
 
 
     if ($result = mysqli_query($con, $myqryS)) {
@@ -517,8 +402,8 @@ AND HOUR(`inDate`) <= HOUR('18:59:00')";
 
     $myqryS = "SELECT COUNT(`inDate`) as `gg`
 FROM `tapin_logs` WHERE DATE(`inDate`) = DATE(CURDATE()) 
-AND HOUR(`inDate`) >= HOUR('19:00:00')
-AND HOUR(`inDate`) <= HOUR('19:59:00')";
+AND HOUR(`inDate`) >= HOUR('18:59:00')
+AND HOUR(`inDate`) <= HOUR('20:00:00')";
 
 
     if ($result = mysqli_query($con, $myqryS)) {
@@ -531,47 +416,8 @@ AND HOUR(`inDate`) <= HOUR('19:59:00')";
 
 ?>
 
-    <div id="chartX" hidden> </div>
-
-    <script src="assets/vendor/chartsjs/Chart.min.js"></script>
-    <script src="assets/vendor/jquery3/jquery.min.js"></script>
-    <script src="assets/vendor/bootstrap4/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/vendor/fontawesome5/js/solid.min.js"></script>
-    <script src="assets/vendor/fontawesome5/js/fontawesome.min.js"></script>
-
-    <script type="text/javascript">window.onload = date_time('date_time');</script>
 
 
-        <script language="javascript" type="text/javascript">
-            function loadlink(){
-                $('#Tap-Outs').load('table_tapout.php',function () {
-                     //$(this).unwrap();
-                });
-                 $('#Tap-Ins').load('table_tapin.php',function () {
-                     //$(this).unwrap();
-                });
-                 $('#chartX').load('hr_counter.php',function () {
-                     //$(this).unwrap();
-                });
-
-                  $('#livepop').load('livepop.php',function () {
-                     //$(this).unwrap();
-                });
-
-                   $('#tapinz').load('tapinz.php',function () {
-                     //$(this).unwrap();
-                });
-
-                    $('#tapoutz').load('tapoutz.php',function () {
-                     //$(this).unwrap();
-                });
-            }
-
-            loadlink(); // This will run on page load
-            setInterval(function(){
-                loadlink() // this will run after every 5 seconds
-            }, 2000);
-</script>
 
 <script>
 var trafficchart = document.getElementById("trafficflow");
@@ -586,7 +432,7 @@ var myChart1 = new Chart(trafficchart, {
                 borderColor: "rgba(48, 164, 255, 0.8)",
                 data: [<?php echo $cnt[0];?>,<?php echo $cnt[1];?>,<?php echo $cnt[2];?>,<?php echo $cnt[3];?>,<?php echo $cnt[4];?>,
                     <?php echo $cnt[5];?>,<?php echo $cnt[6];?>,<?php echo $cnt[7];?>,<?php echo $cnt[8];?>,<?php echo $cnt[9];?>,<?php echo $cnt[10];?>,
-                    <?php echo $cnt[25]?>,<?php echo $cnt[16];?>],
+                    <?php echo $cnt[11];?>],
                 label: '',
                 fill: true
             }]
@@ -655,10 +501,4 @@ var myChart2 = new Chart(saleschart, {
     }
 });
 </script>
-
-
-
-
-</body>
 </html>
-
