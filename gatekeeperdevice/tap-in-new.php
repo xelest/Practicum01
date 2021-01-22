@@ -208,7 +208,7 @@ border-color: #6C6A69;
                   <td align="left"><?php echo '--------------';?></td>
                 </tr>
                 <tr >
-                  <td align="left" class="lf">Department</td>
+                  <td align="left" class="lf">Position</td>
                   <td style="font-weight:bold">:</td>
                    <td align="left"><?php echo '--------------';?></td>
                 </tr>

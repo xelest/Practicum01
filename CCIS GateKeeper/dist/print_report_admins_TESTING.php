@@ -66,7 +66,7 @@
                                     else //VALID DATE RANGE
                                     {
 
-                                               $query = "SELECT * FROM reports_admin WHERE `id_no`='".$xidno."' AND `Date` BETWEEN '".$frdaterange. "' AND '".$todaterange."' ";  
+                                               $query = "SELECT * FROM reports_admin WHERE `id_no`='".$xidno."' AND `Date` BETWEEN '".$frdaterange. "' AND '".$todaterange."' Group BY `Date` ORDER BY `Date` DESC ";  
                                                 $result = mysqli_query($connect, $query); 
 
                                                 //VALID USER EXIST 

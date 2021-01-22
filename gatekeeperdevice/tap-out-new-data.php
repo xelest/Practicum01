@@ -198,7 +198,7 @@ if(isset($data['id_no']))
                   <td align="left"><?php echo $lname;?></td>
                 </tr>
                 <tr >
-                  <td align="left" class="lf">Department</td>
+                  <td align="left" class="lf">Position</td>
                   <td style="font-weight:bold">:</td>
                    <td align="left"><?php echo $acctype; ?></td>
                 </tr>
@@ -319,7 +319,7 @@ function update_admin_report($user)
                                                             $datetime1 = new DateTime($NEWXtime);
                                                             $datetime2 = new DateTime($NEWXtime2);
                                                             $interval = $datetime1->diff($datetime2);
-                                                            $duration =  $interval->format('%H hours and %M minutes');
+                                                            $duration =  $interval->format('%h')." Hours ".$interval->format('%i')." Minutes";
 
 
                                                       //----------------------------------//
@@ -340,6 +340,61 @@ function update_admin_report($user)
                                               }
                                               else
                                               { //no record - insert earliest time
+
+
+                                                  //----------------------------------//
+                                                  //get tapout data
+                                                    $sql = "SELECT * FROM `tapout_logs` WHERE id_no='".$idno."' AND outDate BETWEEN '".$newfrdate. "' AND '".$newtodate."' ORDER BY outDate DESC LIMIT 1";
+                                                      $result = $con->query($sql);
+
+                                                      if ($result->num_rows > 0) 
+                                                      {
+                                                        // output data of each row
+                                                        while($row = $result->fetch_assoc()) 
+                                                        {
+                                                          $xdate2 = $row["outDate"];  //LATEST
+                                                            $timestamp2 = $xdate2;
+                                                            $splitTimeStamp2 = explode(" ",$timestamp2);
+                                                            $NEWXdate2 = $splitTimeStamp2[0];
+                                                            $NEWXtime2 = $splitTimeStamp2[1];
+                                                        }
+                                                         // echo " <hr> <br> ";
+                                                      }
+                                                      //----------------------------------//
+
+                                                          $sqlz = 'SELECT * FROM user_account WHERE id_no = '.$idno.'';
+                                                          $resultz = $con->query($sqlz);
+
+                                                          if ($resultz->num_rows > 0) 
+                                                          {
+                                                            // output data of each row
+                                                            while($rowz = $resultz->fetch_assoc()) {
+                                                              $fname = $rowz["firstname"];
+                                                              $lname = $rowz["lastname"];
+                                                            }
+                                                          } 
+                                                          else 
+                                                          {
+                                                            //echo "0 results";
+                                                          }
+
+                                                     $myqryY = " INSERT INTO `reports_admin`(`id_no`, `Firstname`, `Lastname`, `Date`, `TimeIn`, `TimeOut`, `Duration`, `Remarks`) VALUES ('".$date."','".$date."','".$date."','".$date."','ND','".$NEWXtime2."','ND','HAS NOT TAPPED IN')";
+                                                      //----------------------------------//
+        
+
+                                                       if(mysqli_query($con, $myqryY) === TRUE)
+                                                       {
+                                                          echo " | inserted | <br>";
+                                                       }
+                                                       else
+                                                       {
+                                                          echo " | failed insert | <br>";
+                                                          echo 'Error: '. $con->error;
+                                                       }
+
+
+
+
         
                                               }           
                                           

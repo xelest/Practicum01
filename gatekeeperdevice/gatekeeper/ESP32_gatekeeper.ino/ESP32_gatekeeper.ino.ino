@@ -110,7 +110,7 @@ void loop() {
 }
 
 
-//-//GET CARD UID
+//GET CARD UID
 int getid() {  
   if(!mfrc522.PICC_IsNewCardPresent()) {
     return 0;
@@ -130,7 +130,7 @@ int getid() {
   return 1;
 }
 
-///CHANGE CARD TO UID
+//CHANGE CARD TO UID
 void array_to_string(byte array[], unsigned int len, char buffer[]) {
     for (unsigned int i = 0; i < len; i++)
     {

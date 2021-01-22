@@ -25,6 +25,11 @@
 
 </head>
 
+<?php
+
+include 'ND_UPDATER.php';
+?>
+
 <body>
     <div class="wrapper">
         <div id="body" class="active">

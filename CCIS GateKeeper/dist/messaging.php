@@ -53,7 +53,7 @@
  
                 <div class="table-responsive">    
                      <div id="employee_table">  
-                    <table class="table table-bordered table-striped" id="tapout_table" cellspacing="0">
+                    <table class="table table-bordered table-striped" id="tapout_table" cellspacing="0" style="width=100%;">
                       <thead>
                         <tr>
                           <th>Msg ID</th>

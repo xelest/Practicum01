@@ -38,7 +38,7 @@
            $select_query = "SELECT * FROM attnmessage";  
            $result = mysqli_query($connect, $select_query);  
            $output .= '  
-                <table class="table table-bordered table-striped" id="employee_table" cellspacing="0">
+                <table class="table table-bordered table-striped" id="employee_table" cellspacing="0" style="width=100%;">
                       <thead>
                         <tr>
                           <th>Msg ID</th>

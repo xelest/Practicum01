@@ -24,6 +24,9 @@
     $frdaterange = "NO DATA";
     $todaterange = "NO DATA";
     session_start();
+     include_once 'php prototyping/generator_report_update.php';
+    include_once 'ND_UPDATER.php';
+   
     ?>
 
 
@@ -63,7 +66,7 @@
                                     </div>
 
                                     <div class="col-3" style="padding: 3px;">
-                                        <input type="submit" name="query" value="generate" class="btn btn-primary" />
+                                        <input type="submit" name="query" value="Generate" class="btn btn-primary" />
                                     </div>
 
                                     <form>
@@ -105,6 +108,11 @@
                                         $_SESSION['tod'] =  $todaterange;
                                         $_SESSION['id'] =  $xidno;
 
+                                        echo'
+                                            <script>    document.getElementById("frdaterange").disabled = true;
+                                                document.getElementById("todaterange").disabled = true;
+                                                document.getElementById("xidno").disabled = true; </script> ';
+
                                         session_commit();
 
                                       $str1 = "00:00:00";
@@ -120,7 +128,7 @@
                                     else //VALID DATE RANGE
                                     {
 
-                                               $query = "SELECT * FROM reports_admin WHERE `id_no`='".$xidno."' AND `Date` BETWEEN '".$frdaterange. "' AND '".$todaterange."' ";  
+                                               $query = "SELECT * FROM reports_admin WHERE `id_no`='".$xidno."' AND `Date` BETWEEN '".$frdaterange. "' AND '".$todaterange."' Group BY `Date` ORDER BY `Date` DESC ";  
                                                 $result = mysqli_query($connect, $query); 
 
                                                 //VALID USER EXIST 
@@ -147,6 +155,11 @@
                                                  else
                                                 {
                                                     echo "<script>alert('".$xidno." is not a valid member of MCL Admins')</script>;";
+                                                     echo'
+                                                        <script>   
+                                                            document.getElementById("frdaterange").disabled = false;
+                                                            document.getElementById("todaterange").disabled = false;
+                                                            document.getElementById("xidno").disabled = false; </script> ';
                                                 }
 
 
@@ -315,6 +328,7 @@
             // Displaying the value
             alert(inputVal);
         }
+
     </script>
 
 </body>

@@ -81,7 +81,7 @@
                             </a>                         
                             <div class="sb-sidenav-menu-heading">Featured Pages</div>
                             <li>
-                                     <a class="nav-link" href="members.php" target="abc_frame"><div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div> Members</a>
+                                     <a class="nav-link" id="members" href="members.php" target="abc_frame"><div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div> Members</a>
                                    <a class="nav-link" href="search_logs.php" target="abc_frame"><div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div> Tap Logs</a>
 
 
@@ -95,7 +95,7 @@
                                       <nav class="sb-sidenav-menu-nested nav">
                                       <a class="nav-link" href="admin_logs.php" target="abc_frame"><div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div> Admin Tap Logs</a>
                                       <a class="nav-link" href="reports_admin.php" target="abc_frame"><div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div> Admin Reports</a>
-                                      <a class="nav-link" href="reports.php" target="abc_frame"><div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div> SHS Reports</a>
+                                      <a class="nav-link" href="reports_SHS.php" target="abc_frame"><div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div> SHS Reports</a>
                                       <a class="nav-link" href="reports.php" target="abc_frame"><div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div> College Reports</a>
                                       <a class="nav-link" href="reports.php" target="abc_frame"><div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div> Teachers Reports</a>
                                           
@@ -506,6 +506,31 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
         <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
         <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script> 
+
+        <script>
+        $('#members').click(function () {
+            $('#abc_frame').attr('src', '');
+        });
+        $('#maps').click(function () {
+            $('#abc_frame').attr('src', 'Dashboard/geomap.php');
+        });
+        $('#plant-matrix').click(function () {
+            $('#abc_frame').attr('src', 'plant_matrix.php');
+        });
+        $('#search').click(function () {
+            $('#abc_frame').attr('src', 'search.html');
+        });
+        $('#analytics').click(function () {
+            $('#abc_frame').attr('src', 'Dashboard/regions.php');
+        });
+        $('#reports').click(function () {
+            $('#abc_frame').attr('src', 'reports/reportsIndex.php');
+        });
+        $('#recommends').click(function () {
+            $('#abc_frame').attr('src', 'Dashboard/crops.php');
+        });
+    </script>
+
         
                
     </body>

@@ -197,7 +197,7 @@ if(isset($data['id_no']))
                   <td align="left"><?php echo $lname;?></td>
                 </tr>
                 <tr >
-                  <td align="left" class="lf">Department</td>
+                  <td align="left" class="lf">Position</td>
                   <td style="font-weight:bold">:</td>
                    <td align="left"><?php echo $acctype; ?></td>
                 </tr>
@@ -258,6 +258,71 @@ function insert_admin_report($user)
                                             $result3 = mysqli_query($con, "SELECT * FROM `reports_admin` WHERE `id_no`='".$user."' AND `Date`='".$date."'");
                                               if ($result3->num_rows > 0) 
                                               {//existing record - update
+
+                                                          //get earliest time
+                                                          $sql = "SELECT * FROM `tapin_logs` WHERE id_no='".$idno."' AND inDate BETWEEN '".$newfrdate. "' AND '".$newtodate."' ORDER BY inDate ASC LIMIT 1";
+                                                        $result = $con->query($sql);
+
+                                                        if ($result->num_rows > 0) 
+                                                        {
+                                                          // output data of each row
+                                                          while($row = $result->fetch_assoc()) 
+                                                          {
+                                                            $xdate = $row["inDate"];
+                                                            $timestamp = $xdate;
+                                                              $splitTimeStamp = explode(" ",$timestamp);
+                                                              $NEWXdate = $splitTimeStamp[0];
+                                                              $NEWXtime = $splitTimeStamp[1];
+                                                          }
+                                                           // echo " <hr> <br> ";
+                                                        }
+
+                                                              
+
+                                                              if ($NEWXtime > '07:00:00')
+                                                              {
+                                                                $remarks = 'LATE';
+                                                              }
+                                                              else
+                                                              {
+                                                                $remarks = 'ONTIME';
+                                                              }
+
+                                             
+
+                                                          $sqlz = 'SELECT * FROM user_account WHERE id_no = '.$idno.'';
+                                                          $resultz = $con->query($sqlz);
+
+                                                          if ($resultz->num_rows > 0) 
+                                                          {
+                                                            // output data of each row
+                                                            while($rowz = $resultz->fetch_assoc()) {
+                                                              $fname = $rowz["firstname"];
+                                                              $lname = $rowz["lastname"];
+                                                            }
+                                                          } 
+                                                          else 
+                                                          {
+                                                            //echo "0 results";
+                                                          }
+
+                                                      
+                                                         $myqryY = " UPDATE `reports_admin` SET `Firstname`='".$fname."',`Lastname`='".$lname."',`TimeIn`='".$NEWXtime."',`TimeOut`='ND',`Duration`='ND',`Remarks`='TAPPED IN' WHERE `id_no`='".$idno."' AND `Date`='".$date."'";
+
+  
+                                                               if(mysqli_query($con, $myqryY) === TRUE)
+                                                               {
+                                                                  //echo " | inserted | <br>";
+                                                               }
+                                                               else
+                                                               {
+                                                                  //echo " | failed insert | <br>";
+                                                                  //echo 'Error: '. $con->error;
+                                                               }
+
+
+
+
                                                   
                                               }
                                               else
