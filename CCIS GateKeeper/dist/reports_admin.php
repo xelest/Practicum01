@@ -27,7 +27,7 @@
     //include_once 'php prototyping/generator_report_update.php';
     include_once 'ND_UPDATER.php';
     include_once 'php prototyping/generator_report_update.php';
-    include_once 'lastupdate.php';
+    include 'lastupdate.php';
     ?>
 
 
@@ -49,31 +49,47 @@
                         </div>
                     </div>
                     <div class="row">
-                         <div class="col-8 col-md-8">
-                                <div class="row style="align-items: center;">
-                                    <div class="col-3" style="padding: 3px;">
+                         <div class="col-6 col-md-6">
+                                <div class="row" style="align-items: center">
 
+                                    <div class="col-4" style="padding: 3px;">
                                     <form method="post" id="form1"  action="">
                                         <input type="text" class="form-control datepicker-here" data-range="false"   id="frdaterange" name="frdaterange" data-language="en" data-position="bottom left"  data-date-format="yyyy/mm/dd" aria-describedby="daterange" placeholder="Date Start" required>
                                     </div>
 
-                                    <div class="col-3" style="padding: 3px;">
+                                  
+                                    <div class="col-4" style="padding: 3px;">
+                                       <input type="text" name="xidno" id="xidno"  class="form-control" placeholder="ID Number" />
+                                    </div>
 
+
+                                    <div class="col-4" style="padding: 3px;">
+                                        <input type="submit" name="clear" id="clear" value="&nbsp;&nbsp;&nbsp;&nbsp;Clear&nbsp;&nbsp;&nbsp;" class="btn btn-warning" />
+                                    </div>
+
+                                    <div class="col-4" style="padding: 3px;">
                                     <input type="text" class="form-control datepicker-here" data-range="false"   id="todaterange" name="todaterange" data-language="en" data-position="bottom left" data-date-format="yyyy/mm/dd" aria-describedby="daterange" placeholder="Date End" required>
                                     </div>
 
-                                    <div class="col-3" style="padding: 3px;">
-                                       <input type="text" name="xidno" id="xidno"  class="form-control" required />
-                                    </div>
+                                    
+ 
+                                    <div class="col-4" style="padding: 3px;">
+                                                        <select name="xfilter" class="form-control" required="" id="xfilter">
+                                                            <option value="All" selected="">Default All</option>
+                                                            <option value="late">Late</option>
+                                                            <option value="Absent">Absent</option>
+                                                            <option value="ontime">Present</option>
+                                                        </select>
+                                                      </div>
 
-                                    <div class="col-3" style="padding: 3px;">
+                                    <div class="col-4" style="padding: 3px;">
                                         <input type="submit" name="query" value="Generate" class="btn btn-primary" />
                                     </div>
 
                                     <form>
                             </div>
                     </div>
-                     <div class="col-4 col-md-4">
+                     <div class="col-6 col-md-6">
                         <div class="row" >
                             <div class="col-9" align="left" style="align-items: right;padding: 0px; margin-right: 0px;">
                                 Below is a preview of the generated report.<br>
@@ -98,15 +114,25 @@
                         // $result = mysqli_query($connect, $query);  
 
 
+                        if(isset($_POST['clear']))
+                        {
+                          echo "<script> document.getElementById('form1').reset(); </script>";
+
+
+                        }
+
+
                         if(isset($_POST['query']))
                         {
                                       $frdaterange = $_POST['frdaterange'];
                                       $todaterange = $_POST['todaterange'];
+                                      $xfilter = $_POST['xfilter'];
                                       $xidno = $_POST['xidno'];
 
                                         $_SESSION['frd'] = $frdaterange;
                                         $_SESSION['tod'] =  $todaterange;
                                         $_SESSION['id'] =  $xidno;
+                                        $_SESSION['xfilter'] = $xfilter;
 
                                         echo'
                                             <script>    document.getElementById("frdaterange").disabled = true;
@@ -130,7 +156,7 @@
                                                             document.getElementById("todaterange").disabled = false;
                                                             document.getElementById("xidno").disabled = false; </script> ';
                                     }
-                                    else //VALID DATE RANGE
+                                    else if ($frdaterange <= $todaterange && $xidno != '' && $xfilter == 'all')
                                     {
 
                                                $query = "SELECT * FROM reports_admin WHERE `id_no`='".$xidno."' AND `Date` BETWEEN '".$frdaterange. "' AND '".$todaterange."' Group BY `Date` ORDER BY `Date` DESC ";  
@@ -142,7 +168,8 @@
                                                     $_POST['xprocess'] = "submit";
                                                     $position = 'Admin';
 
-                                                    $query1 = "SELECT * FROM user_account WHERE `id_no`='".$xidno."' AND acc_type = 'Admin' LIMIT 1";  
+                                                    $query1 = "SELECT * FROM user_account WHERE `id_no`='".$xidno."' AND acc_type = 'Admin' LIMIT 1"; 
+                                                    $_SESSION['query']  = $query1;
                                                     $result1 = mysqli_query($connect, $query1);
                                                      if(mysqli_num_rows($result1) > 0)
                                                     { 
@@ -168,8 +195,171 @@
                                                 }
 
 
+                                    } //
+                                    else if ($xidno == '' && $frdaterange <= $todaterange &&  $xfilter == 'All') 
+                                    { 
+                                               clear_absents();
+                                               $newname = "ALL";
+                                                $xidno = "ALL";
+                                                $position = "Admins";
+
+                                               $query = "SELECT * FROM reports_admin WHERE `Date` BETWEEN '".$frdaterange. "' AND '".$todaterange."' ORDER BY `Date` DESC ";  
+                                               $_SESSION['query']  = $query;
+                                               $_SESSION['xfilter'] = $xfilter;
+                                                $result = mysqli_query($connect, $query);
+                                                   $_POST['xprocess'] = "submit";
+                                     // echo "<script> alert('".$xidno." asd') </script>";
+                                    }
+                                    else if ($xidno == '' && $frdaterange <= $todaterange &&  $xfilter == 'late') 
+                                    { 
+
+                                               $newname = "ALL";
+                                               $xidno = "ALL";
+                                                $position = "Admins";
+                                               $query = "SELECT * FROM reports_admin WHERE `Remarks`='".$xfilter."' AND `Date` BETWEEN '".$frdaterange. "' AND '".$todaterange."' ORDER BY `Date` DESC ";  
+                                               $_SESSION['query']  = $query;
+                                               $_SESSION['xfilter'] = $xfilter;
+                                                $result = mysqli_query($connect, $query);
+                                                   $_POST['xprocess'] = "submit";
+                                     // echo "<script> alert('".$xidno." asd') </script>";
+                                    }
+                                    else if ($xidno == '' && $frdaterange <= $todaterange &&  $xfilter == 'ontime') 
+                                    { 
+
+                                               $newname = "ALL";
+                                               $xidno = "ALL";
+                                                $position = "Admins";
+                                               $query = "SELECT * FROM reports_admin WHERE `Remarks`='".$xfilter."' AND `Date` BETWEEN '".$frdaterange. "' AND '".$todaterange."' ORDER BY `Date` DESC ";  
+                                               $_SESSION['query']  = $query;
+                                               $_SESSION['xfilter'] = $xfilter;
+                                                $result = mysqli_query($connect, $query);
+                                                   $_POST['xprocess'] = "submit";
+                                     // echo "<script> alert('".$xidno." asd') </script>";
+                                    }
+                                     else if ($xidno != '' && $frdaterange <= $todaterange &&  $xfilter == 'All') 
+                                    { 
+
+                                              clear_absents();
+                                               $query = "SELECT * FROM reports_admin WHERE `id_no`='".$xidno."' AND `Date` BETWEEN '".$frdaterange. "' AND '".$todaterange."' ORDER BY `Date` DESC ";  
+                                               $_SESSION['query']  = $query;
+                                               $_SESSION['xfilter'] = $xfilter;
+                                                $result = mysqli_query($connect, $query);
+                                                   $_POST['xprocess'] = "submit";
+                                     // echo "<script> alert('".$xidno." asd') </script>";
+
+                                                $position = 'Admin';
+
+                                                    $query1 = "SELECT * FROM user_account WHERE `id_no`='".$xidno."' AND acc_type = 'Admin' LIMIT 1"; 
+                                                    $_SESSION['query']  = $query1;
+                                                    $result1 = mysqli_query($connect, $query1);
+                                                     if(mysqli_num_rows($result1) > 0)
+                                                    { 
+                                                       while($row1 = $result1->fetch_assoc()) {
+                                                             $fma = $row1['firstname'];
+                                                             $lma = $row1['lastname'];
+                                                             $newname = $lma .' '. $fma;
+                                                       }
+
+                                                    }
+                                    }
+                                    else if ($xidno != '' && $frdaterange <= $todaterange &&  $xfilter == 'late') 
+                                    { 
+
+
+                                               $query = "SELECT * FROM reports_admin WHERE `id_no`='".$xidno."' AND `Remarks`='".$xfilter."' AND `Date` BETWEEN '".$frdaterange. "' AND '".$todaterange."' ORDER BY `Date` DESC ";  
+                                                $result = mysqli_query($connect, $query);
+                                                $_SESSION['query']  = $query;
+                                                $_SESSION['xfilter'] = $xfilter;
+                                                   $_POST['xprocess'] = "submit";
+                                     // echo "<script> alert('".$xidno." asd') </script>";
+                                                                                                  $position = 'Admin';
+
+                                                    $query1 = "SELECT * FROM user_account WHERE `id_no`='".$xidno."' AND acc_type = 'Admin' LIMIT 1"; 
+                                                    $_SESSION['query']  = $query1;
+                                                    $result1 = mysqli_query($connect, $query1);
+                                                     if(mysqli_num_rows($result1) > 0)
+                                                    { 
+                                                       while($row1 = $result1->fetch_assoc()) {
+                                                             $fma = $row1['firstname'];
+                                                             $lma = $row1['lastname'];
+                                                             $newname = $lma .' '. $fma;
+                                                       }
+
+                                                    }
+                                    }
+                                    else if ($xidno != '' && $frdaterange <= $todaterange &&  $xfilter == 'ontime') 
+                                    { 
+
+
+
+                                               $query = "SELECT * FROM reports_admin WHERE `id_no`='".$xidno."' AND `Remarks`='".$xfilter."' AND `Date` BETWEEN '".$frdaterange. "' AND '".$todaterange."' ORDER BY `Date` DESC ";  
+                                               $_SESSION['query']  = $query;
+                                               $_SESSION['xfilter'] = $xfilter;
+                                                $result = mysqli_query($connect, $query);
+                                                   $_POST['xprocess'] = "submit";
+
+                                                    $position = 'Admin';
+
+                                                    $query1 = "SELECT * FROM user_account WHERE `id_no`='".$xidno."' AND acc_type = 'Admin' LIMIT 1"; 
+                                                    $_SESSION['query']  = $query1;
+                                                    $result1 = mysqli_query($connect, $query1);
+                                                     if(mysqli_num_rows($result1) > 0)
+                                                    { 
+                                                       while($row1 = $result1->fetch_assoc()) {
+                                                             $fma = $row1['firstname'];
+                                                             $lma = $row1['lastname'];
+                                                             $newname = $lma .' '. $fma;
+                                                       }
+
+                                                    }
+
+                                     // echo "<script> alert('".$xidno." asd') </script>";
+                                    }
+                                    else if ($xidno != '' && $frdaterange <= $todaterange &&  $xfilter == 'Absent') 
+                                    { 
+
+                                              get_absents();
+                                               $query = "SELECT * FROM reports_admin WHERE `id_no`='".$xidno."' AND `Remarks`='".$xfilter."' AND `Date` BETWEEN '".$frdaterange. "' AND '".$todaterange."' ORDER BY `Date` DESC ";  
+                                               $_SESSION['query']  = $query;
+                                               $_SESSION['xfilter'] = $xfilter;
+                                                $result = mysqli_query($connect, $query);
+                                                   $_POST['xprocess'] = "submit";
+
+                                                                                           $position = 'Admin';
+
+                                                    $query1 = "SELECT * FROM user_account WHERE `id_no`='".$xidno."' AND acc_type = 'Admin' LIMIT 1"; 
+                                                    $_SESSION['query']  = $query1;
+                                                    $result1 = mysqli_query($connect, $query1);
+                                                     if(mysqli_num_rows($result1) > 0)
+                                                    { 
+                                                       while($row1 = $result1->fetch_assoc()) {
+                                                             $fma = $row1['firstname'];
+                                                             $lma = $row1['lastname'];
+                                                             $newname = $lma .' '. $fma;
+                                                       }
+
+                                                    }
+                                     // echo "<script> alert('".$xidno." asd') </script>";
+                                    }
+                                     else if ($xidno == '' && $frdaterange <= $todaterange &&  $xfilter == 'Absent') 
+                                    { 
+
+                                              get_absents();
+                                               $newname = "ALL";
+                                               $xidno = "ALL";
+                                                $position = "Admins";
+                                               $query = "SELECT * FROM reports_admin WHERE `Remarks`='".$xfilter."' AND `Date` BETWEEN '".$frdaterange. "' AND '".$todaterange."' ORDER BY `Date` DESC ";  
+                                               $_SESSION['query']  = $query;
+                                               $_SESSION['xfilter'] = $xfilter;
+                                                $result = mysqli_query($connect, $query);
+                                                   $_POST['xprocess'] = "submit";
+
+                                     // echo "<script> alert('".$xidno." asd') </script>";
                                     }
 
+
+
+                         //             
                         }
 
 
@@ -286,7 +476,7 @@
                             <h6 style="font-size: 12px !important"> Copyright © CCIS College of Computing and Information Science 2020</h6>
                         </div>
                         <div class="col-6">
-                           <h6 align="right" style="font-size: 12px !important"> Report generation requested by: </h6>
+                           <h6 align="right" style="font-size: 12px !important"> Report generation requested by: <?php  echo $_SESSION["uname"]; ?></h6>
                         </div>
                     </div>
                      </div>

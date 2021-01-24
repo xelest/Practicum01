@@ -2,7 +2,6 @@
 
   $con = mysqli_connect('localhost', 'root', '', 'mclccisn_gatekeeper');
   
-  //on page load
   $username = "";
   $pwd1 = "";
   $role = "";
@@ -31,11 +30,10 @@
               }
           
                 //check if existing account is active or not
-                if($status === 'A')
+                if($status === 'A'||$status === 'Active')
                 {
-                    //check if active account is account admin
-                    //redirect to account management page
-                    if ($role === 'SystemAdmin')
+
+                    if ($role === 'System Admin')
                     {
                       session_cache_expire(10);
                       session_start();
@@ -43,11 +41,10 @@
                       $_SESSION["uname"] = $username;
                       $_SESSION["status"] = $status;
                       header("Location: gatekeeper.php");
-                       echo "<script type='text/javascript'>alert('account_admin!');</script>";      
+          
                     }
-                    //check if active account is analyst
-                    //redirect to main landing page, for soil analyst 
-                    else if ($role === 'SystemAdmin')
+
+                    else if ($role === 'System User')
                     {
                       session_cache_expire(10);
                       session_start();
@@ -55,7 +52,7 @@
                       $_SESSION["uname"] = $username;
                       $_SESSION["status"] = $status;
                       header("Location: gatekeeper.php");
-                       echo "<script type='text/javascript'>alert('analyst account!');</script>";     
+   
                     }
                     else
                     {

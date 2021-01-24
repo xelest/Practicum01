@@ -1,3 +1,17 @@
+<?php
+  session_cache_expire(10);
+  session_start();
+
+  if($_SESSION['uname'] == ""){
+    header('location: pageredirect.html');
+  }
+
+    if(!isset($_SESSION['uname'])){
+    header('location: pageredirect.html');
+  }
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -80,9 +94,10 @@
                                 Home
                             </a>                         
                             <div class="sb-sidenav-menu-heading">Featured Pages</div>
-                            <li>
+                            <li>    
+                                    <a class="nav-link" id="users" href="users.php" target="abc_frame"><div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div> Users</a>
                                      <a class="nav-link" id="members" href="members.php" target="abc_frame"><div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div> Members</a>
-                                   <a class="nav-link" href="search_logs.php" target="abc_frame"><div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div> Tap Logs</a>
+                                   <a class="nav-link" href="search_logs.php" target="abc_frame"><div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div> All Tap Logs</a>
 
 
                                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#Reports" aria-expanded="false" aria-controls="collapseLayouts">
@@ -133,7 +148,8 @@
 
                                           <a class="nav-link" href=".php" id="btn-confirm" data-toggle="modal" data-target="#csv_upload" ><div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div> Users CSV</a>
 
-                                         <!-- <a class="nav-link" href=".php" id="btn-confirm" data-toggle="modal" data-target="#csv_calendar" ><div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div> Calendar CSV</a>-->
+
+                                         <a class="nav-link" href=".php" id="btn-confirm" data-toggle="modal" data-target="#csv_calendar" ><div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div> Calendar CSV</a>
                                       </nav>
                                   </div>
 
@@ -153,7 +169,7 @@
                     </div>
                     <div class="sb-sidenav-footer">
                         <div class="small">Logged in as:</div>
-                        Admin
+                        <?php echo $_SESSION['uname']; ?>
                     </div>
                 </nav>
             </div>
@@ -353,6 +369,7 @@
           </div>
         </div>
         <!-- MODAL FORM -->
+
 
 
           <!-- MESSAGE   MODAL FORM -->

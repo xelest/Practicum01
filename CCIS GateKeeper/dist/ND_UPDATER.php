@@ -10,7 +10,7 @@ $timeout = "0";
 //
 
 
- $sql2 = 'SELECT * FROM calendar';
+    $sql2 = 'SELECT * FROM calendar';
     $result2 = $con->query($sql2);
 
     if ($result2->num_rows > 0) {
