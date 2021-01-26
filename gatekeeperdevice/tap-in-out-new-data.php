@@ -71,7 +71,7 @@ if(isset($data['id_no']))
                       $card1hide = "";
                     }
                     //////
-                      $myqry = "INSERT INTO `tapin_logs`(`id_no`) VALUES ('".$user."')";
+                     $myqry = "INSERT INTO `tapin_logs`(`id_no`) VALUES ('".$user."')";
                       mysqli_query($con, $myqry);  
 
                       insert_admin_report($user);
@@ -178,16 +178,6 @@ if(isset($data['id_no']))
               <table class="table table-borderless" style="width: 100% !important; color: white;">
                   <thead>
                   </thead>
-               <!-- <tr>
-                  <td align="left" class="lf">RFID</td>
-                  <td style="font-weight:bold" >:</td>
-                  <td align="left"><?php //echo $data['rf_id'];?></td>
-                </tr>
-                <tr >
-                  <td align="left" class="lf">MCL ID</td>
-                  <td style="font-weight:bold">:</td>
-                  <td align="left"><?php //echo $data['id_no'];?></td>
-                </tr> -->
                 <tr>
                   <td align="left" class="lf">Firstname</td>
                   <td style="font-weight:bold">:</td>
@@ -404,44 +394,66 @@ function insert_admin_report($user)
 
 <?php
 
-include 'connection.php';
-$sqlz = "SELECT COUNT(inDate) as cntIN FROM `tapin_logs` WHERE id_no='$id_no' AND inDate BETWEEN '".$frdate."' AND '".$todate."'";
+
+
+function get_compr($id_no,$frdate,$todate)
+{
+  include 'connection.php';
+
+  $sqlz = "SELECT COUNT(inDate) as cntIN FROM `tapin_logs` WHERE id_no='$id_no' AND inDate BETWEEN '".$frdate."' AND '".$todate."'";
             $resultz = $con->query($sqlz);
 
-while($rowz = $resultz->fetch_assoc()) 
-{
-  $cntIN = $rowz['cntIN'];
+    while($rowz = $resultz->fetch_assoc()) 
+    {
+      $cntIN = $rowz['cntIN'];
+    }
+
+
+    $sqlz = "SELECT COUNT(outDate) as cntOUT FROM `tapout_logs` WHERE id_no='$id_no' AND outDate BETWEEN '".$frdate."' AND '".$todate."'";
+      $resultz = $con->query($sqlz);
+
+    while($rowz = $resultz->fetch_assoc()) 
+    {
+      $cntOUT = $rowz['cntOUT'];
+    }
+
+
+    if($cntIN > $cntOUT) 
+    { 
+      //ALLOW TAPOUT
+
+    }
+    else
+    {
+
+    }
+
+    if($cntIN <= $cntOUT) 
+    { 
+      //DO NOT ALLOW TAPIN
+
+    }
+    else
+    {
+
+    }
 }
 
 
-$sqlz = "SELECT COUNT(outDate) as cntOUT FROM `tapout_logs` WHERE id_no='$id_no' AND outDate BETWEEN '".$frdate."' AND '".$todate."'";
-  $resultz = $con->query($sqlz);
 
-while($rowz = $resultz->fetch_assoc()) 
-{
-  $cntOUT = $rowz['cntOUT'];
-}
-
-
-if($cntIN > $cntOUT) 
-{ 
-  //ALLOW TAPOUT
-
-}
-else
-{
-
-}
-
-if($cntIN <= $cntOUT) 
-{ 
-  //DO NOT ALLOW TAPIN
-
-}
-else
-{
-
-}
+function check($number){ 
+    if($number % 2 == 0){ 
+        echo "Even";  
+    } 
+    else{ 
+        echo "Odd"; 
+    } 
+} 
+  
+// Driver Code 
+$number = 39; 
+check($number) 
+?> 
 
 
 ?>

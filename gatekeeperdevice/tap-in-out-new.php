@@ -6,12 +6,12 @@ $Write="<?php $" . "UIDresult=''; " . "echo $" . "UIDresult;" . " ?>";
 file_put_contents('UIDContainer.php',$Write);
 
 
-                  $bordercolor = "#555555";
-                  $imgname = "img/placeholder.jpg";
-                  $notif_msg_header = "INVALID";
-                  $notif_msg_details = "Please report to the Security Office";
-                  $notif_msg_sender = "Welcome Guest";
-                  $card1hide = "";
+$bordercolor = "#555555";
+$imgname = "img/placeholder.jpg";
+$notif_msg_header = "INVALID";
+$notif_msg_details = "Please report to the Security Office";
+$notif_msg_sender = "Welcome Guest";
+$card1hide = "";
 
   
 ?>

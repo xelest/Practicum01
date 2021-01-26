@@ -38,21 +38,38 @@
                                 <div class="card shadow-lg border-0 rounded-lg mt-5">
                                     <div class="card-header mcl-blue"><h3 class="text-center font-weight-light my-3" style="color: white; letter-spacing: 5px;">NEW USER</h3></div>
                                     <div class="card-body mcl-blue">
+<<<<<<< HEAD:CCIS GateKeeper/dist/register_new_user.php
                                         <form method="post" action="">
+=======
+                                        <form>
+>>>>>>> parent of 331897b... AFTER PRESENTATION:CCIS GateKeeper/dist/register_new_user.html
                                             <div class="form-row">
-                                                <div class="col-md-12">
+                                                <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <label class="small mb-1" for="uname">Username</label>
-                                                        <input class="form-control" name="uname" id="uname" py-4"  type="text" placeholder="Enter Username" />
+                                                        <label class="small mb-1" for="inputFirstName">First Name</label>
+                                                        <input class="form-control py-4" id="inputFirstName" type="text" placeholder="Enter first name" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="small mb-1" for="inputLastName">Last Name</label>
+                                                        <input class="form-control py-4" id="inputLastName" type="text" placeholder="Enter last name" />
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="form-row">
                                                 <div class="col-md-12">
                                                     <div class="form-group">
-                                                        <label class="small mb-1" for="urole">Account Role</label>
-                                                        <select name="urole" class="form-control" required="" id="urole">
+                                                        <label class="small mb-1" for="">Identification Number</label>
+                                                        <input class="form-control py-4" id="" type="text" placeholder="Enter ID Number" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label class="small mb-1" for="">Account Role</label>
+                                                        <select name="state" class="form-control" required="" id="myOption">
                                                             <option value="" selected="">Choose...</option>
+<<<<<<< HEAD:CCIS GateKeeper/dist/register_new_user.php
                                                             <option value="System Administrator">System Administrator</option>
                                                             <option value="System User">System User</option>
                                                         </select>
@@ -73,6 +90,11 @@
                                                             <option value="CAS Faculty">CAS Faculty</option>
                                                             <option value="ETYCB Faculty">ETYCB Faculty</option>
                                                             <option value="SHS Faculty">SHS Faculty</option>
+=======
+                                                            <option value="Degrees">Degrees</option>
+                                                            <option value="Radian">Radian</option>
+                                                            <option value="Gradian">Gradian</option>
+>>>>>>> parent of 331897b... AFTER PRESENTATION:CCIS GateKeeper/dist/register_new_user.html
                                                         </select>
                                                     </div>
                                                 </div>
@@ -81,17 +103,17 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label class="small mb-1" for="inputPassword">Password</label>
-                                                        <input class="form-control py-4" name="pword" id="pword" type="password" placeholder="Enter password" />
+                                                        <input class="form-control py-4" id="inputPassword" type="password" placeholder="Enter password" />
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label class="small mb-1" for="inputConfirmPassword">Confirm Password</label>
-                                                        <input class="form-control py-4" id="pword2" name="pword2" id="pword2" type="password" placeholder="Confirm password" />
+                                                        <input class="form-control py-4" id="inputConfirmPassword" type="password" placeholder="Confirm password" />
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="form-group mt-4 mb-0"><input type="submit" class="btn btn-success btn-block" value="Register" name="register" id="register" <div>
+                                            <div class="form-group mt-4 mb-0"><a class="btn btn-success btn-block" href="login.html">Submit</a></div>
                                         </form>
                                     </div>
                                     <div class="card-footer text-center mcl-blue">
