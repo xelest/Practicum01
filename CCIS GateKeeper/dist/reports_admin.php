@@ -24,10 +24,6 @@
     $frdaterange = "NO DATA";
     $todaterange = "NO DATA";
     session_start();
-    //include_once 'php prototyping/generator_report_update.php';
-    include_once 'ND_UPDATER.php';
-    include_once 'php prototyping/generator_report_update.php';
-    include 'lastupdate.php';
     ?>
 
 
@@ -543,4 +539,6 @@ else
 
 }
 
+
+    include 'lastupdate.php';
 ?>

@@ -6,12 +6,12 @@ $Write="<?php $" . "UIDresult=''; " . "echo $" . "UIDresult;" . " ?>";
 file_put_contents('UIDContainer.php',$Write);
 
 
-                  $bordercolor = "#555555";
-                  $imgname = "img/placeholder.jpg";
-                  $notif_msg_header = "INVALID";
-                  $notif_msg_details = "Please report to the Security Office";
-                  $notif_msg_sender = "Welcome Guest";
-                  $card1hide = "";
+$bordercolor = "#555555";
+$imgname = "img/placeholder.jpg";
+$notif_msg_header = "INVALID";
+$notif_msg_details = "Please report to the Security Office";
+$notif_msg_sender = "Welcome Guest";
+$card1hide = "";
 
   
 ?>
@@ -35,9 +35,9 @@ file_put_contents('UIDContainer.php',$Write);
       
       <script>
         $(document).ready(function(){
-           $("#getUID").load("../../gatekeeperdevice/UIDContainer.php");
+           $("#getUID").load("UIDContainer.php");
           setInterval(function() {
-            $("#getUID").load("../../gatekeeperdevice/UIDContainer.php");  
+            $("#getUID").load("UIDContainer.php");  
           }, 500);
         });
       </script>
@@ -286,7 +286,7 @@ border-color: #6C6A69;
               document.getElementById("show_user_data").innerHTML = this.responseText;
             }
           };
-          xmlhttp.open("GET","tap-in-new-data.php?id="+str,true);
+          xmlhttp.open("GET","2.php?id="+str,true);
           xmlhttp.send();
           (function countdown(remaining) {
               if(remaining === 0)
@@ -314,3 +314,5 @@ border-color: #6C6A69;
 
 </body>
 </html>
+
+

@@ -3,12 +3,18 @@
   session_start();
 
   if($_SESSION['uname'] == ""){
-    header('location: pageredirect.html');
+    header('location: pageredirect.php');
   }
 
     if(!isset($_SESSION['uname'])){
-    header('location: pageredirect.html');
+    header('location: pageredirect.php');
   }
+
+ if($_SESSION['urole'] != 'System Admin')
+ {
+   header('location: pageredirect.php');
+ }
+
 
 ?>
 
@@ -76,7 +82,7 @@
                 <li class="nav-item dropdown" style="color: white;">
                     <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: white;"><i class="fas fa-user fa-fw" style="color: white;"></i></a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-                        <a class="dropdown-item" href="about.html" target="abc_frame" class="dropdown-item"> About</a>
+                        <a class="dropdown-item" href="about.php" target="abc_frame" class="dropdown-item"> About</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="logout.php" class="dropdown-item" id="btn-confirm" data-toggle="modal" data-target="#exampleModalCenter"> Logout</a>
                     </div>
@@ -92,6 +98,10 @@
                                   <a class="nav-link" href="gatekeeper.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-home"></i></div>
                                 Home
+                            </a>      
+                            <a class="nav-link" href="dashboard3.php" target="abc_frame">
+                                <div class="sb-nav-link-icon"><i class="fas fa-home"></i></div>
+                                Dashboard ID
                             </a>                         
                             <div class="sb-sidenav-menu-heading">Featured Pages</div>
                             <li>    
@@ -117,22 +127,6 @@
                                       </nav>
                                   </div>
 
-
-
-
-                                   <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#Messaging" aria-expanded="false" aria-controls="collapseLayouts">
-                                          <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-                                          Messaging
-                                          <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                                      </a>
-
-                                  <div class="collapse" id="Messaging" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
-                                      <nav class="sb-sidenav-menu-nested nav">
-                                        <a class="nav-link" href="messaging.php" data-toggle="modal" data-target="#msg"><div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div> Create Message</a>
-                                           <a class="nav-link" href="messaging.php" target="abc_frame"><div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div> Messaging</a>
-
-                                      </nav>
-                                  </div>
 
                                   
 
@@ -400,13 +394,15 @@
                                                           <span class="input-group-text"
                                                             id="inputGroup-sizing-default">Sender&nbsp;&nbsp;&nbsp;&nbsp;</span>
                                                         </div>
-                                                         <select name="sr" class="form-control" >
+                                                         <select name="sr" class="form-control" disabled>
                                                           <option value="CCIS Faculty">CCIS Faculty</option>
                                                           <option value="MITL Faculty">MITL Faculty</option>
                                                           <option value="CAS Faculty">CAS Faculty</option>
+                                                          <option value="SHS Faculty">SHS Faculty</option>
+                                                          <option value="ETYCB Faculty">ETYCB Faculty</option>
                                                           <option value="Clinic">Clinic</option>
-                                                          <option value="Admission's Office">Admission's Office</option>
-                                                          <option value="Registrar's Office">Registrar's Office</option>
+                                                          <option value="Admission Office">Admission's Office</option>
+                                                          <option value="Registrar Office">Registrar's Office</option>
                                                         </select>
                                                       </div>
 
@@ -607,5 +603,7 @@ if(isset($_POST['insertmsg']))
               
 include('uploader_minfo.php');
 include('uploader_calendar.php'); 
+include_once 'ND_UPDATER.php';
+include_once 'php prototyping/generator_report_update.php';
 
 ?>

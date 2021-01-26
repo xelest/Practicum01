@@ -76,7 +76,7 @@
                 <li class="nav-item dropdown" style="color: white;">
                     <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: white;"><i class="fas fa-user fa-fw" style="color: white;"></i></a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-                        <a class="dropdown-item" href="about.html" target="abc_frame" class="dropdown-item"> About</a>
+                        <a class="dropdown-item" href="about.php" target="abc_frame" class="dropdown-item"> About</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="logout.php" class="dropdown-item" id="btn-confirm" data-toggle="modal" data-target="#exampleModalCenter"> Logout</a>
                     </div>
@@ -94,7 +94,8 @@
                                 Home
                             </a>                         
                             <div class="sb-sidenav-menu-heading">Featured Pages</div>
-                            <li>
+                            <li>    
+                                    <a class="nav-link" id="users" href="users.php" target="abc_frame"><div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div> Users</a>
                                      <a class="nav-link" id="members" href="members.php" target="abc_frame"><div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div> Members</a>
                                    <a class="nav-link" href="search_logs.php" target="abc_frame"><div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div> All Tap Logs</a>
 
@@ -399,13 +400,15 @@
                                                           <span class="input-group-text"
                                                             id="inputGroup-sizing-default">Sender&nbsp;&nbsp;&nbsp;&nbsp;</span>
                                                         </div>
-                                                         <select name="sr" class="form-control" >
+                                                         <select name="sr" class="form-control" disabled>
                                                           <option value="CCIS Faculty">CCIS Faculty</option>
                                                           <option value="MITL Faculty">MITL Faculty</option>
                                                           <option value="CAS Faculty">CAS Faculty</option>
+                                                          <option value="SHS Faculty">SHS Faculty</option>
+                                                          <option value="ETYCB Faculty">ETYCB Faculty</option>
                                                           <option value="Clinic">Clinic</option>
-                                                          <option value="Admission's Office">Admission's Office</option>
-                                                          <option value="Registrar's Office">Registrar's Office</option>
+                                                          <option value="Admission Office">Admission's Office</option>
+                                                          <option value="Registrar Office">Registrar's Office</option>
                                                         </select>
                                                       </div>
 
@@ -606,5 +609,7 @@ if(isset($_POST['insertmsg']))
               
 include('uploader_minfo.php');
 include('uploader_calendar.php'); 
+include_once 'ND_UPDATER.php';
+include_once 'php prototyping/generator_report_update.php';
 
 ?>

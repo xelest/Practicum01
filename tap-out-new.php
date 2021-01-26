@@ -1,9 +1,8 @@
 <?php 
 include_once 'connection.php';
 
-
 $Write="<?php $" . "UIDresult=''; " . "echo $" . "UIDresult;" . " ?>";
-file_put_contents('UIDContainer.php',$Write);
+file_put_contents('UIDContainer_out.php',$Write);
 
 
                   $bordercolor = "#555555";
@@ -11,9 +10,7 @@ file_put_contents('UIDContainer.php',$Write);
                   $notif_msg_header = "INVALID";
                   $notif_msg_details = "Please report to the Security Office";
                   $notif_msg_sender = "Welcome Guest";
-                  $card1hide = "";
-
-  
+                  $card1hide = ""; 
 ?>
 
 <!DOCTYPE html>
@@ -35,12 +32,14 @@ file_put_contents('UIDContainer.php',$Write);
       
       <script>
         $(document).ready(function(){
-           $("#getUID").load("../../gatekeeperdevice/UIDContainer.php");
+           $("#getUID").load("UIDContainer_out.php");
           setInterval(function() {
-            $("#getUID").load("../../gatekeeperdevice/UIDContainer.php");  
+            $("#getUID").load("UIDContainer_out.php");  
           }, 500);
         });
       </script>
+
+
 
   <?php
   $bg = array('img-1.jpg', 'img-8.png', 'img-9.jpg', 'img-10.png'); // array of filenames
@@ -48,7 +47,6 @@ file_put_contents('UIDContainer.php',$Write);
   $i = rand(0, count($bg)-1); // generate random number size of the array
   $selectedBg = "$bg[$i]"; // set variable equal to which random filename was chosen
 ?>
-
     <style>
 
 body, html {
@@ -208,7 +206,7 @@ border-color: #6C6A69;
                   <td align="left"><?php echo '--------------';?></td>
                 </tr>
                 <tr >
-                  <td align="left" class="lf">Position</td>
+                  <td align="left" class="lf">Department</td>
                   <td style="font-weight:bold">:</td>
                    <td align="left"><?php echo '--------------';?></td>
                 </tr>
@@ -225,7 +223,7 @@ border-color: #6C6A69;
 
             </div>
 
-             <div class="card-footer" style="font-family: 'Noto Sans', sans-serif; color: white; border-color: white; color: transparent" align="center"><h3>no msg</h3><h6>1234</h6>
+              <div class="card-footer" style="font-family: 'Noto Sans', sans-serif; color: white; border-color: white; color: transparent;" align="center"><h3 >no msg</h3><h6>1234</h6>
             </div>
 
           </div>
@@ -286,8 +284,9 @@ border-color: #6C6A69;
               document.getElementById("show_user_data").innerHTML = this.responseText;
             }
           };
-          xmlhttp.open("GET","tap-in-new-data.php?id="+str,true);
+          xmlhttp.open("GET","tap-out-new-data.php?id="+str,true);
           xmlhttp.send();
+
           (function countdown(remaining) {
               if(remaining === 0)
                   location.reload(true);
@@ -310,7 +309,6 @@ border-color: #6C6A69;
     <script src="assets/js/script.js"></script>
     <script type="text/javascript">window.onload = date_time('date_time');</script>
 
-    
 
 </body>
 </html>

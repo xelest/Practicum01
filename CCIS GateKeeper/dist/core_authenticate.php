@@ -1,5 +1,4 @@
 <?php 
-
   $con = mysqli_connect('localhost', 'root', '', 'mclccisn_gatekeeper');
   
   $username = "";
@@ -51,7 +50,7 @@
                       $_SESSION["urole"] = $role;
                       $_SESSION["uname"] = $username;
                       $_SESSION["status"] = $status;
-                      header("Location: gatekeeper.php");
+                      header("Location: systemusers.php");
    
                     }
                     else

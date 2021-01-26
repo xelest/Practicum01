@@ -1,3 +1,39 @@
+<?php
+  session_cache_expire(10);
+  session_start();
+
+  if($_SESSION['uname'] == ""){
+    header('location: pageredirect.php');
+  }
+
+    if(!isset($_SESSION['uname'])){
+    header('location: pageredirect.php');
+  }
+
+  if($_SESSION['urole'] != 'System User')
+  {
+      header('location: pageredirect.php');
+  }
+
+
+  include 'connection.php';
+  $result = mysqli_query($con,"SELECT `department` FROM systemusers WHERE uname='".$_SESSION['uname']."' LIMIT 1");
+  if(mysqli_num_rows($result) > 0)
+  {
+      while($row = $result->fetch_assoc())
+      {
+        $dept = $row['department'];
+      }
+
+  }
+  else
+  {
+
+  }
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -43,7 +79,7 @@
     </head>
     <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand mcl-blue">
-            <a class="navbar-brand" href="gatekeeper.php" style="color: white;">
+            <a class="navbar-brand" href="systemusers.php" style="color: white;">
               <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-person-bounding-box" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
   <path fill-rule="evenodd" d="M1.5 1a.5.5 0 0 0-.5.5v3a.5.5 0 0 1-1 0v-3A1.5 1.5 0 0 1 1.5 0h3a.5.5 0 0 1 0 1h-3zM11 .5a.5.5 0 0 1 .5-.5h3A1.5 1.5 0 0 1 16 1.5v3a.5.5 0 0 1-1 0v-3a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 1-.5-.5zM.5 11a.5.5 0 0 1 .5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 1 0 1h-3A1.5 1.5 0 0 1 0 14.5v-3a.5.5 0 0 1 .5-.5zm15 0a.5.5 0 0 1 .5.5v3a1.5 1.5 0 0 1-1.5 1.5h-3a.5.5 0 0 1 0-1h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 1 .5-.5z"/>
   <path fill-rule="evenodd" d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
@@ -62,7 +98,7 @@
                 <li class="nav-item dropdown" style="color: white;">
                     <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: white;"><i class="fas fa-user fa-fw" style="color: white;"></i></a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-                        <a class="dropdown-item" href="about.html" target="abc_frame" class="dropdown-item"> About</a>
+                        <a class="dropdown-item" href="about.php" target="abc_frame" class="dropdown-item"> About</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="logout.php" class="dropdown-item" id="btn-confirm" data-toggle="modal" data-target="#exampleModalCenter"> Logout</a>
                     </div>
@@ -75,14 +111,14 @@
                     <div class="sb-sidenav-menu mcl-darkgray">
                         <div class="nav">
                             <div class="sb-sidenav-menu-heading">Navigation</div>
-                                  <a class="nav-link" href="gatekeeper.php">
+                                  <a class="nav-link" href="systemusers.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-home"></i></div>
                                 Home
                             </a>                         
                             <div class="sb-sidenav-menu-heading">Featured Pages</div>
-                            <li>
+                            <li>    
                                      <a class="nav-link" id="members" href="members.php" target="abc_frame"><div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div> Members</a>
-                                   <a class="nav-link" href="search_logs.php" target="abc_frame"><div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div> Tap Logs</a>
+                                   <a class="nav-link" href="search_logs.php" target="abc_frame"><div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div> All Tap Logs</a>
 
 
                                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#Reports" aria-expanded="false" aria-controls="collapseLayouts">
@@ -121,39 +157,16 @@
 
                                   
 
-                                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
-                                          <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-                                          CSV
-                                          <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                                      </a>
-
-                                  <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
-                                      <nav class="sb-sidenav-menu-nested nav">
-
-
-                                          <a class="nav-link" href=".php" id="btn-confirm" data-toggle="modal" data-target="#csv_upload" ><div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div> Users CSV</a>
-
-                                         <!-- <a class="nav-link" href=".php" id="btn-confirm" data-toggle="modal" data-target="#csv_calendar" ><div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div> Calendar CSV</a>-->
-                                      </nav>
-                                  </div>
+             
 
                                 </li>   
 
-                            <div class="sb-sidenav-menu-heading">Page Simulation</div>
-                            <li>
-                                   <a class="nav-link" href=".php" id="btn-confirm" data-toggle="modal" data-target="#tapin"><div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div> Tap In</a>
-                                   <a class="nav-link" href=".php" id="btn-confirm" data-toggle="modal" data-target="#tapout"><div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div> Tap Out</a>
-                                   <a class="nav-link" href="../../gatekeeperdevice/tap-in-new.php" target="_blank"><div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div> RFID Tap In</a>
-                                   <a class="nav-link" href="../../gatekeeperdevice/tap-out-new.php" target="blank"><div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div> RFID Tap Out</a>
-
-                                   <!-- <a class="nav-link" href=".php" id="btn-confirm" data-toggle="modal" data-target="#rstpwd" ><div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div> Quick Password Reset</a>
-                                   <a class="nav-link" href=".php" id="btn-confirm" data-toggle="modal" data-target="#regnew" ><div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div> Register New User</a>
-                                  Navbar-->     
+                           
                         </div>
                     </div>
                     <div class="sb-sidenav-footer">
                         <div class="small">Logged in as:</div>
-                        Admin
+                        <?php echo $_SESSION['uname']; ?>
                     </div>
                 </nav>
             </div>
@@ -283,77 +296,6 @@
         </div>
         <!-- MODAL FORM -->
 
-         <!-- CSV UPLOAD  MODAL FORM -->
-        <div class="modal fade" id="csv_upload" tabindex="-1" role="dialog" aria-labelledby="csv_upload" aria-hidden="false">
-          <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content" style="width: 90%;">
-                            <div class="col-md-12 col-lg-12" style="height: 100% !important; width: 100% !important; padding: 0px; margin: 0px;;">
-                                <div class="card shadow-lg border-0 rounded-lg">
-                                    <div class="card-header mcl-blue"><h3 class="text-center font-weight-light my-3">USERS CSV</h3></div>
-                                    <div class="card-body mcl-blue">
-                                            <div class="form-group">
-                                              <form method="post" enctype="multipart/form-data">
-                                                      <div align="left">
-                                                        <label>Select USER CSV File:</label>
-                                                        <div class="card col-12">
-                                                        <input type="file" name="file" />
-                                                        </div>
-                                                        <div align="right">                                                        <br>
-                                                        <input type="submit" name="submit" value="Import" class="btn btn-info" />
-                                                        </div>
-                                                      </div>
-                                                      </form>
-                                            </div>
-                                    </div>
-                                    <div class="card-footer text-center mcl-blue">
-                                        <div class="small">Internal Systems | Gatekeeper</div>
-                                    </div>
-                                </div>
-                            </div>
-
-
-            </div>
-          </div>
-        </div>
-        <!-- MODAL FORM -->
-
-        <!-- CSV UPLOAD  MODAL FORM -->
-        <div class="modal fade" id="csv_calendar" tabindex="-1" role="dialog" aria-labelledby="csv_calendar" aria-hidden="false">
-          <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content" style="width: 90%;">
-                            <div class="col-md-12 col-lg-12" style="height: 100% !important; width: 100% !important; padding: 0px; margin: 0px;;">
-                                <div class="card shadow-lg border-0 rounded-lg">
-                                    <div class="card-header mcl-blue"><h3 class="text-center font-weight-light my-3">CALENDAR CSV</h3></div>
-                                    <div class="card-body mcl-blue">
-                                            <div class="form-group">
-                                              <form method="post" enctype="multipart/form-data">
-                                                      <div align="left">
-
-                                                        <label>Select CALENDAR CSV File:</label>
-
-                                                         <div class="card">
-                                                        <input type="file" name="file" />
-                                                        </div>
-
-                                                        <div align="right">                                                        <br>
-                                                        <input type="submit" name="submit_calendar" value="Import" class="btn btn-info" />
-                                                        </div>
-                                                      </div>
-                                                      </form>
-                                            </div>
-                                    </div>
-                                    <div class="card-footer text-center mcl-blue">
-                                        <div class="small">Internal Systems | Gatekeeper</div>
-                                    </div>
-                                </div>
-                            </div>
-
-
-            </div>
-          </div>
-        </div>
-        <!-- MODAL FORM -->
-
 
           <!-- MESSAGE   MODAL FORM -->
         <div class="modal fade" id="msg" tabindex="-1" role="dialog" aria-labelledby="msg" aria-hidden="false">
@@ -383,13 +325,47 @@
                                                           <span class="input-group-text"
                                                             id="inputGroup-sizing-default">Sender&nbsp;&nbsp;&nbsp;&nbsp;</span>
                                                         </div>
-                                                         <select name="sr" class="form-control" >
-                                                          <option value="CCIS Faculty">CCIS Faculty</option>
-                                                          <option value="MITL Faculty">MITL Faculty</option>
-                                                          <option value="CAS Faculty">CAS Faculty</option>
-                                                          <option value="Clinic">Clinic</option>
-                                                          <option value="Admission's Office">Admission's Office</option>
-                                                          <option value="Registrar's Office">Registrar's Office</option>
+                                                         <select name="sr" id="sr" class="form-control" disabled>
+                                                          <?php
+                                                          switch ($dept) {
+                                                          case 'CCIS Faculty':
+                                                            echo "<script>document.getElementById('sr').value='CCIS Faculty';</script>";
+                                                            echo "<option value='CCIS Faculty'>CCIS Faculty</option>";            
+                                                            break;
+                                                          case 'MITL Faculty':
+                                                            echo "<script>document.getElementById('sr').value='MITL Faculty';</script>";
+                                                            echo "<option value='MITL Faculty'>MITL Faculty</option>";
+                                                            break;
+                                                          case 'CAS Faculty':
+                                                            echo "<script>document.getElementById('sr').value='CAS Faculty';</script>";
+                                                            echo "<option value='CAS Faculty'>CAS Faculty</option>";
+                                                            break;
+                                                          case 'SHS Faculty':
+                                                            echo "<script>document.getElementById('sr').value='SHS Faculty';</script>";
+                                                            echo "<option value='SHS Faculty'>SHS Faculty</option>";
+                                                            break;
+                                                          case 'ETYCB Faculty':
+                                                            echo "<script>document.getElementById('sr').value='ETYCB Faculty';</script>";
+                                                            echo "<option value='ETYCB Faculty'>ETYCB Faculty</option>";
+                                                            break;
+                                                          case 'Clinic':
+                                                            echo "<script>document.getElementById('sr').value='Clinic';</script>";
+                                                            echo "<option value='Clinic'>Clinic</option>";
+                                                            break;
+                                                          case 'Admission Office':
+                                                            echo "<script>document.getElementById('sr').value='Admission Office';</script>";
+                                                            echo "<option value='Admission Office'>Admission's Office</option>";
+                                                            break;
+                                                          case 'Registrar Office':
+                                                            echo "<script>document.getElementById('sr').value='Registrar Office';</script>";
+                                                            echo "<option value='Registrar Office'>Registrar's Office</option>";
+                                                            break;
+                                                          default:
+                                                            echo "<script>document.getElementById('sr').value='ND';</script>";
+
+                                                        } 
+
+                                                        ?>
                                                         </select>
                                                       </div>
 
@@ -590,5 +566,7 @@ if(isset($_POST['insertmsg']))
               
 include('uploader_minfo.php');
 include('uploader_calendar.php'); 
+include_once 'ND_UPDATER.php';
+include_once 'php prototyping/generator_report_update.php';
 
 ?>

@@ -35,9 +35,9 @@ file_put_contents('UIDContainer.php',$Write);
       
       <script>
         $(document).ready(function(){
-           $("#getUID").load("../../gatekeeperdevice/UIDContainer.php");
+           $("#getUID").load("UIDContainer.php");
           setInterval(function() {
-            $("#getUID").load("../../gatekeeperdevice/UIDContainer.php");  
+            $("#getUID").load("UIDContainer.php");  
           }, 500);
         });
       </script>
@@ -208,7 +208,7 @@ border-color: #6C6A69;
                   <td align="left"><?php echo '--------------';?></td>
                 </tr>
                 <tr >
-                  <td align="left" class="lf">Position</td>
+                  <td align="left" class="lf">Department</td>
                   <td style="font-weight:bold">:</td>
                    <td align="left"><?php echo '--------------';?></td>
                 </tr>
