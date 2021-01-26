@@ -586,7 +586,7 @@ var myChart1 = new Chart(trafficchart, {
                 borderColor: "rgba(48, 164, 255, 0.8)",
                 data: [<?php echo $cnt[0];?>,<?php echo $cnt[1];?>,<?php echo $cnt[2];?>,<?php echo $cnt[3];?>,<?php echo $cnt[4];?>,
                     <?php echo $cnt[5];?>,<?php echo $cnt[6];?>,<?php echo $cnt[7];?>,<?php echo $cnt[8];?>,<?php echo $cnt[9];?>,<?php echo $cnt[10];?>,
-                    <?php echo $cnt[25]?>,<?php echo $cnt[16];?>],
+                    <?php echo $cnt[25]?>,<?php echo $cnt[26];?>],
                 label: '',
                 fill: true
             }]

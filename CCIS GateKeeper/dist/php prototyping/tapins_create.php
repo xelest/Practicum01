@@ -14,31 +14,23 @@
   //THIS IS A TAP IN SIMULATOR TO POPULATE DUMMY DATA
 
   $dy=0;
-<<<<<<< HEAD
   $dday = array('2021-01-24');
-=======
-  $dday = array('2021-01-18','2021-01-19', '2021-01-20','2021-01-21','2021-01-22');
->>>>>>> parent of 331897b... AFTER PRESENTATION
   $v1  = array(''.$dday[$dy].' 06:50:00',''.$dday[$dy].' 9:30:00',''.$dday[$dy].'11:40:00',''.$dday[$dy].'15:15:00',''.$dday[$dy].'16:15:00');   //start
   $v2 = array(''.$dday[$dy].' 07:30:00',''.$dday[$dy].' 10:15:00',''.$dday[$dy].'13:30:00',''.$dday[$dy].'16:30:00',''.$dday[$dy].'17:40:00');   //end
   $v3 = array(''.$dday[$dy].' 07:15:00',''.$dday[$dy].' 10:00:00',''.$dday[$dy].'13:10:00',''.$dday[$dy].'16:07:00',''.$dday[$dy].'17:00:00');   //end
   $start_time = 0;
   $end_time = 0;
-<<<<<<< HEAD
   $id_no =  array("2017380981", "2013104449", "2015102429", "2019102433", "2019180967", "2017580058", "2015102434", "2014102346", "2016106141");
-=======
-  $id_no =  array("2015102429", "2015102434", "2015102011");
->>>>>>> parent of 331897b... AFTER PRESENTATION
 
 
 
-      for($dy=0 ; $dy <= 4; $dy++)
+      for($dy=0 ; $dy <= 1; $dy++)
             {
             for($y = 0 ; $y <= 4; $y++)
               {
 
                   //iterate here for insertion 4=number of id nos
-                  for($x = 0 ; $x <= 2; $x++)
+                  for($x = 0 ; $x <= 8; $x++)
                   {
 
                       //generate

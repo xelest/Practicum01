@@ -24,12 +24,6 @@
     $frdaterange = "NO DATA";
     $todaterange = "NO DATA";
     session_start();
-<<<<<<< HEAD
-=======
-     include_once 'php prototyping/generator_report_update.php';
-    include_once 'ND_UPDATER.php';
-   
->>>>>>> parent of 331897b... AFTER PRESENTATION
     ?>
 
 
@@ -51,14 +45,8 @@
                         </div>
                     </div>
                     <div class="row">
-<<<<<<< HEAD
                          <div class="col-6 col-md-6">
                                 <div class="row" style="align-items: center">
-=======
-                         <div class="col-5 col-md-5">
-                                <div class="row style="align-items: center;">
-                                    <div class="col-3" style="padding: 3px;">
->>>>>>> parent of 331897b... AFTER PRESENTATION
 
                                     <div class="col-4" style="padding: 3px;">
                                     <form method="post" id="form1"  action="">
@@ -97,12 +85,7 @@
                                     <form>
                             </div>
                     </div>
-<<<<<<< HEAD
                      <div class="col-6 col-md-6">
-=======
-                    <div class="col-2 col-md-2"></div>
-                     <div class="col-5 col-md-5">
->>>>>>> parent of 331897b... AFTER PRESENTATION
                         <div class="row" >
                             <div class="col-9" align="left" style="align-items: right;padding: 0px; margin-right: 0px;">
                                 Below is a preview of the generated report.<br>
@@ -163,6 +146,11 @@
                                     if($frdaterange > $todaterange)
                                     {
                                         echo "<script>alert('invalid date range FROM is greater than TO')</script>;";
+                                        echo'
+                                                        <script>   
+                                                            document.getElementById("frdaterange").disabled = false;
+                                                            document.getElementById("todaterange").disabled = false;
+                                                            document.getElementById("xidno").disabled = false; </script> ';
                                     }
                                     else if ($frdaterange <= $todaterange && $xidno != '' && $xfilter == 'all')
                                     {

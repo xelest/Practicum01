@@ -101,7 +101,7 @@
                             </a>      
                             <a class="nav-link" href="dashboard3.php" target="abc_frame">
                                 <div class="sb-nav-link-icon"><i class="fas fa-home"></i></div>
-                                Dashboard ID
+                                Activity Dashboard
                             </a>                         
                             <div class="sb-sidenav-menu-heading">Featured Pages</div>
                             <li>    

@@ -27,7 +27,9 @@
 
 <?php
 
-include 'ND_UPDATER.php';
+include_once 'ND_UPDATER.php';
+include_once 'php prototyping/generator_report_update.php';
+include_once 'lastupdate.php';
 ?>
 
 <body>

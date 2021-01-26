@@ -14,27 +14,15 @@
 
 
  if (isset($_POST['register'])) {
-<<<<<<< HEAD
  	$uname = $_POST['uname'];
     $pwd1 = $_POST['pword'];
     $pwd2 = $_POST['pword2'];
     $dept = $_POST['department'];
-=======
- 	$username = $_POST['username'];
- 	$fname = $_POST['fname'];
- 	$lname = $_POST['lname'];
-    $pwd1 = $_POST['pwd1'];
-    $pwd2 = $_POST['pwd2'];
->>>>>>> parent of 331897b... AFTER PRESENTATION
     $pwdN = passAjinomoto($pwd1);
-    $role = $_POST['role'];
-    $status = "deactivated";
+    $urole = $_POST['urole'];
+    $status = "A";
 
-<<<<<<< HEAD
       $sql_u = "SELECT * FROM systemusers WHERE uname='$uname'";
-=======
-      $sql_u = "SELECT * FROM accounts WHERE username='$username'";
->>>>>>> parent of 331897b... AFTER PRESENTATION
       $res_u = mysqli_query($con, $sql_u);
     
       if (mysqli_num_rows($res_u) > 0) 
@@ -55,13 +43,8 @@
       {
         if ($pwd1 === $pwd2)
         {
-<<<<<<< HEAD
            $query = "INSERT INTO systemusers (`uname`, `pword`, `status`, `urole`,`department`) 
                     VALUES ('".$uname."','".$pwdN."', 'A', '".$urole."','".$dept."')";
-=======
-           $query = "INSERT INTO accounts (`fname`, `lname`, `username`, `password`, `role`, `status`) 
-                    VALUES ('$fname','$lname','$username', '$pwdN', '$role', '$status')";
->>>>>>> parent of 331897b... AFTER PRESENTATION
                     
            $results = mysqli_query($con, $query);
            echo "<script type='text/javascript'>alert('Record created. Success!');</script>";

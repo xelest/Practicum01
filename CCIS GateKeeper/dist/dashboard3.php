@@ -60,7 +60,7 @@ box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.75);
                 <div class="container-fluid">
                     <div class="page-title">
                         <div class="row">
-                            <div class="col-4"><h3>Dashboard </h3></div>
+                            <div class="col-4"><h3>Activity Dashboard </h3></div>
 
                             <div class="col-8"><div class="card-body" style="text-align: right;" ><span id="date_time"></span></div></div>
                         </div>
@@ -122,51 +122,9 @@ box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.75);
                             </div>
                         </div>
                         <p id="getUID" hidden></p>
-                        <div class="col-md-4" id="show_user_data"">
-
-                             <div class="card">
-                                <div class="card-header p-2">Emergency Fire</div>
-                                <div class="card-body p-2">
-                                 <div class="card-body">
-                                  <img class="slide-slow" id="img1" src=<?php echo $imgname?> 
-                                  alt="Avatar" style="width: 150px; height: 150px; ">
-                                 </div>
-                                 <div class="card-body">
-                     <table class="table table-borderless table-striped" style="width: 100% !important; color: grey;">
-                      <thead>
-                      </thead>
-                    <tr>
-                      <td style="width: 20%;">Firstname</td>
-                      <td >:</td>
-                      <td >NO DATA</td>
-                    </tr>
-                    <tr>
-                      <td >Lastname</td>
-                      <td >:</td>
-                      <td >NO DATA</td>
-                    </tr>
-                    <tr >
-                      <td ">Position</td>
-                      <td >:</td>
-                      <td >NO DATA</td>
-                    </tr>
-                     <tr >
-                      <td ">ID No</td>
-                      <td >:</td>
-                      <td >NO DATA</td>
-                    </tr>
-                  </table> </div>
-
-                                
-                                </div>
-                                <div class="card-footer p-2">Profile</div>
-                            </div>
-
-                            
-                    </div>
-                
-
-                
+                        <div class="col-md-4 col-lg-4" id="show_user_data"">
+                          <iframe src="../../gatekeeperdevice/tap-in-new - Copy.php" style="width: 100%; height: 100%; border: 0px;"></iframe>
+                            </div>   
             </div>
 
         </div>
@@ -632,9 +590,6 @@ AND HOUR(`inDate`) <= HOUR('19:59:00')";
                 loadlink() // this will run after every 5 seconds
             }, 1000);
 
-            $("#getUID").load("../../gatekeeperdevice/activity-tap-in-new.php",function () {
-                     //$(this).unwrap();
-                });
 </script>
 
 <script>

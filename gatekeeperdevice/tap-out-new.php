@@ -39,6 +39,14 @@ file_put_contents('UIDContainer_out.php',$Write);
         });
       </script>
 
+
+
+  <?php
+  $bg = array('img-1.jpg', 'img-8.png', 'img-9.jpg', 'img-10.png'); // array of filenames
+
+  $i = rand(0, count($bg)-1); // generate random number size of the array
+  $selectedBg = "$bg[$i]"; // set variable equal to which random filename was chosen
+?>
     <style>
 
 body, html {
@@ -60,7 +68,7 @@ body, html {
 
 .bg {
   /* The image used */
-  background-image: url("img/img-1.jpg");
+  background-image: url("img/<?php echo $selectedBg; ?>");
 
   /* Full height */
   height: 100%;
@@ -177,28 +185,28 @@ border-color: #6C6A69;
               <table class="table table-borderless" style="width: 100% !important; color: white;">
                   <thead>
                   </thead>
-                <tr>
+               <!-- <tr>
                   <td align="left" class="lf">RFID</td>
                   <td style="font-weight:bold" >:</td>
-                  <td align="left"><?php echo '--------------';?></td>
+                  <td align="left"><?php //echo '--------------';?></td>
                 </tr>
                 <tr >
                   <td align="left" class="lf">MCL ID</td>
                   <td style="font-weight:bold">:</td>
-                  <td align="left"><?php echo '--------------';?></td>
-                </tr>
+                  <td align="left"><?php //echo '--------------';?></td>
+                </tr> -->
                 <tr>
                   <td align="left" class="lf">Firstname</td>
                   <td style="font-weight:bold">:</td>
                    <td align="left"><?php echo '--------------';?></td>
                 </tr>
                 <tr>
-                  <td align="left" class="lf">Last Name</td>
+                  <td align="left" class="lf">Lastname</td>
                   <td style="font-weight:bold">:</td>
                   <td align="left"><?php echo '--------------';?></td>
                 </tr>
                 <tr >
-                  <td align="left" class="lf">Department</td>
+                  <td align="left" class="lf">Position</td>
                   <td style="font-weight:bold">:</td>
                    <td align="left"><?php echo '--------------';?></td>
                 </tr>
@@ -215,7 +223,7 @@ border-color: #6C6A69;
 
             </div>
 
-             <div class="card-footer" style="font-family: 'Noto Sans', sans-serif; color: white; border-color: white; color: transaprent; font-size: 12;" align="center"><?php echo "no msg"?>
+              <div class="card-footer" style="font-family: 'Noto Sans', sans-serif; color: white; border-color: white; color: transparent;" align="center"><h3 >no msg</h3><h6>1234</h6>
             </div>
 
           </div>
@@ -278,6 +286,13 @@ border-color: #6C6A69;
           };
           xmlhttp.open("GET","tap-out-new-data.php?id="+str,true);
           xmlhttp.send();
+
+          (function countdown(remaining) {
+              if(remaining === 0)
+                  location.reload(true);
+              //document.getElementById('countdown').innerHTML = remaining;
+              setTimeout(function(){ countdown(remaining - 1); }, 1000);
+          })(5);
         }
       }
       

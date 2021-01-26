@@ -76,65 +76,67 @@ $timeout = "0";
 
 							     	}
 
-							      	$tapout_exist = 1;
-							      	//echo "tapout | 1 |";
+							     	if($latest !== 'ND')
+							     	{
+
+								       if($NEWXtime < '07:00:00')
+								    	{
+								    		$remarks = "ontime";
+								    	}
+								    	else
+								    	{
+								    		$remarks = "late";
+								    	}
+
+
+								    	$datetime1 = new DateTime($NEWXtime);
+										$datetime2 = new DateTime($NEWXtime2);
+										$interval = $datetime1->diff($datetime2);
+										$hrcnt =  $interval->format('%h')." Hours ".$interval->format('%i')." Minutes";
+										//echo $hrcnt;
+										//echo $remarks;
+								      
+								        $myqryY = "UPDATE `reports_admin` SET `TimeOut`='".$NEWXtime2."',`Duration`='".$hrcnt."',`Remarks`='".$remarks."' WHERE `id_no`='".$idno."' AND `Date` = '".$NEWXdate."'";
+
+
+									       if(mysqli_query($con, $myqryY) === TRUE)
+									       {
+									       		//echo " | inserted | <br>";
+									       }
+									       else
+									       {
+									       		//echo " | failed | <br>";
+									       		//echo 'Error: '. $con->error;
+									       }
+
+							       }
+							       else if($latest == 'ND')
+							       {
+
+							       		$NEWXtime2 = 'ND';
+							       		$hrcnt = 'ND';
+							       		$remarks = 'ND';
+
+							       			 $myqryY = "UPDATE `reports_admin` SET `TimeOut`='".$NEWXtime2."',`Duration`='".$hrcnt."',`Remarks`='".$remarks."' WHERE `id_no`='".$idno."' AND `Date` = '".$NEWXdate."'";
+
+
+										       if(mysqli_query($con, $myqryY) === TRUE)
+										       {
+										       		//echo " | inserted | <br>";
+										       }
+										       else
+										       {
+										       		//echo " | failed | <br>";
+										       		//echo 'Error: '. $con->error;
+										       }
+							       }
+
 							    } 
 							    else 
 							    {
 							    	$tapout_exist = 0;
 							    	//echo "tapout | 0";
 							    }
-
-
-							    if($tapin_exist == 1 && $tapout_exist == 0)
-							    {
-							    	$remarks = "Did not TAP OUT";
-							    }
-							    else if($tapin_exist == 0 && $tapout_exist == 1)
-							    {
-							    	$remarks = "Did not TAP IN";
-							    }
-							     else if($tapin_exist == 0 && $tapout_exist == 0)
-							    {
-							    	
-							    }
-							    else
-							    {
-
-							    	if($NEWXtime < '07:00:00')
-							    	{
-							    		$remarks = "ontime";
-							    	}
-							    	else
-							    	{
-							    		$remarks = "late";
-							    	}
-
-
-							    	$datetime1 = new DateTime($NEWXtime);
-									$datetime2 = new DateTime($NEWXtime2);
-									$interval = $datetime1->diff($datetime2);
-									$hrcnt =  $interval->format('%h')." Hours ".$interval->format('%i')." Minutes";
-									//echo $hrcnt;
-									//echo $remarks;
-
-							    }
-							      //echo " <hr> <br>";
-
-							      
-							        $myqryY = "UPDATE `reports_admin` SET `TimeOut`='".$NEWXtime2."',`Duration`='".$hrcnt."',`Remarks`='".$remarks."' WHERE `id_no`='".$idno."' AND `Date` = '".$NEWXdate."'";
-
-
-							       if(mysqli_query($con, $myqryY) === TRUE)
-							       {
-							       		//echo " | inserted | <br>";
-							       }
-							       else
-							       {
-							       		//echo " | failed | <br>";
-							       		//echo 'Error: '. $con->error;
-							       }
-
 
 				       }
 				     }
