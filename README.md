@@ -4,3 +4,16 @@ This part of the project features RFID Tap Ins and Outs with Admin Report Filter
 This is not a thesis or capstone.
 
 Frameworks and programming languages used to develop the project are HTML, CSS, Javascript, PHP, MySQL, Bootstrap and C++.
+
+**System Preview**
+
+![image](https://github.com/xelest/isGatekeeper/assets/29807564/55f508d6-cfbc-4d4e-b7af-6f2c4d96475f)
+
+![image](https://github.com/xelest/isGatekeeper/assets/29807564/476da41d-ad44-403d-b8ec-0d74d1f33423)
+
+![image](https://github.com/xelest/isGatekeeper/assets/29807564/dca5e333-6b72-4e86-9f40-8587a5bb224f)
+
+**Youtube Demo**
+[![Uploading image.png…]()](https://youtu.be/c-GnASZMwNU)
+
+
