@@ -3,6 +3,11 @@ Gatekeeper is an Internal Systems web based application made for academic projec
 This part of the project features RFID Tap Ins and Outs with Admin Report Filtering and Report Generation. It also features basic modules such as System User Registration, Account Management, Different Interface for System Admin and System Users and distinct features includes basic md5 double layer one-way password enctryption and implements php sessions. A working prototype IoT Device was created using ESP32 WROOM Devkit and RC522 RFID Card Reader to demonstrate usage and deployability.
 This is not a thesis or capstone.
 
+***Youtube Demo***
+https://www.youtube.com/watch?v=c-GnASZMwNU
+***Youtube System Runthrough***
+https://youtu.be/1z7UJR_vcUc
+
 Frameworks and programming languages used to develop the project are HTML, CSS, Javascript, PHP, MySQL, Bootstrap and C++.
 
 **System Preview**
@@ -16,7 +21,5 @@ Frameworks and programming languages used to develop the project are HTML, CSS, 
 ![image](https://github.com/xelest/isGatekeeper/assets/29807564/af81f6ef-50ba-4788-9451-b236d9a64a71)
 
 
-**Youtube Demo**
-https://www.youtube.com/watch?v=c-GnASZMwNU
 
 
