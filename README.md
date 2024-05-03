@@ -13,7 +13,10 @@ Frameworks and programming languages used to develop the project are HTML, CSS, 
 
 ![image](https://github.com/xelest/isGatekeeper/assets/29807564/dca5e333-6b72-4e86-9f40-8587a5bb224f)
 
+![image](https://github.com/xelest/isGatekeeper/assets/29807564/af81f6ef-50ba-4788-9451-b236d9a64a71)
+
+
 **Youtube Demo**
-[![Uploading image.png…]()](https://youtu.be/c-GnASZMwNU)
+https://www.youtube.com/watch?v=c-GnASZMwNU
 
 
